@@ -14,6 +14,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'i18n'
 gem 'devise'
 gem 'omniauth-facebook'
+gem "pundit"
+gem 'pagy', '~> 3.5'
+gem "haml-rails"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
