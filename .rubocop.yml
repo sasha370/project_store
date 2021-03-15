@@ -1,0 +1,18 @@
+AllCops:
+  NewCops: enable
+
+AllCops:
+  SuggestExtensions: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'spec/**/*.rb'
+
+AllCops:
+  TargetRubyVersion: '2.7'
+  Exclude:
+    - 'spec/**/*.rb'
+
+Documentation:
+  Enabled: false
