@@ -30,8 +30,16 @@
                 %a.collapse-link{href: "#"} Photo
               %li
                 %a.collapse-link{href: "#"} Web design
-          %li
-            = link_to 'My account', '#'   #TODO
+          - if current_user
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+              %ul.dropdown-menu
+                %li= link_to 'Edit profile', edit_user_registration_path(current_user)
+                %li.divider{role: "separator"}
+                %li= link_to 'Log out', destroy_user_session_path, :method => :delete
+          - else
+            %li= link_to 'Log in', new_user_session_path 
+            %li= link_to 'Register', new_user_registration_path
       .hidden-xs
         %ul.nav.navbar-nav
           %li
@@ -45,11 +53,14 @@
                 %a{href: "#"} Photo
               %li
                 %a{href: "#"} Web design
-              %li.divider{role: "separator"}
-              %li
-                = link_to 'Log out', destroy_user_session_path
-          %li
-            - if current_user
-              = link_to 'My account', '#'
-            - else
-              = link_to 'Log in', new_user_session_path  #TODO
+          
+          - if current_user
+            %li.dropdown
+              %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+              %ul.dropdown-menu
+                %li= link_to 'Edit profile', edit_user_registration_path(current_user)
+                %li.divider{role: "separator"}
+                %li= link_to 'Log out', destroy_user_session_path, :method => :delete
+          - else
+            %li= link_to 'Log in', new_user_session_path 
+            %li= link_to 'Register', new_user_registration_path
