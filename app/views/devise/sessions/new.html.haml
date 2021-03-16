@@ -1,16 +1,28 @@
-%h1= t('.sign_in')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-group
-    = f.label :email
-    = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control'
-  .form-group
-    = f.label :password
-    = f.password_field :password, autocomplete: 'current-password', class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group.form-check
-      = f.check_box :remember_me, class: 'form-check-input'
-      = f.label :remember_me, class: 'form-check-label' do
-        = resource.class.human_attribute_name('remember_me')
-  .form-group
-    = f.submit  t('.sign_in'), class: 'btn btn-primary'
-= render 'devise/shared/links'
+%main.container.general-main-wrap.text-center
+  .row
+    .col-md-3
+    .col-md-6
+      .text-center
+        %h3.general-login-title= t('.sign_in')
+        %a.general-login-icon{href: "#"} 
+          %i.fab.fa-facebook-square
+          // #TODO
+        %p.general-login-text or
+        
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-group.text-left
+          = f.label :email
+          = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control', id: 'email'
+        .form-group.text-left
+          = f.label :password
+          = f.password_field :password, autocomplete: 'current-password', placeholder: 'Password', class: 'form-control', id: 'password'
+        - if devise_mapping.rememberable?
+          .form-group.form-check
+            = f.check_box :remember_me, class: 'form-check-input'
+            = f.label :remember_me, class: 'form-check-label' do
+              = resource.class.human_attribute_name('remember_me')
+        .form-group
+          = f.submit  t('.sign_in'), class: 'btn btn-primary'
+      = render 'devise/shared/links'
+    .col-md-3
+
