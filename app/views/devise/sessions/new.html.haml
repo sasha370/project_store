@@ -10,10 +10,10 @@
         %p.general-login-text or
         
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        .form-group.text-left
+        .form-group
           = f.label :email
           = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control', id: 'email'
-        .form-group.text-left
+        .form-group
           = f.label :password
           = f.password_field :password, autocomplete: 'current-password', placeholder: 'Password', class: 'form-control', id: 'password'
         - if devise_mapping.rememberable?
