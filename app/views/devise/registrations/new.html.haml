@@ -21,8 +21,13 @@
               = f.label :last_name
               = f.text_field :last_name, autofocus: true, autocomplete: 'last_name', placeholder: 'Last name', class: 'form-control'
         .form-group.text-left
-          = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control'
+        .row.text-left  
+          .col-md-6
+            = f.label :email
+            = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control'
+          .col-md-6
+            = f.label :avatar
+            = f.file_field :avatar
         .row.text-left
           .col-md-6
             .form-group

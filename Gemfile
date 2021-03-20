@@ -5,6 +5,7 @@ ruby '2.7.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
+gem 'devise-bootstrap-views', '~> 1.0'
 gem 'haml-rails'
 gem 'i18n'
 gem 'jbuilder', '~> 2.7'
@@ -18,10 +19,11 @@ gem 'rubocop', require: false
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
-gem 'devise-bootstrap-views', '~> 1.0'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
 
@@ -34,7 +36,9 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'webdrivers'
 end
