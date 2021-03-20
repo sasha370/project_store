@@ -25,7 +25,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="/media/alex/C006EB7C06EB7238/UDEMY/Univer" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
   </component>
@@ -142,6 +142,7 @@
       <option name="presentableId" value="Default" />
       <updated>1615829933321</updated>
       <workItem from="1615829939501" duration="1196000" />
+      <workItem from="1616048341508" duration="52000" />
     </task>
     <servers />
   </component>
