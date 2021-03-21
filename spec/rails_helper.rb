@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 SimpleCov.start 'rails'
 
@@ -8,6 +10,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -35,7 +39,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
   # config.include ControllerHelpers, type: :controller
-  # config.include FeatureHelpers, type: :feature
+  config.include FeatureHelpers, type: :feature
   # config.include ActiveStorageHelpers
   # config.include OmniauthHelpers
   config.include Capybara::DSL
@@ -46,6 +50,6 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
   config.after(:all) do
-    FileUtils.rm_rf("#{Rails.root}/tmp/storage")
+    FileUtils.rm_rf(Rails.root.join('/tmp/storage'))
   end
 end

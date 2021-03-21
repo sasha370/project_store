@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  
   def index
     @books = Book.all
   end
@@ -11,8 +12,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:id,
-                                 :photo,
+    params.require(:book).permit(:id, :photo,
                                  :title,
                                  :author,
                                  :price,

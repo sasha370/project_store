@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -16,7 +18,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'pundit'
 gem 'rails', '~> 6.1.3'
-gem 'rubocop', require: false
+gem 'rubocop-rails',  require: false
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'

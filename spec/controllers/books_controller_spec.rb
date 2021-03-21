@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe BooksController, type: :controller do
-
   describe 'GET #index' do
     let(:books) { create_list(:book, 12) }
     before { get :index }
@@ -16,16 +17,15 @@ RSpec.describe BooksController, type: :controller do
   end
 
   describe 'GET #show' do
-
-    before { get :show, params: {id: book} }
+    before { get :show, params: { id: book } }
     let(:book) { create(:book) }
-    
+
     it 'assigns the requested book to  @book' do
       expect(assigns(:book)).to eq(book)
     end
 
     # it 'assigns new comment for question' do
-      # expect(assigns(:comment)).to be_a_new(Comment)
+    # expect(assigns(:comment)).to be_a_new(Comment)
     # end
 
     it 'renders show view' do

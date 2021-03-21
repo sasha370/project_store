@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -8,5 +10,5 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false }
 
   validates :password,
-            format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{8,}\z/}
+            format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{8,}\z/ }
 end
