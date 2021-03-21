@@ -4,9 +4,9 @@
     .col-md-6
       .text-center
         %h3.general-login-title= t('.sign_in')
-        %a.general-login-icon{href: "#"} 
-          %i.fab.fa-facebook-square
-          // #TODO
+        = link_to user_facebook_omniauth_authorize_path, method: :post do
+          %span{:style => "font-size: 3em; color: #c59c71;"}
+            %i.fab.fa-facebook-square
         %p.general-login-text or
         
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
@@ -25,4 +25,3 @@
           = f.submit  t('.sign_in'), class: 'btn btn-primary'
       = render 'devise/shared/links'
     .col-md-3
-
