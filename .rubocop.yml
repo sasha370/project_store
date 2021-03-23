@@ -1,0 +1,21 @@
+require: rubocop-rails
+
+AllCops:
+  NewCops: enable
+
+AllCops:
+  SuggestExtensions: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'spec/**/*.rb'
+
+AllCops:
+  TargetRubyVersion: '2.7'
+  Include:
+    - 'app/**/*.rb'
+    - 'spec/**/*.rb'
+
+Documentation:
+  Enabled: false
