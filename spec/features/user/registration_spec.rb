@@ -12,7 +12,7 @@ feature 'Guest can sign up', '
     fill_in 'Password confirmation', with: '123456aaAA'
     click_on 'Sign up'
 
-    expect(page).to have_content 'My account'
+    expect(page).to have_content 'Welcome! You have signed up successfully.'
   end
 
   describe 'Guest already registered' do

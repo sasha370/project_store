@@ -44,13 +44,12 @@ ActiveRecord::Schema.define(version: 2021_03_20_154149) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string "photo", null: false
     t.string "title", null: false
     t.string "author", null: false
     t.decimal "price", null: false
-    t.decimal "quantity"
+    t.integer "quantity"
     t.text "description"
-    t.decimal "published_year"
+    t.integer "published_year"
     t.string "dimentions"
     t.string "materials"
     t.datetime "created_at", precision: 6, null: false

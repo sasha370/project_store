@@ -9,11 +9,13 @@ gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'faker'
 gem 'haml-rails'
 gem 'i18n'
 gem 'jbuilder', '~> 2.7'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
 gem 'pagy', '~> 3.5'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
@@ -23,7 +25,6 @@ gem 'rubocop-rails',  require: false
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
-gem "omniauth-rails_csrf_protection"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
