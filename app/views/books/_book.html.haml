@@ -1,8 +1,8 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      - if book.cover.present?
-        = image_tag book.cover.variant(resize: "100x100"), class: 'img-shadow general-thumbnail-img', alt: "#{book.title}"
+      - if book.images.present?
+        = image_tag book.images.variant(resize: "100x100"), class: 'img-shadow general-thumbnail-img', alt: "#{book.title}"
       - else
         = image_tag "default_cover.jpg", heigth: "100", alt: "default", class: 'img-shadow general-thumbnail-img'
       .thumb-hover
