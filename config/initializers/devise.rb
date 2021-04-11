@@ -272,8 +272,8 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   config.omniauth :facebook, 
-                Rails.application.credentials.dig(:facebook, :app_id),
-                Rails.application.credentials.dig(:facebook, :app_secret),
+                Rails.application.credentials.dig(:FACEBOOK_APP_ID),
+                Rails.application.credentials.dig(:FACEBOOK_APP_SECRET),
                 token_params: { parse: :json },
                 scope: "email" 
 
