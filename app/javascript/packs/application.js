@@ -11,5 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-import "bootstrap"
-import "@fortawesome/fontawesome-free/css/all"
+// import "bootstrap"
+// import "@fortawesome/fontawesome-free/css/all"
+
+import $ from 'jquery';
+
+window.$ = $;
+window.jQuery = $;
+
+import 'bootstrap-sass/assets/javascripts/bootstrap';

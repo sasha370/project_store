@@ -5,7 +5,7 @@
       %h3.general-login-title= t('.sign_up')
       = link_to user_facebook_omniauth_authorize_path, method: :post do
         %span{:style => "font-size: 3em; color: #c59c71;"}
-          %i.fab.fa-facebook-square
+          %i.fa.fa-facebook-square
       %p.general-login-text or
 
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
