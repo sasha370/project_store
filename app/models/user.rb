@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{8,}\z/ }
 
   def self.from_omniauth(auth)
-    user = User.where.first(email: auth.info.email)
+    user = User.where(email: auth.info.email).first
     user ||= User.create!(provider: auth.provider, uid: auth.uid, email: auth.info.email,
                           password: Devise.friendly_token[0, 20])
     user
