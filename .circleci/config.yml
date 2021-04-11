@@ -22,21 +22,6 @@ commands:
       - run:
           name: rubocop
           command: bundle exec rubocop
-      - run:
-          name: brakeman
-          command: bundle exec brakeman -q
-      - run:
-          name: fasterer
-          command: bundle exec fasterer
-      - run:
-          name: bundle audit
-          command: bundle exec bundle-audit check --update
-      - run:
-          name: rails best practices
-          command: bundle exec rails_best_practices .
-      - run:
-          name: database consistency
-          command: bundle exec database_consistency
 
   run_specs:
     steps:
