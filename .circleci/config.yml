@@ -4,7 +4,7 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 references:
-  default_ruby_version: &default_ruby_version 2.7.2
+  default_ruby_version: &default_ruby_version 2.7.2-node
   default_postgress_version: &default_postgress_version 12.6-alpine
   ruby_envs: &ruby_envs
     environment:
