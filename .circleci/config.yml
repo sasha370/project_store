@@ -5,13 +5,12 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7.2
-        environment: # environment variables for primary container
-          BUNDLE_JOBS: 3
-          BUNDLE_RETRY: 3
-          BUNDLE_PATH: vendor/bundle
-          PGHOST: localhost
-          PGUSER: postgres
+        environment:
           RAILS_ENV: test
+      - image: circleci/postgres:11.3-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
     steps:
       - checkout
       - restore_cache:
