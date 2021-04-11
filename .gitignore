@@ -38,3 +38,7 @@ yarn-debug.log*
 .idea
 .idea/*
 
+
+.idea/Book_store.iml
+.idea/workspace.xml
+.idea/workspace.xml
