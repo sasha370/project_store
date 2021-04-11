@@ -121,7 +121,7 @@ jobs:
       # Run rspec in parallel
       - run:
           name: Prepare webpacker for tests
-          command: bundle exec rake webpacker:compile
+          command: bundle exec rails webpacker:compile
       - run:
           name: run specs
           command: bundle exec rspec 
