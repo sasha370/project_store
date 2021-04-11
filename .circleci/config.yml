@@ -5,7 +5,7 @@ orbs:
 
 references:
   default_ruby_version: &default_ruby_version 2.7.2-node
-  default_postgress_version: &default_postgress_version 12.6
+  default_postgress_version: &default_postgress_version 9.5-alpine
   ruby_envs: &ruby_envs
     environment:
       BUNDLE_JOBS: 3
