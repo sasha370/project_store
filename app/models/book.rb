@@ -6,6 +6,4 @@ class Book < ApplicationRecord
     attachable.variant :thumb, resize: '100x100'
   end
 
-  scope latest: -> { last(3) }
-  # scope best_sellers: -> {}
 end
