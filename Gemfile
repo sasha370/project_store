@@ -12,6 +12,7 @@ gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'font-awesome-rails'
 gem 'haml-rails'
 gem 'i18n'
 gem 'jbuilder', '~> 2.7'
@@ -27,8 +28,8 @@ gem 'rails', '~> 6.1.3'
 gem 'rubocop-rails',  require: false
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
+gem 'twitter-bootstrap-rails'
 gem 'webpacker', '~> 5.0'
-gem "font-awesome-rails"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
