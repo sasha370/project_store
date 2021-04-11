@@ -1,16 +1,15 @@
 version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.0 
+  node: circleci/node@2
+
 executors:
   default:
     working_directory: ~/repo
     description: The official CircleCI Ruby Docker image
-    docker:
-      - image: circleci/ruby:2.7.2
-        environment:
-          RAILS_ENV: test
-      - image: circleci/postgres:11.3-alpine
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+   
+    
 
 caches:
   - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
@@ -39,7 +38,7 @@ commands:
       - checkout
       - restore_cache:
           key: *bundle_cache
-      - run: bundle install --path vendor/bundle
+      - run: bundle install 
       - save_cache:
           key: *bundle_cache
           paths:
@@ -50,6 +49,21 @@ commands:
           command: |
             bundle exec rake db:create
 jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2
+        environment:
+          RAILS_ENV: test
+      - image: circleci/postgres:12.6-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+    steps:
+      - checkout
+      - ruby/install-deps 
+      - node/install-packages: 
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
   lintering:
     executor: default
     steps:
@@ -65,6 +79,7 @@ workflows:
   version: 2.1
   build:
     jobs:
+      - build
       - lintering
       - run_specs:
           requires:
