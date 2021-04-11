@@ -27,7 +27,7 @@ commands:
     steps:
       - run:
           name: run specs
-          command: bundle exec rspec --format progress --format RspecJunitFormatter -o ~/test-results/rspec/rspec.xml
+          command: bundle exec rspec 
           when: always
       - store_test_results:
           path: ~/test-results/rspec/
