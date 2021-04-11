@@ -102,7 +102,7 @@ jobs:
       - yarn-install
       - yarn-save-cache
   test:
-    parallelism: 3
+    parallelism: 1
     executor: ruby_with_postgres
     steps:
       - checkout
