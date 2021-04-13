@@ -9,14 +9,13 @@ development:
   
 test:
   <<: *default
-  username: alex
-  password: sasha370
   host: localhost
+  username: <%= Rails.application.credentials.dig(:test, :BOOK_STORE_DATABASE_LOGIN) %>
+  password: <%= Rails.application.credentials.dig(:test, :BOOK_STORE_DATABASE_PASSWORD) %>
   port: 5432
   database: bookstore_test
 
 production:
   <<: *default
   database: Book_store_production
-  username: Book_store
   password: <%= ENV['BOOK_STORE_DATABASE_PASSWORD'] %>
