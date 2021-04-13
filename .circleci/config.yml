@@ -12,14 +12,14 @@ references:
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
       PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: postgres
+      PGUSER: <%= ENV['BOOK_STORE_DATABASE_LOGIN'] %>
+      PGPASSWORD: <%= ENV['BOOK_STORE_DATABASE_PASSWORD'] %>
       RAILS_ENV: test
   postgres_envs: &postgres_envs
     environment:
-      POSTGRES_USER: postgres
+      POSTGRES_USER: <%= ENV['BOOK_STORE_DATABASE_LOGIN'] %>
       POSTGRES_DB: bookstore_test
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: <%= ENV['BOOK_STORE_DATABASE_PASSWORD'] %>
 
 executors:
   default:
