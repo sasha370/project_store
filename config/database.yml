@@ -9,8 +9,8 @@ development:
   
 test:
   <<: *default
-  username: postgres
-  password: postgres
+  username: alex
+  password: sasha370
   host: localhost
   port: 5432
   database: bookstore_test
