@@ -7,6 +7,4 @@ require("jquery");
 require("turbolinks").start();
 require("@rails/activestorage").start();
 
-window.$ = $;
-window.jQuery = $;
 import "bootstrap-sass/assets/javascripts/bootstrap";

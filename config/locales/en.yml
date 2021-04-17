@@ -30,14 +30,15 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  views:
     
-    pages:
-      index:
-        welcome:
-          'Welcome to our amazing Bookstore!'
-          
-      privacy_policy: "Your privacy is important to us. It is Universitys policy to respect your privacy regarding any information we may collect from you across our website,
+  pages:
+    index:
+      welcome:
+        'Welcome to our amazing Bookstore!'
+        
+    privacy_policy: 
+      body: 
+        "Your privacy is important to us. It is BookStore`s policy to respect your privacy regarding any information we may collect from you across our website,
                       https://bookstore-sasha370.herokuapp.com/
                       We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.
                       We only retain collected information for as long as necessary to provide you with your requested service. What data we store, we’ll protect within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.
