@@ -4,16 +4,10 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 references:
-  default_ruby_version: &default_ruby_version 2.7.2-node
-  default_postgress_version: &default_postgress_version 9.5-alpine
+  default_ruby_version: &default_ruby_version 2.7.2-node-browsers
+  default_postgress_version: &default_postgress_version 11.3-alpine
   ruby_envs: &ruby_envs
     environment:
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: vendor/bundle
-      PGHOST: 127.0.0.1
-      PGUSER: <%= ENV['BOOK_STORE_DATABASE_LOGIN'] %>
-      PGPASSWORD: <%= ENV['BOOK_STORE_DATABASE_PASSWORD'] %>
       RAILS_ENV: test
   postgres_envs: &postgres_envs
     environment:
