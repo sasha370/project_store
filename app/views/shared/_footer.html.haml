@@ -1,16 +1,18 @@
+
 %footer.navbar-inverse
   .container
     .row
       .col-sm-9
         %ul.list-inline.general-align.mb-25
+          <!-- #TODO прописать линки -->
           %li
-            %a.nav-link{href: "#"} Home
+            = link_to t('.home'), root_path, class: 'nav-link'
           %li
-            %a.nav-link{href: "#"} Shop
+            = link_to t('.shop'), categories_path, class: 'nav-link'
           %li
-            %a.nav-link{href: "#"} Orders
+            = link_to t('.order'), '', class: 'nav-link'
           %li
-            %a.nav-link{href: "#"} Settings
+            = link_to t('.settings'), '', class: 'nav-link'
       .col-sm-3
         %p.general-nav-mail support@bookstore.com
         %p.general-nav-number (555)-555-5555

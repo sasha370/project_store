@@ -15,20 +15,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
-  end
-end
-
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.before(:suite) { DatabaseCleaner.clean_with :truncation }
-  config.before { DatabaseCleaner.strategy = :truncation }
-  config.before { DatabaseCleaner.start }
-  config.after { DatabaseCleaner.clean }
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
@@ -38,11 +26,10 @@ RSpec.configure do |config|
   # config.include ActiveStorageHelpers
   # config.include OmniauthHelpers
   config.include Capybara::DSL
+  config.include AbstractController::Translation
 
   config.use_transactional_fixtures = true
-
   config.infer_spec_type_from_file_location!
-
   config.filter_rails_from_backtrace!
   config.after(:all) do
     FileUtils.rm_rf(Rails.root.join('/tmp/storage'))

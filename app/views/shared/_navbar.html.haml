@@ -1,3 +1,4 @@
+<!-- #TODO прописать линки  и локализацию-->
 %header.navbar.navbar-default
   .container
     .navbar-header
@@ -6,7 +7,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Bookstore", root_path, class: 'navbar-brand' 
+      = link_to t('.title'), root_path, class: 'navbar-brand' 
       %a.shop-link.pull-right.visible-xs{href: "#"}
         %span.shop-icon
           %span.shop-quantity 3
@@ -20,36 +21,30 @@
           %span{'aria-hidden': "true"} &times;
         %ul.nav.navbar-nav
           %li
-            = link_to 'Home', root_path
+            = link_to t('.home'), root_path
           %li
             %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Catalog
             %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
               %li
-                = link_to "All", books_path
-              %li
-                %a.collapse-link{href: "#"} Mobile development
-              %li
-                %a.collapse-link{href: "#"} Photo
-              %li
-                %a.collapse-link{href: "#"} Web design
-          %li= link_to 'Log in', '' 
-          %li= link_to 'Register', ''
+                = link_to t('.all'), categories_path
+              - Category.all.each do |category|
+                %li
+                  = link_to category.title, category
+                
+          %li= link_to t('.log_in'), '' 
+          %li= link_to t('.register'), ''
       .hidden-xs
         %ul.nav.navbar-nav
           %li
-            = link_to 'Home', root_path
+            = link_to t('.home'), root_path
           %li.dropdown
             %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Catalog
             %ul.dropdown-menu
               %li
-                = link_to "All", books_path
-              %li
-                %a{href: "#"} Mobile development
-              %li
-                %a{href: "#"} Photo
-              %li
-                %a{href: "#"} Web design
-          
+                = link_to t('.all'), categories_path
+              - Category.all.each do |category|
+                %li
+                  = link_to category.title, category
          
-          %li= link_to 'Log in', '' 
-          %li= link_to 'Register', ''
+          %li= link_to t('.log_in'), '' 
+          %li= link_to t('.register'), ''

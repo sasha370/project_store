@@ -23,3 +23,6 @@ Metrics/BlockLength:
 
 Documentation:
   Enabled: false
+
+RSpec/MultipleExpectations:
+   Max: 2

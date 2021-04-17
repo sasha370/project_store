@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :book do
+    category
     title { FFaker::Book.title }
     author { FFaker::Book.author }
     price { rand(1..1000) }

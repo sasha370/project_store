@@ -41,6 +41,7 @@
 .dropdown-menu {
   min-width: 210px;
   > li > a {
+    display: inline-block;
     font-weight: 300;
     padding: 8px 30px;
     white-space: unset;
