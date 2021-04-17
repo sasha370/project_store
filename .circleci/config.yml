@@ -3,44 +3,24 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
-references:
-  default_ruby_version: &default_ruby_version 2.7.2-node-browsers
-  default_postgress_version: &default_postgress_version 11.3-alpine
-  ruby_envs: &ruby_envs
-    environment:
-      RAILS_ENV: test
-  postgres_envs: &postgres_envs
-    environment:
-      POSTGRES_USER: <%= ENV['BOOK_STORE_DATABASE_LOGIN'] %>
-      POSTGRES_DB: bookstore_test
-      POSTGRES_PASSWORD: <%= ENV['BOOK_STORE_DATABASE_PASSWORD'] %>
 
 executors:
   default:
-    parameters:
-      ruby_tag:
-        description: "The `circleci/ruby` Docker image version tag."
-        type: string
-        default: *default_ruby_version
+    working_directory: ~/repo
+    description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:<< parameters.ruby_tag >>
-        <<: *ruby_envs
-  ruby_with_postgres:
-    parameters:
-      ruby_tag:
-        description: "The `circleci/postgres` Docker image version tag."
-        type: string
-        default: *default_ruby_version
-      postgres_tag:
-        description: "The `circleci/postgres` Docker image version tag."
-        type: string
-        default: *default_postgress_version
-    docker:
-      - image: circleci/ruby:<< parameters.ruby_tag >>
-        <<: *ruby_envs
-      - image: circleci/postgres:<< parameters.postgres_tag >>
-        <<: *postgres_envs
+      - image: circleci/ruby:2.7.2-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:11.3-alpine
+        environment:
+          POSTGRES_USER: alex
+          POSTGRES_HOST_AUTH_METHOD: trust
 
+caches:
+  - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
+   
 commands:
   yarn-install:
     description: "Install node_modules in your build."
@@ -82,7 +62,6 @@ jobs:
     executor: default
     steps:
       - checkout
-      # Which version of bundler?
       - run:
           name: Which bundler?
           command: bundle -v
