@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-SimpleCov.start 'rails'
-
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require 'capybara/rails'
-require 'capybara/rspec'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
@@ -31,9 +26,9 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   config.before(:suite) { DatabaseCleaner.clean_with :truncation }
-  config.before(:each) { DatabaseCleaner.strategy = :truncation }
-  config.before(:each) { DatabaseCleaner.start }
-  config.after(:each) { DatabaseCleaner.clean }
+  config.before { DatabaseCleaner.strategy = :truncation }
+  config.before { DatabaseCleaner.start }
+  config.after { DatabaseCleaner.clean }
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
