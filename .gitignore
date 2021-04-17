@@ -38,3 +38,9 @@ yarn-debug.log*
 .idea
 .idea/*
 .vscode/settings.json
+
+/config/credentials/test.key
+
+/config/credentials/development.key
+
+/config/credentials/production.key
