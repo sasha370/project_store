@@ -7,7 +7,7 @@ FactoryBot.define do
     author { FFaker::Book.author }
     price { rand(1..1000) }
     quantity { rand(0..10) }
-    description { FFaker::Lorem.paragraph }
+    description { FFaker::Lorem.paragraphs(number: rand(1..3)) }
     published_year { rand(1900..2021) }
     dimentions { '1000x111x222' }
     materials { %w[plastic wood papper].sample }

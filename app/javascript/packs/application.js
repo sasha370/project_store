@@ -4,7 +4,9 @@
 // that code so it'll be compiled.
 
 require("jquery");
+require("@rails/ujs").start()
 require("turbolinks").start();
 require("@rails/activestorage").start();
 
 import "bootstrap-sass/assets/javascripts/bootstrap";
+import './books/amount_calculator';

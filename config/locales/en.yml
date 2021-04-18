@@ -30,19 +30,28 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  categories: 
-    show:
-      all: 'All'
+  books: 
+    index:
       page_title: 'Catalog'
       filter_by: 'Filter by category'
       select_category: 'Select a category'
       sort_by: 'Sort by'
+      view_more: 'View More'
+    categories_list:
+      all: 'All'
+    show:
+      read_more: 'Read more'
+      description: 'Description'
+      add_to_cart: 'Add to Cart'
+      back_to_result: 'Back to results'
+      year: 'Year of publication'
+      dimention: 'Dimensions'
+      materials:  'Materials'
+    sort_menu:
       newest_first: 'Newest first'
-      view_more: ' View More'
       popular_first: 'Popular first'
       price_low_first: 'Price: Low to hight'
       price_hight_first: 'Price: Hight to low'
-
   pages:
     index:
       welcome:

@@ -206,7 +206,6 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
-    pagy (3.12.0)
     parallel (1.20.1)
     parser (3.0.1.0)
       ast (~> 2.4.1)
@@ -373,6 +372,7 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.4.2)
@@ -398,7 +398,6 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-rails_csrf_protection
-  pagy (~> 3.5)
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
@@ -419,6 +418,7 @@ DEPENDENCIES
   web-console (>= 4.1.0)
   webdrivers
   webpacker (~> 5.0)
+  will_paginate
 
 RUBY VERSION
    ruby 2.7.2p137

@@ -17,7 +17,6 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
-gem 'pagy', '~> 3.5'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'pundit'
@@ -26,6 +25,7 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'webpacker', '~> 5.0'
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
