@@ -24,12 +24,13 @@ class ProjectsController < ApplicationController
     params.require(:project).permit(:id,
                                     :title,
                                     :price,
-                                    :quantity,
+                                    :old_price,
                                     :description,
-                                    :published_year,
+                                    :short_description,
                                     :dimentions,
                                     :materials,
                                     :cover,
+                                    :status,
                                     :sort,
                                     :category_id)
   end

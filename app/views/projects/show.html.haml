@@ -19,7 +19,7 @@
       %h1.mt-res-0
         = @project.title 
       %p.lead.small
-        = @project.author
+        = @project.user.first_name
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10 
@@ -54,9 +54,9 @@
               
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left= t('.year') 
+          %p.pull-left= t('.difficulty') 
           %p.lead.small.pull-right
-            = @project.published_year
+            = @project.difficulty
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.dimention') 

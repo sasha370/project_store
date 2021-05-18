@@ -44,7 +44,7 @@ en:
       description: 'Description'
       add_to_cart: 'Add to Cart'
       back_to_result: 'Back to results'
-      year: 'Year of publication'
+      difficulty: 'Difficulty'
       dimention: 'Dimensions'
       materials:  'Materials'
     sort_menu:
