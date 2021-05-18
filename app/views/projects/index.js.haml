@@ -1,0 +1,2 @@
+$("#projects").append("#{ j render @projects }")
+$("#load_more").replaceWith("#{j (link_to t('.view_more'), projects_path(page: @projects.next_page), remote: true, id: 'load_more', class: 'btn btn-primary') if @projects.next_page }");

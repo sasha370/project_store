@@ -1,0 +1,7 @@
+%li.mr-35
+  = link_to t('.all'), projects_path, class: 'filter-link mr-5'
+  %span.badge.general-badge= Project.all.size
+  - @categories.each do |category|
+    %li.mr-35
+      = link_to category.title, projects_path(category_id: category), class: 'filter-link mr-5'
+      %span.badge.general-badge= category.projects_count

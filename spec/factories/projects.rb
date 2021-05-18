@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :book do
+  factory :project do
     category
     title { FFaker::Book.title }
-    author { FFaker::Book.author }
+    short_description { FFaker::Lorem.paragraphs(1) }
+    description { FFaker::Lorem.paragraphs(3) }
     price { rand(1..1000) }
-    quantity { rand(0..10) }
-    description { FFaker::Lorem.paragraphs(number: rand(1..3)) }
-    published_year { rand(1900..2021) }
+    old_price { rand(1..1000) }
     dimentions { '1000x111x222' }
+    difficulty { rand(0..5) }
     materials { %w[plastic wood papper].sample }
   end
 end

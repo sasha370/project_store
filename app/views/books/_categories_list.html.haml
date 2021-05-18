@@ -1,7 +1,0 @@
-%li.mr-35
-  = link_to t('.all'), books_path, class: 'filter-link mr-5'
-  %span.badge.general-badge= Book.all.size
-  - @categories.each do |category|
-    %li.mr-35
-      = link_to category.title, books_path(category_id: category), class: 'filter-link mr-5'
-      %span.badge.general-badge= category.books_count

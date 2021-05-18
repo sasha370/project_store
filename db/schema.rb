@@ -43,29 +43,31 @@ ActiveRecord::Schema.define(version: 2021_04_17_112311) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "books", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "title", null: false
-    t.string "author", null: false
-    t.decimal "price", null: false
-    t.integer "quantity"
     t.text "description"
-    t.integer "published_year"
+    t.integer "projects_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "short_description", null: false
+    t.text "description", null: false
+    t.decimal "price", null: false
+    t.decimal "old_price"
     t.string "dimentions"
+    t.integer "difficulty", null: false
     t.string "materials"
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id", null: false
-    t.index ["category_id"], name: "index_books_on_category_id"
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "title", null: false
-    t.integer "books_count", default: 0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_projects_on_category_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "books", "categories"
+  add_foreign_key "projects", "categories"
 end

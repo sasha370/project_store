@@ -9,4 +9,4 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 
 import "bootstrap-sass/assets/javascripts/bootstrap";
-import './books/amount_calculator';
+import './projects/amount_calculator';

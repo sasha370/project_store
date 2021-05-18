@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Book < ApplicationRecord
-  validates :title, :author, :price, presence: true
+class Project < ApplicationRecord
+  validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
   belongs_to :category, counter_cache: true
 
   has_many_attached :images do |attachable|
