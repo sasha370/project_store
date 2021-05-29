@@ -7,9 +7,10 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.by_category(params[:category_id]).order(params[:sort])
     @projects = Projects::SortingAndFilteringQuery.call(@projects, params[:category_id], params[:sorting])
-                                                  .paginate(page: params[:page], per_page: PER_PAGE)
-                                                  .includes(%i[images_attachments
-                                                               user])
+                                                  .page(params[:page])
+                                                  .per(PER_PAGE)
+                                                  .includes(%i[images_attachments user])
+                                                  .decorate
   end
 
   def show

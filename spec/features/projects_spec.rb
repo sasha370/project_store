@@ -19,14 +19,14 @@ RSpec.describe 'Project', type: :feature do
 
       it 'includes First Category`s projects' do
         visit(projects_path(category_id: category1))
-        expect(page).to have_content project1.title
-        expect(page).not_to have_content project2.title
+        expect(page).to have_content project1.decorate.short_title
+        expect(page).not_to have_content project2.decorate.short_title
       end
 
       it 'includes All Category`s projects' do
         visit(projects_path)
-        expect(page).to have_content project1.title
-        expect(page).to have_content project2.title
+        expect(page).to have_content project1.decorate.short_title
+        expect(page).to have_content project2.decorate.short_title
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe 'Project', type: :feature do
       it 'show only per_page projects' do
         visit(projects_path)
         projects.first(ProjectsController::PER_PAGE).each do |project|
-          expect(page).to have_content project.title.truncate(30, separator: /\s/)
+          expect(page).to have_content project.decorate.short_title
         end
       end
 
@@ -45,7 +45,7 @@ RSpec.describe 'Project', type: :feature do
         visit(projects_path)
         click_link t('projects.index.view_more')
         projects.each do |project|
-          expect(page).to have_content project.title.truncate(30, separator: /\s/)
+          expect(page).to have_content project.decorate.short_title
         end
       end
     end

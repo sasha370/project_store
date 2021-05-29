@@ -1,18 +1,15 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      - if project.images.present?
-        = image_tag project.images.variant(resize: "100x100"), class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
-      - else
-        = image_tag "default_cover.jpg", heigth: "100", alt: "default", class: 'img-shadow general-thumbnail-img'
+      = image_tag project.available_images, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
       .thumb-hover
         .general-thumb-link-wrap
-          = link_to project, class: 'thumb-hover-link' do 
+          = link_to project_path(project), class: 'thumb-hover-link' do 
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
           %a.thumb-hover-link{href: "#"}
             %i.fa.fa-shopping-cart.thumb-icon
   .general-thumb-info
-    %p.title= project.title.truncate(30, separator: /\s/)
+    %p.title= project.short_title
     %p.font-16.in-gold-500
       €
       = project.price
