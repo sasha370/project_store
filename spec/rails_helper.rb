@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'simplecov'
+SimpleCov.start 'rails'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
@@ -21,10 +23,10 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :feature
-  # config.include ControllerHelpers, type: :controller
-  # config.include FeatureHelpers, type: :feature
+  config.include ControllerHelpers, type: :controller
+  config.include FeatureHelpers, type: :feature
   # config.include ActiveStorageHelpers
-  # config.include OmniauthHelpers
+  config.include OmniauthHelpers
   config.include Capybara::DSL
   config.include AbstractController::Translation
 

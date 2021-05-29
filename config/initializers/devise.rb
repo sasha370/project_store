@@ -276,7 +276,7 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:facebook, :app_id),
                   Rails.application.credentials.dig(:facebook, :app_secret),
                   token_params: { parse: :json },
-                  scope: 'email'
+                  scope: 'email, first_name, image'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
