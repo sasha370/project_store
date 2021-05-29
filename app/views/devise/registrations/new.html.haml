@@ -41,7 +41,7 @@
             = f.password_field :password_confirmation, autocomplete: 'current-password', placeholder: 'Password confirmation',  class: 'form-control',  minlength: 6
         .form-group.text-left
           = f.label :phone
-          = f.telephone_field :phone, autocomplete: 'phone', :required => true, placeholder: '+7-999-999-99-99',  class: 'form-control', minlength: 11
+          = f.telephone_field :phone, autocomplete: 'phone', placeholder: '+7-999-999-99-99',  class: 'form-control', minlength: 11
         .form-group
           = f.submit t('.sign_up'), class: 'btn btn-primary'
       = render 'devise/shared/links'

@@ -3,7 +3,7 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
-      @user = User.from_omniauth(request.env['omniauth.auth'])
+      from_omniauth(request.env['omniauth.auth'])
 
       if @user.persisted?
         sign_in_and_redirect @user, event: :authentication
@@ -16,6 +16,12 @@ module Users
 
     def failure
       redirect_to root_path
+    end
+
+    def from_omniauth(auth)
+      @user = User.where.first(email: auth.info.email)
+      @user ||= User.create!(provider: auth.provider, uid: auth.uid, email: auth.info.email,
+                             password: Devise.friendly_token[0, 20])
     end
   end
 end
