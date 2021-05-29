@@ -9,6 +9,8 @@ class Project < ApplicationRecord
     end
   end
 
+  # TODO: add images
+
   validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
   belongs_to :category, counter_cache: true
   belongs_to :user

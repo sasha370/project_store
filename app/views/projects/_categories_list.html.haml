@@ -1,7 +1,9 @@
 %li.mr-35
-  = link_to t('.all'), projects_path, class: 'filter-link mr-5'
-  %span.badge.general-badge= Project.all.size
-  - @categories.each do |category|
-    %li.mr-35
-      = link_to category.title, projects_path(category_id: category), class: 'filter-link mr-5'
+  = link_to request.params.merge(category_id: nil), class: 'filter-link' do
+    = t('.all')
+    %span.badge.general-badge= Project.all.size
+- @categories.each do |category|
+  %li.mr-35
+    = link_to request.params.merge(category_id: category.id), class: 'filter-link custom-filter' do
+      = category.title
       %span.badge.general-badge= category.projects_count

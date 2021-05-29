@@ -37,7 +37,7 @@ RSpec.describe 'Project', type: :feature do
       it 'show only per_page projects' do
         visit(projects_path)
         projects.first(ProjectsController::PER_PAGE).each do |project|
-          expect(page).to have_content project.title
+          expect(page).to have_content project.title.truncate(30, separator: /\s/)
         end
       end
 
@@ -45,7 +45,7 @@ RSpec.describe 'Project', type: :feature do
         visit(projects_path)
         click_link t('projects.index.view_more')
         projects.each do |project|
-          expect(page).to have_content project.title
+          expect(page).to have_content project.title.truncate(30, separator: /\s/)
         end
       end
     end

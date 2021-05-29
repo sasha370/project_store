@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
-  before_action :set_categories, only: %i[index]
   PER_PAGE = 12
+  before_action :set_categories, only: %i[index]
 
   def index
     @projects = Project.by_category(params[:category_id]).order(params[:sort])
-    @projects = @projects.paginate(page: params[:page],
-                                   per_page: PER_PAGE)
+    @projects = Projects::SortingAndFilteringQuery.call(@projects, params[:category_id], params[:sorting])
+                                                  .paginate(page: params[:page], per_page: PER_PAGE)
+                                                  .includes(%i[images_attachments
+                                                               user])
   end
 
   def show
