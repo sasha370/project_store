@@ -18,4 +18,6 @@ class User < ApplicationRecord
 
     user
   end
+
+  enum role: { usual: 0, author: 1, admin: 2 }
 end
