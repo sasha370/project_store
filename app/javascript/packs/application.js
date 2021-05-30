@@ -11,3 +11,6 @@ require("@rails/activestorage").start();
 import "bootstrap-sass/assets/javascripts/bootstrap";
 import './projects/amount_calculator';
 import 'bootstrap-icons/font/bootstrap-icons.css'
+
+
+//= require active_admin/base

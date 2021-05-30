@@ -10,9 +10,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'shared/navbar'
-    .flash_wrapper
-      = render 'shared/message'
+    = render 'shared/message'
     .container
       = yield
-
     = render 'shared/footer'
