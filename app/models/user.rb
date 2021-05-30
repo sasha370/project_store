@@ -1,21 +1,16 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :omniauthable,
+  devise :database_authenticatable, :confirmable, :trackable, :registerable,
+         :recoverable, :rememberable, :validatable, :omniauthable,
          omniauth_providers: [:facebook]
 
-  validates :email, presence: true, length: { maximum: 63 }
-  validates :email, uniqueness: { case_sensitive: false }
+  validates :first_name, :email, presence: true
+  validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{6,}\z/ }, if: proc { |user|
+                                                                                             user.password.present?
+                                                                                           }
+  has_many :projects, dependent: :destroy
+  has_many :authorizations, dependent: :destroy
 
-  validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{8,}\z/ }
-
-  def self.from_omniauth(auth)
-    user = User.find_by(email: auth.info.email).first
-    user ||= User.create!(provider: auth.provider, uid: auth.uid, email: auth.info.email,
-                          password: Devise.friendly_token[0, 20])
-    user
-  end
+  enum role: { usual: 0, author: 1, admin: 2 }
 end

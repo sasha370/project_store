@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title BookStore
+    %title ProjectStore
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,9 +10,7 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'shared/navbar'
-    .flash_wrapper
-      = render 'shared/message'
+    = render 'shared/message'
     .container
       = yield
-
     = render 'shared/footer'

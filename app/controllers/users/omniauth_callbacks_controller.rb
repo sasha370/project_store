@@ -3,19 +3,27 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
-      @user = User.from_omniauth(request.env['omniauth.auth'])
+      return redirect_to root_path, alert: 'Something went wrong' if auth == :invalid_credentials || auth.nil?
 
-      if @user.persisted?
-        sign_in_and_redirect @user, event: :authentication
-        set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
+      connect_to('Facebook')
+    end
+
+    private
+
+    def connect_to(provider)
+      @user = FindForOauthService.new(auth).call
+
+      if @user&.persisted?
+        sign_in_and_redirect @user, event: :authenticate
+        set_flash_message(:notice, :success, kind: provider.to_s)
       else
-        session['devise.facebook_data'] = request.env['omniauth.auth'].except(:extra)
-        redirect_to new_user_registration_url
+        session[:auth] = auth.except('extra')
+        redirect_to new_user_registration_url, alert: 'We don`t found email in your`s profile, please register'
       end
     end
 
-    def failure
-      redirect_to root_path
+    def auth
+      @auth ||= request.env['omniauth.auth']
     end
   end
 end

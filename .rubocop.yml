@@ -1,21 +1,30 @@
-require: rubocop-rails
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   NewCops: enable
-
-AllCops:
   SuggestExtensions: false
+  Include:
+    - 'app/**/*.rb'
+    - 'spec/**/*.rb'
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
 
 Metrics/BlockLength:
   Exclude:
     - 'Gemfile'
     - 'spec/**/*.rb'
 
-AllCops:
-  TargetRubyVersion: '2.7'
-  Include:
-    - 'app/**/*.rb'
-    - 'spec/**/*.rb'
-
 Documentation:
   Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+   Max: 2

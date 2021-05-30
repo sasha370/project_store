@@ -3,14 +3,13 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-require("jquery")
-import $ from 'jquery';
+require("jquery");
 require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+require("turbolinks").start();
+require("@rails/activestorage").start();
 
-window.$ = $;
-window.jQuery = $;
-import 'bootstrap-sass/assets/javascripts/bootstrap';
-import '../application';
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+require("stylesheets/application.scss")
+
+//= require active_admin/base

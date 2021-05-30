@@ -37,6 +37,10 @@ yarn-debug.log*
 /coverage
 .idea
 .idea/*
+.vscode/settings.json
 
-.idea/workspace.xml
-.idea/Book_store.iml
+/config/credentials/test.key
+
+/config/credentials/development.key
+
+/config/credentials/production.key

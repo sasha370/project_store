@@ -1,0 +1,7 @@
+.mb-120
+  .row#projects
+    = render @projects
+  .text-center
+    - if @projects.next_page
+      = link_to request.params.merge(page: @projects.next_page), class: 'load-more', remote: true do
+        %button.btn.btn-primary= t('.view_more')

@@ -1,136 +1,79 @@
 version: 2.1
 
-orbs:
-  ruby: circleci/ruby@0.1.2
-
-references:
-  default_ruby_version: &default_ruby_version 2.7.2-node
-  default_postgress_version: &default_postgress_version 9.5-alpine
-  ruby_envs: &ruby_envs
-    environment:
-      BUNDLE_JOBS: 3
-      BUNDLE_RETRY: 3
-      BUNDLE_PATH: vendor/bundle
-      PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: postgres
-      RAILS_ENV: test
-  postgres_envs: &postgres_envs
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: bookstore_test
-      POSTGRES_PASSWORD: postgres
-
 executors:
   default:
-    parameters:
-      ruby_tag:
-        description: "The `circleci/ruby` Docker image version tag."
-        type: string
-        default: *default_ruby_version
+    working_directory: ~/repo
+    description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:<< parameters.ruby_tag >>
-        <<: *ruby_envs
-  ruby_with_postgres:
-    parameters:
-      ruby_tag:
-        description: "The `circleci/postgres` Docker image version tag."
-        type: string
-        default: *default_ruby_version
-      postgres_tag:
-        description: "The `circleci/postgres` Docker image version tag."
-        type: string
-        default: *default_postgress_version
-    docker:
-      - image: circleci/ruby:<< parameters.ruby_tag >>
-        <<: *ruby_envs
-      - image: circleci/postgres:<< parameters.postgres_tag >>
-        <<: *postgres_envs
+      - image: circleci/ruby:2.7.2-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:11.3-alpine
+        environment:
+          POSTGRES_USER: alex
+          POSTGRES_HOST_AUTH_METHOD: trust
+
+caches:
+  - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
 
 commands:
-  yarn-install:
-    description: "Install node_modules in your build."
-    parameters:
-      cache-folder-path:
-        description: "The path of cache-folder"
-        type: string
-        default: "~/.cache/yarn"
+  run_linters:
+    description: command to start linters
     steps:
       - run:
-          name: Yarn Install
-          command: yarn install --cache-folder << parameters.cache-folder-path >>
-  yarn-load-cache:
-    description: "Load node_modules cached"
-    parameters:
-      key:
-        description: "The cache key to use. The key is immutable."
-        type: string
-        default: "rails-demo-yarn-v1"
-    steps:
-      - restore_cache:
-          keys:
-            - << parameters.key >>-{{ checksum "yarn.lock"  }}
-  yarn-save-cache:
-    description: "Save node_modules to cache."
-    parameters:
-      key:
-        description: "The cache key to use. The key is immutable."
-        type: string
-        default: "rails-demo-yarn-v1"
-    steps:
-      - save_cache:
-          key: << parameters.key >>-{{ checksum "yarn.lock"  }}
-          paths:
-            - ~/.cache/yarn
+          name: rubocop
+          command: bundle exec rubocop
 
-jobs:
-  build:
-    executor: default
+  run_specs:
     steps:
-      - checkout
-      # Which version of bundler?
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/load-cache:
-          key: rails-demo-bundle
-      - ruby/bundle-install
-      - ruby/save-cache:
-          key: rails-demo-bundle
-      # restore, install and save node_packages
-      - yarn-load-cache
-      - yarn-install
-      - yarn-save-cache
-  test:
-    parallelism: 1
-    executor: ruby_with_postgres
-    steps:
-      - checkout
-      - ruby/load-cache:
-          key: rails-demo-bundle
-      - ruby/bundle-install
-      - yarn-load-cache
-      # Check DB status
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      # Setup database
-      - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      # Run rspec in parallel
-      - run:
-          name: Prepare webpacker for tests
-          command: bundle exec rails assets:precompile
       - run:
           name: run specs
-          command: bundle exec rspec 
+          command: bundle exec rspec -o ~/test-results/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/test-results/rspec/
+      - store_artifacts:
+          path: ~/repo/coverage
+          destination: coverage
+  setup_environment:
+    steps:
+      - checkout
+      - restore_cache:
+          key: *bundle_cache
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: *bundle_cache
+          paths:
+            - vendor/bundle
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install --immutable
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:migrate
+jobs:
+  lintering:
+    executor: default
+    steps:
+      - setup_environment
+      - run_linters
+  run_specs:
+    executor: default
+    steps:
+      - setup_environment
+      - run_specs
 
 workflows:
-  version: 2
-  build_and_test:
+  version: 2.1
+  build:
     jobs:
-      - build
-      - test:
+      - lintering
+      - run_specs:
           requires:
-            - build
+            - lintering
