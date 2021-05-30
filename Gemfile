@@ -51,6 +51,7 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
+  gem 'resque-scheduler-web', require: false
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
