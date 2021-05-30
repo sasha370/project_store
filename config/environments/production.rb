@@ -62,9 +62,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "Book_store_production"
-
-  config.action_mailer.perform_caching = false
+  # config.active_job.queue_name_prefix = "Project_store_production"
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -119,4 +117,20 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # CUSTOM
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: '88.214.237.55' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.dig(:smtp_username),
+    password: Rails.application.credentials.dig(:smtp_password),
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+  config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes }
+  config.action_cable.allowed_request_origins = ['http://88.214.237.55']
 end
