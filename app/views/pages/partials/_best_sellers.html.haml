@@ -1,0 +1,6 @@
+  
+.mb-35
+  %h3 Best Sellers
+  .row
+    - @best_projects.each do |project|
+      = render 'projects/project', project: project
