@@ -3,7 +3,7 @@
 class ProjectDecorator < Draper::Decorator
   delegate_all
   MAX_TITLE_LENGTH = 27
-  PLACEHOLDER_PATH = 'default_cover.jpg'
+  PLACEHOLDER_PATH = 'default_cover1.jpg'
 
   def self.collection_decorator_class
     PaginatingDecorator

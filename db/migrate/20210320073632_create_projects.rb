@@ -6,8 +6,8 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.string :short_description, null: false
       t.text :description, null: false
-      t.decimal :price, null: false
-      t.decimal :old_price
+      t.integer :price, null: false
+      t.integer :old_price
       t.string :dimentions
       t.integer :difficulty, null: false
       t.string :materials

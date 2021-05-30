@@ -1,9 +1,10 @@
-%li.mr-35
-  = link_to request.params.merge(category_id: nil), class: 'filter-link' do
-    = t('.all')
-    %span.badge.general-badge= Project.all.size
-- @categories.each do |category|
+%ul.list-inline.mb-25
   %li.mr-35
-    = link_to request.params.merge(category_id: category.id), class: 'filter-link custom-filter' do
-      = category.title
-      %span.badge.general-badge= category.projects_count
+    = link_to request.params.merge(category_id: nil), class: 'filter-link' do
+      = t('.all')
+      %span.badge.ml-2= Project.all.size
+  - @categories.each do |category|
+    %li.mr-35
+      = link_to request.params.merge(category_id: category.id), class: 'filter-link custom-filter' do
+        = category.title
+        %span.badge.ml-2= category.projects_count

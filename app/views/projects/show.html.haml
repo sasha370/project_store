@@ -7,36 +7,40 @@
       .product-gallery
         <!-- #TODO прописать линки -->
         .mb-20
-          %img.img-responsive{src: "https://www.bramstein.com/static/smashing-project-5-photo-stack.9d5d114e3e.jpg"}
+          .img-responsive= image_tag('default_cover1.png')
         .images.clearfix
-          %a.img-link{href: "#"}
-            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
-          %a.img-link{href: "#"}
-            %img{src: "https://www.smashingmagazine.com/wp-content/uploads/2015/09/smashing-book-5-2-large.jpg"}
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover1.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover2.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover3.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover4.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover5.png')
+    
+    <!-- #Цены  -->
     .col-sm-6
       %h1.mt-res-0
         = @project.title 
       %p.lead.small
         = @project.user.first_name
       .row
-        .col-xs-12.col-md-4
+        - if @project.old_price
+          .col-xs-12.col-md-3.mt-2    
+            %p.h2.in-grey-600.strikethrough.mt-10
+              = "#{@project.old_price} <small>₽</small>".html_safe
+              
+        .col-xs-12.col-md-3
           %p.h1.in-gold-500.mt-10 
-            €
             = @project.price
-            
-        .col-xs-5.col-md-3
-          .input-group.general-position
-            %span#quantity_minus.input-link
-              %i.fa.fa-minus.line-height-40
-            %input#quantity.form-control.quantity-input{type: "text", value: 1}
-            %span#quantity_plus.input-link{href: "#"}
-              %i.fa.fa-plus.line-height-40
+            %small.in-gold-500 ₽
 
-        .col-xs-7.col-md-5
+        .col-xs-7.col-md-3.ml-auto
           %button.btn.btn-default.pull-right.general-position= t('.add_to_cart') 
-
+      
+      <!-- #Описание  -->
       .general-info-wrap.divider-lg
         %p= t('.description')
         %p.lead.small.line-height-2
@@ -51,7 +55,8 @@
                 })
             - else
               = @project.description
-              
+
+      <!-- #Дополнительные параметры  -->        
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.difficulty') 

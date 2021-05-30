@@ -1,22 +1,5 @@
 %main.container
   %h1.general-title-margin= t('.page_title')
-  .hidden-xs.clearfix
-    .dropdowns.pull-right
-      .dropdown.width-240
-        = render 'sort_menu'  
-    %ul.list-inline.pt-10.mb-25.mr-240
-      = render 'categories_list'
-  .dropdowns.mb-25.visible-xs
-    %p.lead.small.mb-10= t('.filter_by')
-    .dropdown
-      %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        = t('.select_category')
-        %i.fa.fa-angle-down.dropdown-icon.pull-right
-      %ul.dropdown-menu
-        = render 'categories_list'
-
-    %p.lead.small.mb-10= t('.sort_by')
-    .dropdown
-      = render 'sort_menu'  
- 
+  = render 'sort_menu'  
+  = render 'categories_list'
   = render 'projects' 

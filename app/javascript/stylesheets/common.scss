@@ -7,3 +7,16 @@ body {
   right: 20px;
   z-index: 1000;
 }
+.strikethrough {
+    position: relative;
+    display: inline-block;
+}
+
+.strikethrough:before {
+    border-bottom: 3px solid rgba(250, 0, 0, 0.685);
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 60%;
+    transform: rotate(-7deg);
+}
