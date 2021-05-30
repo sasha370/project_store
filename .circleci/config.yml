@@ -1,30 +1,79 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2
-jobs:
-  build:
+
+executors:
+  default:
+    working_directory: ~/repo
+    description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:2.7.2
+      - image: circleci/ruby:2.7.2-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:11.3-alpine
+        environment:
+          POSTGRES_USER: alex
+          POSTGRES_HOST_AUTH_METHOD: trust
+
+caches:
+  - &bundle_cache v1-repo-{{ checksum "Gemfile.lock" }}
+
+commands:
+  run_linters:
+    description: command to start linters
+    steps:
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
+
+  run_specs:
+    steps:
+      - run:
+          name: run specs
+          command: bundle exec rspec -o ~/test-results/rspec/rspec.xml
+          when: always
+      - store_test_results:
+          path: ~/test-results/rspec/
+      - store_artifacts:
+          path: ~/repo/coverage
+          destination: coverage
+  setup_environment:
     steps:
       - checkout
       - restore_cache:
-          keys:
-            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
-            - gem-cache-v1-
-      - run:
-          name: Install dependencies
-          command: |
-            gem install bundler -v 2.2.9
-            bundle install
+          key: *bundle_cache
+      - run: bundle install --path vendor/bundle
       - save_cache:
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          key: *bundle_cache
           paths:
             - vendor/bundle
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn install --immutable
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - run:
-          name: Run rubocop
-          command: bundle exec rubocop --cache false
-      - run:
-          name: Run tests
-          command: bundle exec rspec
-      - store_artifacts:
-          path: coverage
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:migrate
+jobs:
+  lintering:
+    executor: default
+    steps:
+      - setup_environment
+      - run_linters
+  run_specs:
+    executor: default
+    steps:
+      - setup_environment
+      - run_specs
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - lintering
+      - run_specs:
+          requires:
+            - lintering

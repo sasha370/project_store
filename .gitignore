@@ -35,3 +35,12 @@
 yarn-debug.log*
 .yarn-integrity
 /coverage
+.idea
+.idea/*
+.vscode/settings.json
+
+/config/credentials/test.key
+
+/config/credentials/development.key
+
+/config/credentials/production.key

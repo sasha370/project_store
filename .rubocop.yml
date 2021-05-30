@@ -1,0 +1,25 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Include:
+    - 'app/**/*.rb'
+    - 'spec/**/*.rb'
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+    - 'spec/**/*.rb'
+
+Documentation:
+  Enabled: false
