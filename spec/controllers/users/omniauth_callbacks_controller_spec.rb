@@ -2,7 +2,7 @@
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
+    request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   shared_examples_for 'providers' do |provider|

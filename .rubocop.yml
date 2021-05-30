@@ -23,6 +23,8 @@ Metrics/BlockLength:
 
 Documentation:
   Enabled: false
+Lint/MissingSuper:
+  Enabled: false
 
 RSpec/MultipleExpectations:
    Max: 2
