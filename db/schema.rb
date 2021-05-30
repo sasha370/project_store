@@ -82,10 +82,12 @@ ActiveRecord::Schema.define(version: 2021_05_29_171735) do
     t.text "description", null: false
     t.integer "price", null: false
     t.integer "old_price"
+    t.integer "cost_price"
     t.string "dimentions"
     t.integer "difficulty", null: false
     t.string "materials"
     t.integer "status", default: 0, null: false
+    t.boolean "hit", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id", null: false

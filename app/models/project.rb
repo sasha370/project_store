@@ -3,7 +3,8 @@
 class Project < ApplicationRecord
   ActiveAdmin.register Project do
     permit_params do
-      permitted = %i[title short_description description difficulty status price old_price dimentions materials]
+      permitted = %i[title short_description description difficulty status price old_price cost_price dimentions
+                     materials hit]
       permitted << :other if params[:action] == 'create' && current_user.admin?
       permitted
     end
