@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     authenticate_user!
-    if current_user.role == 'usual'
-      flash[:alert] = 'Unauthorized Access!'
-      redirect_to root_path
-    end
+    return unless current_user.role == 'usual'
+
+    flash[:alert] = 'Unauthorized Access!'
+    redirect_to root_path
   end
 
   def configure_permitted_parameters

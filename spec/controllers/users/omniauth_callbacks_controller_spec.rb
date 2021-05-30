@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   before do
@@ -6,7 +6,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   end
 
   shared_examples_for 'providers' do |provider|
-    describe '#{provider} test' do
+    describe "#{provider} test" do
       let(:oauth_data) do
         {
           'provider' => provider,
@@ -50,7 +50,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         end
       end
 
-      context 'user does not exist' do
+      context 'when user does not exist' do
         before do
           allow(request.env).to receive(:[]).and_call_original
           allow(request.env).to receive(:[]).with('omniauth.auth').and_return(oauth_data)
@@ -62,7 +62,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         end
       end
 
-      context 'user does not exist and responce don`t have Email' do
+      context 'when user does not exist and responce don`t have Email' do
         before do
           allow(request.env).to receive(:[]).and_call_original
           allow(request.env).to receive(:[]).with('omniauth.auth').and_return(oauth_data_without_email)
@@ -77,7 +77,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       context 'when broken oauth data' do
         before do
           allow(request.env).to receive(:[]).and_call_original
-          allow(request.env).to receive(:[]).with('omniauth.auth').and_return(invalid_mock(provider))
+          allow(request.env).to receive(:[]).with('omniauth.auth').and_return(:invalid_credentials)
           get provider.to_sym
         end
 

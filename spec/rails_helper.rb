@@ -26,7 +26,6 @@ RSpec.configure do |config|
   config.include ControllerHelpers, type: :controller
   config.include FeatureHelpers, type: :feature
   # config.include ActiveStorageHelpers
-  config.include OmniauthHelpers
   config.include Capybara::DSL
   config.include AbstractController::Translation
 

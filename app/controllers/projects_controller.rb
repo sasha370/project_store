@@ -24,17 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:id,
-                                    :title,
-                                    :price,
-                                    :old_price,
-                                    :description,
-                                    :short_description,
-                                    :dimentions,
-                                    :materials,
-                                    :cover,
-                                    :status,
-                                    :sort,
-                                    :category_id)
+    params.require(:project).permit(:id, :title, :price, :old_price, :description, :short_description, :dimentions,
+                                    :materials, :cost_price, :status, :category_id, :hit)
   end
 end
