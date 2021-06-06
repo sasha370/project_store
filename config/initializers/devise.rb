@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'a1ad4d387eec41af60b6fff462fec78f1effeb406ccfdcce1d5eccb396b9cd7e7ed30c57b7501f99df366982d1c4a5e5b60004ca0cf6150ab01c702cabf60a40'
+  # config.secret_key = '54a183f017a1726b1f8cce0ebda482d91bc272726836e875bcbac62ca834bd81785698f3212b99a8327df13062b3b50383202944aa197082a781d2e85cfd447e'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'd21314c8afe9b56ac5302cf05d223c7730ec6eff349037f11ddbcc8cdc20473e539e9ecf7bd6316006ccaecfbdc86e43540fa290f84afc6327c558794d4f0b0d'
+  # config.pepper = 'db1721031297d76eecfee7d8f2043258d3daae5b9af9c23d2338c5fc307c5c6fb6bb7fff054b64f6e0ac65be5032b69249279b747688fcd759700d6fa8ecb3a2'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -271,12 +271,21 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
+<<<<<<< HEAD
   config.omniauth :facebook, 
                 Rails.application.credentials.dig(:FACEBOOK_APP_ID),
                 Rails.application.credentials.dig(:FACEBOOK_APP_SECRET),
                 token_params: { parse: :json },
                 scope: "email" 
 
+=======
+  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :facebook,
+                  Rails.application.credentials.dig(:facebook, :app_id),
+                  Rails.application.credentials.dig(:facebook, :app_secret),
+                  token_params: { parse: :json },
+                  scope: 'email, first_name, image'
+>>>>>>> development
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

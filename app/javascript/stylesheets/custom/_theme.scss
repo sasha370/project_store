@@ -5,62 +5,23 @@
 .navbar-default {
   box-shadow: 0 5px 18px 2px rgba(1, 1, 1, 0.1);
 }
-.navbar-brand {
-  font-size: $font-size-base;
-  padding: 30px;
-}
-.navbar-toggle {
-  margin-left: 15px;
-  .icon-bar:nth-child(3) {
-    width: 17px;
-  }
-}
-.navbar-nav .open .dropdown-menu {
-  left: -65px;
-}
-.dropdowns {
-  .dropdown-toggle {
-    width: 100%;
-    border: 1px solid $grey-200;
-    display: inline-block;
-    padding: 10px 15px;
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      color: $grey-600;
-    }
-  }
-  .dropdown-icon {
-    font-size: 18px;
-    color: $grey-600;
-  }
-  .dropdown-menu {
-    width: 100%;
-  }
-}
 .dropdown-menu {
   min-width: 210px;
   > li > a {
+    display: inline-block;
     font-weight: 300;
     padding: 8px 30px;
     white-space: unset;
     word-break: break-word;
   }
 }
+
 .carousel {
   margin-left: -15px;
   margin-right: -15px;
   background-color: $grey-200;
 }
-.carousel-control {
-  background-image: unset !important;
-  .icon-prev {
-    left: 25%;
-  }
-  .icon-next {
-    right: 25%;
-  }
-}
+
 .lead {
   color: $grey-600;
   word-break: break-word;
@@ -107,7 +68,7 @@
     margin: 1px 4px;
   }
 }
-.item {
+.carousel-item {
   padding: 15px 12px 0;
 }
 .jumbotron p {
@@ -153,7 +114,7 @@
 .shop-link {
   display: inline-block;
   padding-top: 8px;
-  margin: 23px 15px;
+  margin: 10px 15px;
   position: relative;
 }
 .shop-icon {
@@ -229,7 +190,8 @@
   margin-bottom: 10px;
 }
 .nav-link {
-  font-size: $font-size-small;
+  font-size: $font-size-base;
+  padding-right: 1.5rem !important;
   color: $grey-600;
   &:hover {
     color: $gold-500;
@@ -483,7 +445,6 @@
 @media (min-width: $grid-float-breakpoint) {
   .navbar-nav {
     float: right;
-    padding: 15px;
   }
   h1,
   .h1 {
@@ -529,14 +490,7 @@
     left: 90%;
     margin-left: 0;
   }
-  .carousel-control {
-    .icon-prev {
-      left: 15%;
-    }
-    .icon-next {
-      right: 15%;
-    }
-  }
+
   .divider-lg {
     &:before,
     &:last-child:after {

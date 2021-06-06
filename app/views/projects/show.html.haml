@@ -1,0 +1,80 @@
+%main.container
+  = link_to  :back, class: 'general-back-link' do
+    %i.fa.fa-long-arrow-left.mr-15
+    = t('.back_to_result')
+  .row
+    .col-sm-6
+      .product-gallery
+        <!-- #TODO прописать линки -->
+        .mb-20
+          .img-responsive= image_tag('default_cover1.png')
+        .images.clearfix
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover1.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover2.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover3.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover4.png')
+          = link_to '#', class: 'img-link' do
+            = image_tag('default_cover5.png')
+    
+    <!-- #Цены  -->
+    .col-sm-6
+      %h1.mt-res-0
+        = @project.title 
+      %p.lead.small
+        = @project.user.first_name
+      .row
+        - if @project.old_price
+          .col-xs-12.col-md-3.mt-2    
+            %p.h2.in-grey-600.strikethrough.mt-10
+              = "#{@project.old_price} <small>₽</small>".html_safe
+              
+        .col-xs-12.col-md-3
+          %p.h1.in-gold-500.mt-10 
+            = @project.price
+            %small.in-gold-500 ₽
+
+        .col-xs-7.col-md-3.ml-auto
+          %button.btn.btn-default.pull-right.general-position= t('.add_to_cart') 
+      
+      <!-- #Описание  -->
+      .general-info-wrap.divider-lg
+        %p= t('.description')
+        %p.lead.small.line-height-2
+          %div
+            - if @project.description.length > 250
+              = truncate(@project.description, length: 250)
+              = link_to t('.read_more'), '', class: "in-gold-500 ml-10 read-more"
+              :javascript
+                $('.read-more').on('click', function(e) {
+                  e.preventDefault()
+                  $(this).parent().html("#{j @project.description}")
+                })
+            - else
+              = @project.description
+
+      <!-- #Дополнительные параметры  -->        
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.difficulty') 
+          %p.lead.small.pull-right
+            = @project.difficulty
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.dimention') 
+          %p.lead.small.pull-right
+            = @project.dimentions 
+            H:6.4 x W: 0.9 x D: 5.0
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= t('.materials')
+          %p.lead.small.pull-right
+            = @project.materials  
+
+  <!-- #TODO передвинуть в отдельный паршл, когда будут Ревью -->
+
+  = render 'reviews/new'
+  = render 'reviews/review'

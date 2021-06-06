@@ -5,11 +5,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+<<<<<<< HEAD
 # gem 'activeadmin'
+=======
+gem 'activeadmin'
+gem 'acts_as_list'
+>>>>>>> development
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'devise-bootstrap-views', '~> 1.0'
+<<<<<<< HEAD
 gem 'factory_bot_rails'
 gem 'faker'
 gem 'font-awesome-rails'
@@ -21,6 +27,17 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem 'pagy', '~> 3.5'
+=======
+gem 'draper'
+gem 'font-awesome-rails'
+gem 'haml-rails'
+gem 'jbuilder', '~> 2.7'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+>>>>>>> development
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'pundit'
@@ -32,6 +49,12 @@ gem 'webpacker', '~> 5.0'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+<<<<<<< HEAD
+=======
+  gem 'factory_bot_rails'
+  gem 'ffaker'
+  gem 'pry', '~> 0.13.1'
+>>>>>>> development
   gem 'rspec-rails'
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -49,6 +72,10 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'database_cleaner-active_record'
   gem 'rails-controller-testing'
+<<<<<<< HEAD
+=======
+  gem 'resque-scheduler-web', require: false
+>>>>>>> development
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false

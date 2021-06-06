@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 %header.navbar.navbar-default
   .container
     .navbar-header
@@ -53,3 +54,40 @@
          
           %li= link_to 'Log in', '' 
           %li= link_to 'Register', ''
+=======
+%nav.navbar.navbar-expand-lg.navbar-light.navbar-default
+  .container
+    = link_to t('.title'), root_path, class: 'navbar-brand ml-1' 
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Переключатель навигации", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
+      %span.navbar-toggler-icon
+    
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+
+        %li.nav-item
+          = link_to t('.home'), root_path, class: 'nav-link'
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+            Каталог
+          %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            %li= link_to t('.all'), projects_path, class: 'dropdown-item'
+            %li.dropdown-divider
+            - Category.all.each do |category|
+              %li= link_to category.title, projects_path(category_id: category.id), class: 'dropdown-item'
+
+        - if current_user 
+          %li.nav-item.dropdown
+            %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+              Личный кабинет
+            %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+
+              %li= link_to 'Edit profile', edit_user_registration_path(current_user), class: 'dropdown-item'
+              %li.dropdown-divider
+              %li= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'dropdown-item'
+        - else
+          %li= link_to 'Log in', new_user_session_path, class: 'nav-link' 
+          %li= link_to 'Register', new_user_registration_path, class: 'nav-link' 
+    %a.shop-link.pull-right
+      %span.shop-icon
+        %span.shop-quantity 3
+>>>>>>> development
