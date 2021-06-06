@@ -23,11 +23,8 @@ Metrics/BlockLength:
 
 Documentation:
   Enabled: false
-<<<<<<< HEAD
-=======
 Lint/MissingSuper:
   Enabled: false
 
 RSpec/MultipleExpectations:
    Max: 2
->>>>>>> development
