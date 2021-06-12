@@ -20,3 +20,12 @@ body {
     height: 60%;
     transform: rotate(-7deg);
 }
+$pending-color: #FF9900;
+$rejected-color: #FF0000;
+$approved-color: #08A510;
+
+.status_tag {
+  &.pending { background: $pending-color; }
+  &.rejected { background: $rejected-color; }
+  &.approved { background: $approved-color; }
+}
