@@ -1,11 +1,12 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      = image_tag project.available_images, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
+      = image_tag project.main_image, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"  
       .thumb-hover
         .general-thumb-link-wrap
           = link_to project_path(project), class: 'thumb-hover-link' do 
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
+          <!-- #TODO  переделать линку -->  
           %a.thumb-hover-link{href: "#"}
             %i.fa.fa-shopping-cart.thumb-icon
   .general-thumb-info

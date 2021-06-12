@@ -4,22 +4,8 @@
     = t('.back_to_result')
   .row
     .col-sm-6
-      .product-gallery
-        <!-- #TODO прописать линки -->
-        .mb-20
-          .img-responsive= image_tag('default_cover1.png')
-        .images.clearfix
-          = link_to '#', class: 'img-link' do
-            = image_tag('default_cover1.png')
-          = link_to '#', class: 'img-link' do
-            = image_tag('default_cover2.png')
-          = link_to '#', class: 'img-link' do
-            = image_tag('default_cover3.png')
-          = link_to '#', class: 'img-link' do
-            = image_tag('default_cover4.png')
-          = link_to '#', class: 'img-link' do
-            = image_tag('default_cover5.png')
-    
+      = react_component("Gallery", { images: @project.images_for_gallery })
+
     <!-- #Цены  -->
     .col-sm-6
       %h1.mt-res-0

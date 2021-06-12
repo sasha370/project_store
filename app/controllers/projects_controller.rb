@@ -9,12 +9,12 @@ class ProjectsController < ApplicationController
     @projects = Projects::SortingAndFilteringQuery.call(@projects, params[:category_id], params[:sorting])
                                                   .page(params[:page])
                                                   .per(PER_PAGE)
-                                                  .includes(%i[images_attachments user])
+                                                  .includes(%i[user])
                                                   .decorate
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.includes(%i[user]).find(params[:id]).decorate
   end
 
   private
@@ -23,8 +23,8 @@ class ProjectsController < ApplicationController
     @categories = Category.all
   end
 
-  def project_params
-    params.require(:project).permit(:id, :title, :price, :old_price, :description, :short_description, :dimentions,
-                                    :materials, :cost_price, :status, :category_id, :hit)
-  end
+  # def project_params
+  #   params.require(:project).permit(:id, :title, :price, :old_price, :description, :short_description, :dimentions,
+  #                                   :materials, :cost_price, :status, :category_id, :hit)
+  # end
 end
