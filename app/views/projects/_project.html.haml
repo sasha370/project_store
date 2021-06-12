@@ -1,7 +1,8 @@
 .col-xs-6.col-sm-3
   .general-thumb-wrap
     .thumbnail.general-thumbnail
-      = image_tag project.available_images, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
+      - project.images.each do |image|
+        = image_tag url_for(image), class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"  
       .thumb-hover
         .general-thumb-link-wrap
           = link_to project_path(project), class: 'thumb-hover-link' do 

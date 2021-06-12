@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: 'pages#index'
   get 'privacy_policy', to: 'pages#privacy_policy'
-  resources :projects, only: %i[index show]
+  resources :projects
 end

@@ -2,6 +2,11 @@
 
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation
+  sidebar 'Users Projects', only: %i[show edit] do
+    ul do
+      li link_to 'Projects', admin_user_projects_path(resource)
+    end
+  end
 
   index do
     selectable_column
