@@ -13,3 +13,7 @@ import 'bootstrap/dist/css/bootstrap'
 require("stylesheets/application.scss")
 
 //= require active_admin/base
+// Support component names relative to this directory:
+var componentRequireContext = require.context("components", true);
+var ReactRailsUJS = require("react_ujs");
+ReactRailsUJS.useContext(componentRequireContext);
