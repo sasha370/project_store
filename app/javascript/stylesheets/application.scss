@@ -1,9 +1,10 @@
 @import '../stylesheets/font-awesome';
 @import '../stylesheets/bootstrap';
 
-@import 'active_admin';
 @import 'custom/variables';
 @import 'custom/theme';
 @import 'projectstore/general';
 @import 'projectstore/utils/helpers';
 @import 'common';
+
+@import "~react-image-gallery/styles/scss/image-gallery.scss";

@@ -10,6 +10,7 @@ AllCops:
     - 'app/**/*.rb'
     - 'spec/**/*.rb'
   Exclude:
+    - 'app/admin/*.rb'
     - 'db/**/*'
     - 'script/**/*'
     - 'bin/**/*'
