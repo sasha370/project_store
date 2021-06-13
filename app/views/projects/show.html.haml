@@ -24,8 +24,8 @@
             %small.in-gold-500 ₽
 
         .col-xs-7.col-md-3.ml-auto
-          %button.btn.btn-default.pull-right.general-position= t('.add_to_cart') 
-      
+          = @project.cart_buttons
+              
       <!-- #Описание  -->
       .general-info-wrap.divider-lg
         %p= t('.description')

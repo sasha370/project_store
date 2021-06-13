@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   root to: 'pages#index'
   get 'privacy_policy', to: 'pages#privacy_policy'
   resources :projects
+
+  get '/add_to_cart/:id', to: 'purchasments#add_to_cart', as: 'add_to_cart'
 end
