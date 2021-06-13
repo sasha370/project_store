@@ -12,5 +12,8 @@ class User < ApplicationRecord
   has_many :products,  class_name: :Project, dependent: :destroy
   has_many :authorizations, dependent: :destroy
 
+  has_many :purchasments, dependent: :destroy
+  has_many :purchases, through: :purchasments, source: :project
+
   enum role: { usual: 0, author: 1, admin: 2 }
 end
