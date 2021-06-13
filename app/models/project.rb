@@ -3,7 +3,7 @@
 class Project < ApplicationRecord
   validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
   belongs_to :category, counter_cache: true
-  belongs_to :user
+  belongs_to :author, class_name: :User, foreign_key: 'user_id', inverse_of: :products
   mount_uploaders :images, ImageUploader
 
   # has_many_attached :images

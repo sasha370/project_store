@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :project do
     category
-    user
+    association :author, factory: :user
     title { FFaker::Book.title }
     short_description { FFaker::Lorem.paragraphs(1) }
     description { FFaker::Lorem.paragraphs(3) }

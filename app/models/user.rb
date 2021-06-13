@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{6,}\z/ }, if: proc { |user|
                                                                                              user.password.present?
                                                                                            }
-  has_many :projects, dependent: :destroy
+  has_many :products,  class_name: :Project, dependent: :destroy
   has_many :authorizations, dependent: :destroy
 
   enum role: { usual: 0, author: 1, admin: 2 }
