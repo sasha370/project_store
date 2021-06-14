@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Purchasment < ApplicationRecord
   belongs_to :project
   belongs_to :user

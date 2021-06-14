@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :projects
 
   get '/add_to_cart/:id', to: 'purchasments#add_to_cart', as: 'add_to_cart'
+  get '/cart', to: 'purchasments#cart', as: 'cart'
+  get '/remove_from_cart/:id', to: 'purchasments#remove_from_cart', as: 'remove_from_cart'
 end

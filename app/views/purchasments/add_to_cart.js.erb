@@ -1,2 +1,16 @@
 document.querySelector('.flash_wrapper').insertAdjacentHTML('beforeend', "<%=  j render 'shared/message' %>");
-document.getElementById("add_to_cart_<%=@project.id%>").remove();
+
+var iconToRemove = document.getElementById("add_to_cart_<%=@project.id%>");
+var iconParent = iconToRemove.parentNode;
+iconToRemove.remove();
+
+var cart_icon = document.createElement("i");
+cart_icon.className = "fas fa-coins thumb-icon";
+cart_icon.setAttribute('aria-hidden', 'true');
+
+var cart_link =  document.createElement("a");
+cart_link.className = "thumb-hover-link";
+cart_link.href = "/cart";
+cart_link.appendChild(cart_icon) ;
+
+iconParent.appendChild(cart_link);

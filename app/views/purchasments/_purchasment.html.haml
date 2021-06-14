@@ -1,0 +1,13 @@
+%tr{ id: "purchasment_#{purchasment.id}"}
+  %td
+    .general-img-wrap-table
+      = image_tag purchasment.project.main_image, class: 'cart-img-shadow pull-left', alt: purchasment.project.title
+  %td
+    %p.title= purchasment.project.title
+  %td
+    %span.font-16.in-gold-500= number_to_currency purchasment.project.old_price.presence 
+  %td
+    %span.font-16.in-gold-500= number_to_currency purchasment.project.price
+  %td
+    = link_to remove_from_cart_path(purchasment.id), class: 'close general-cart-close', aria_label: "Close", id: "remove_purchasment_#{purchasment.id}", remote: true do 
+      %span{'aria-hidden': "true"} &times;

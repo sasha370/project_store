@@ -109,8 +109,8 @@ ActiveAdmin.register Project do
       f.input :hit
       f.input :category, as: :select, collection: Category.all.collect { |category| [category.title, category.id] }
       f.input :author, as: :select, collection: User.all.collect { |author|
-                                                ["#{author.email} - #{author.first_name}", author.id]
-                                              }
+                                                  ["#{author.email} - #{author.first_name}", author.id]
+                                                }
 
       panel 'Images' do
         f.input :images, as: :file, input_html: { multiple: true }

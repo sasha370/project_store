@@ -12,5 +12,6 @@ FactoryBot.define do
     dimentions { '1000x111x222' }
     difficulty { rand(0..5) }
     materials { %w[plastic wood papper].sample }
+    images { [Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/default_cover.jpg'), 'image/jpeg')] }
   end
 end

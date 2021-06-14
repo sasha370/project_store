@@ -5,7 +5,6 @@ class ProjectDecorator < Draper::Decorator
 
   delegate_all
   MAX_TITLE_LENGTH = 27
-  PLACEHOLDER_PATH = 'default_cover1.png'
 
   def self.collection_decorator_class
     PaginatingDecorator
@@ -19,10 +18,6 @@ class ProjectDecorator < Draper::Decorator
     images.map do |image|
       { original: image.url, thumbnail: image.thumb.url }
     end
-  end
-
-  def main_image
-    images&.first&.url || url_for(PLACEHOLDER_PATH)
   end
 
   def cart_buttons(for_catalog: false)
@@ -43,19 +38,28 @@ class ProjectDecorator < Draper::Decorator
 
   def download_button
     h.link_to '#', class: style_for_link do
-      "<i class='fa fa-download #{style_for_icon}' aria-hidden='true'></i> #{add_text('Скачать')}".html_safe
+      out = []
+      out << h.tag.i('', class: "fa fa-download #{style_for_icon}", aria_hidden: true)
+      out << add_text('Скачать')
+      h.safe_join(out)
     end
   end
 
   def add_to_cart_button
     h.link_to add_to_cart_path(self), class: style_for_link, id: "add_to_cart_#{id}", remote: true do
-      "<i class='fa fa-shopping-cart #{style_for_icon}' aria-hidden='true'></i> #{add_text(h.t('.add_to_cart'))}".html_safe
+      out = []
+      out << h.tag.i('', class: "fa fa-shopping-cart #{style_for_icon}", aria_hidden: true)
+      out << add_text(h.t('.add_to_cart'))
+      h.safe_join(out)
     end
   end
 
   def go_to_cart_button
-    h.link_to '#', class: style_for_link do
-      "<i class='fas fa-coins #{style_for_icon}' aria-hidden='true'></i> #{add_text(' В корзину')}".html_safe
+    h.link_to cart_path, class: style_for_link do
+      out = []
+      out << h.tag.i('', class: "fas fa-coins #{style_for_icon}", aria_hidden: true)
+      out << add_text(' В корзину')
+      h.safe_join(out)
     end
   end
 

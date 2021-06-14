@@ -29,7 +29,9 @@
               %li= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'dropdown-item'
         - else
           %li= link_to 'Log in', new_user_session_path, class: 'nav-link' 
-          %li= link_to 'Register', new_user_registration_path, class: 'nav-link' 
-    %a.shop-link.pull-right
-      %span.shop-icon
-        %span.shop-quantity 3
+          %li= link_to 'Register', new_user_registration_path, class: 'nav-link'
+    
+    - if current_user
+      = link_to cart_path, class: 'shop-link pull-right' do
+        %span.shop-icon
+          %span.shop-quantity= item_in_cart 

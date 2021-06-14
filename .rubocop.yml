@@ -29,3 +29,6 @@ Lint/MissingSuper:
 
 RSpec/MultipleExpectations:
    Max: 2
+
+RSpec/NestedGroups:
+  MaxNesting: 5

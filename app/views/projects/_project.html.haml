@@ -1,5 +1,5 @@
 .col-xs-6.col-sm-3
-  .general-thumb-wrap
+  .general-thumb-wrap{ id: "project_card_#{project.id}"}
     .thumbnail.general-thumbnail
       = image_tag project.main_image, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"  
       .thumb-hover

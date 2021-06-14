@@ -13,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/css/all"
 require("stylesheets/application.scss")
 
+
 //= require active_admin/base
 // Support component names relative to this directory:
 var ReactRailsUJS = require("react_ujs");

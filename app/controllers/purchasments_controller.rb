@@ -1,18 +1,35 @@
 # frozen_string_literal: true
 
 class PurchasmentsController < ApplicationController
-  skip_forgery_protection only: :add_to_cart
+  skip_forgery_protection only: %i[add_to_cart remove_from_cart]
 
   def add_to_cart
     respond_to do |format|
       format.js do
-        if current_user
-          @project = Project.find_by(id: params[:id].to_i)
-          current_user.purchasments.create(project: @project)
-          flash.now[:notice] = 'Project was succesfully add to cart'
-        else
-          flash.now[:error] = 'Something goes wrong'
-        end
+        return (flash.now[:error] = 'Something goes wrong') unless current_user
+
+        @project = Project.find_by(id: params[:id].to_i)
+        current_user.purchasments.create(project: @project)
+        flash.now[:notice] = 'Project was succesfully add to cart'
+      end
+    end
+  end
+
+  def cart
+    if current_user
+      @purchasments = current_user.purchasments.in_cart.includes(:project)
+    else
+      redirect_to root_path, notice: 'You need to be authorized'
+    end
+  end
+
+  def remove_from_cart
+    return unless (@purchasment = Purchasment.find(params[:id]))
+
+    respond_to do |format|
+      format.js do
+        @purchasment.destroy
+        flash.now[:notice] = 'Project was removed from cart'
       end
     end
   end
