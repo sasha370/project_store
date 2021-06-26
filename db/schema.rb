@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_13_062352) do
+ActiveRecord::Schema.define(version: 2021_06_26_141216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(version: 2021_06_13_062352) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.jsonb "metadata", default: {}
+    t.integer "amount", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.string "short_description", null: false
@@ -110,10 +120,14 @@ ActiveRecord::Schema.define(version: 2021_06_13_062352) do
   create_table "purchasments", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "promocode_id"
+    t.integer "price"
+    t.integer "discount"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_purchasments_on_project_id"
+    t.index ["promocode_id"], name: "index_purchasments_on_promocode_id"
     t.index ["user_id"], name: "index_purchasments_on_user_id"
   end
 
@@ -148,6 +162,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_062352) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "projects", "categories"
   add_foreign_key "projects", "users"
   add_foreign_key "purchasements", "projects", column: "purchase_id"

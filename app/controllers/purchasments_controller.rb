@@ -9,7 +9,7 @@ class PurchasmentsController < ApplicationController
         return (flash.now[:error] = 'Something goes wrong') unless current_user
 
         @project = Project.find_by(id: params[:id].to_i)
-        current_user.purchasments.create(project: @project)
+        current_user.purchasments.create(project: @project, price: @project.price)
         flash.now[:notice] = 'Project was succesfully add to cart'
       end
     end
@@ -17,6 +17,7 @@ class PurchasmentsController < ApplicationController
 
   def cart
     if current_user
+      @payment = current_user.payments.empty.first_or_create
       @purchasments = current_user.purchasments.in_cart.includes(:project)
     else
       redirect_to root_path, notice: 'You need to be authorized'

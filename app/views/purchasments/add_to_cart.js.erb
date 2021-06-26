@@ -14,3 +14,5 @@ cart_link.href = "/cart";
 cart_link.appendChild(cart_icon) ;
 
 iconParent.appendChild(cart_link);
+
+document.querySelector('#item_counter').innerHTML = <%= current_user.item_in_cart%>;
