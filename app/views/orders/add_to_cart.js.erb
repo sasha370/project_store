@@ -5,14 +5,16 @@ var iconParent = iconToRemove.parentNode;
 iconToRemove.remove();
 
 var cart_icon = document.createElement("i");
-cart_icon.className = "fas fa-coins thumb-icon";
+cart_icon.className = "fas fa-coins mr-2";
 cart_icon.setAttribute('aria-hidden', 'true');
 
 var cart_link =  document.createElement("a");
-cart_link.className = "thumb-hover-link";
+var link_text = document.createTextNode('В корзине');
+cart_link.className = 'btn btn-default pull-right general-position';
 cart_link.href = "/cart";
 cart_link.appendChild(cart_icon) ;
+cart_link.appendChild(link_text);
 
 iconParent.appendChild(cart_link);
 
-document.querySelector('#item_counter').innerHTML = <%= current_user.item_in_cart%>;
+document.querySelector('#item_counter').innerHTML = <%= current_user.qty_in_cart%>;

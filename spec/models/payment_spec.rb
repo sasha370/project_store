@@ -1,5 +1,5 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe Payment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to belong_to(:order) }
 end

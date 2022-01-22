@@ -6,8 +6,9 @@ class Project < ApplicationRecord
   belongs_to :author, class_name: :User, foreign_key: 'user_id', inverse_of: :products
   mount_uploaders :images, ImageUploader
 
-  has_many :purchasments, dependent: :destroy
-  has_many :buyers, through: :purchasments, source: :user
+  has_many :order_projects, dependent: :destroy
+  has_many :orders, through: :order_projects
+  has_many :buyers, through: :orders, source: :user
 
   # has_many_attached :images
   enum status: { newest: 0, approved: 5, published: 10 }
@@ -15,6 +16,6 @@ class Project < ApplicationRecord
   PLACEHOLDER_IMAGE = 'default_cover.jpg'
 
   def main_image
-    images&.first&.url || url_for(PLACEHOLDER_IMAGE)
+    images&.first&.url || PLACEHOLDER_IMAGE
   end
 end

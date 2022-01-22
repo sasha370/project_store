@@ -10,5 +10,8 @@ RSpec.describe Project, type: :model do
   it { is_expected.to belong_to(:category) }
   it { is_expected.to belong_to(:author) }
   it { is_expected.to have_many(:buyers) }
-  it { is_expected.to have_many(:purchasments) }
+  it { is_expected.to have_many(:orders).through(:order_projects) }
+  it { is_expected.to have_many(:order_projects) }
+
+  # TODO, test for main_image
 end

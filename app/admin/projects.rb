@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Project do
-  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimentions, :difficulty,
+  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimensions, :difficulty,
                 :materials, :status, :hit, :created_at, :updated_at, :category_id, :author_id, { images: [] }
 
   includes :author, :category
@@ -102,7 +102,7 @@ ActiveAdmin.register Project do
       f.input :price
       f.input :old_price
       f.input :cost_price
-      f.input :dimentions
+      f.input :dimensions
       f.input :difficulty
       f.input :materials
       f.input :status
@@ -149,7 +149,7 @@ ActiveAdmin.register Project do
       row :price
       row :old_price
       row :cost_price
-      row :dimentions
+      row :dimensions
       row :difficulty
       row :materials
       tag_row :status

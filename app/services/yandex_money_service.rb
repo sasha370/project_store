@@ -18,18 +18,18 @@ class YandexMoneyService
 
   def fill_in_payments
     @payment.amount = @user.amount_with_discount
-    @payment.metadata[:purchasments] = @user.purchasments.pluck(:id)
+    @payment.metadata[:orders] = @user.orders.pluck(:id)
     @payment.save
   end
 
   def body
-    @body ||= { receiver: '410011633433937',              # ID кошелька
-                'quickpay-form' => 'donate',              # донат или small для кнопки
-                paymentType: 'AC',                        # только картой
-                formcomment: 'diy-plans.ru',              # как отобразится у клиента в банковской выписке
+    @body ||= { receiver: '410011633433937',              # ID wallet
+                'quickpay-form' => 'donate',              # donat
+                paymentType: 'AC',                        # only card
+                formcomment: 'diy-plans.ru',              # name inside a check
                 targets: "Транзакция ##{@payment.id}",
                 label: @payment.id,
                 sum: @payment.amount,
-                successURL: Rails.application.routes.url_helpers.my_purchasments_url }
+                successURL: Rails.application.routes.url_helpers.my_orders_url }
   end
 end

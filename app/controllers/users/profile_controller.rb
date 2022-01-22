@@ -2,9 +2,9 @@
 
 module Users
   class ProfileController < ApplicationController
-    def my_purchasments
+    def my_orders
       if current_user
-        @purchasments = current_user.purchasments.paid.includes(:project)
+        @orders = current_user.orders.paid.includes(:project)
       else
         redirect_to root_path, notice: 'You need to be authorized'
       end

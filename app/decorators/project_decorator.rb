@@ -22,16 +22,16 @@ class ProjectDecorator < Draper::Decorator
 
   def cart_buttons(for_catalog: false)
     @for_catalog = for_catalog
-    return unless h.current_user
+    return ask_register unless h.current_user
 
-    purchasments = Purchasment.where(user: h.current_user, project: self)
-    if purchasments.paid.any?
-      download_button
-    elsif purchasments.in_cart.any?
-      go_to_cart_button
-    else
-      add_to_cart_button
-    end
+    already_in_cart = h.current_user.orders.cart.map(&:project_ids).flatten.include?(id)
+    already_bought = h.current_user.orders.paid.map(&:project_ids).flatten.include?(id)
+
+    return go_to_cart_button if already_in_cart
+
+    return download_button if already_bought
+
+    add_to_cart_button
   end
 
   private
@@ -39,7 +39,7 @@ class ProjectDecorator < Draper::Decorator
   def download_button
     h.link_to '#', class: style_for_link do
       out = []
-      out << h.tag.i('', class: "fa fa-download #{style_for_icon}", aria_hidden: true)
+      out << h.tag.i('', class: "fa fa-download #{style_for_icon} mr-2", aria_hidden: true)
       out << add_text('Скачать')
       h.safe_join(out)
     end
@@ -48,8 +48,8 @@ class ProjectDecorator < Draper::Decorator
   def add_to_cart_button
     h.link_to add_to_cart_path(self), class: style_for_link, id: "add_to_cart_#{id}", remote: true do
       out = []
-      out << h.tag.i('', class: "fa fa-shopping-cart #{style_for_icon}", aria_hidden: true)
-      out << add_text(h.t('.add_to_cart'))
+      out << h.tag.i('', class: "fa fa-shopping-cart #{style_for_icon}  mr-2", aria_hidden: true)
+      out << add_text('Купить')
       h.safe_join(out)
     end
   end
@@ -57,8 +57,8 @@ class ProjectDecorator < Draper::Decorator
   def go_to_cart_button
     h.link_to cart_path, class: style_for_link do
       out = []
-      out << h.tag.i('', class: "fas fa-coins #{style_for_icon}", aria_hidden: true)
-      out << add_text(' В корзину')
+      out << h.tag.i('', class: "fas fa-coins #{style_for_icon} mr-2", aria_hidden: true)
+      out << add_text('В корзине')
       h.safe_join(out)
     end
   end
@@ -73,5 +73,14 @@ class ProjectDecorator < Draper::Decorator
 
   def add_text(text)
     @for_catalog ? '' : text
+  end
+
+  def ask_register
+    h.link_to new_user_session_path, class: style_for_link do
+      out = []
+      out << h.tag.i('', class: "fas fas fa-sign-in-alt #{style_for_icon} mr-2", aria_hidden: true)
+      out << add_text('Войти')
+      h.safe_join(out)
+    end
   end
 end

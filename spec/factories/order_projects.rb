@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :purchasment do
+  factory :order_project do
+    order
     project
-    user
-    status { 0 }
   end
 end

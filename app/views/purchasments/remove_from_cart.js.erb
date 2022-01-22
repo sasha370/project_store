@@ -1,6 +1,0 @@
-document.querySelector('.flash_wrapper').insertAdjacentHTML('beforeend', "<%=  j render 'shared/message' %>");
-document.getElementById("purchasment_<%=@purchasment.id%>").remove();
-document.querySelector('#item_counter').textContent = <%= current_user.item_in_cart%>;
-document.querySelector('#total_amount').textContent = <%= current_user.total_amount%>;
-document.querySelector('#total_discount').textContent = <%= current_user.total_discount%>;
-document.querySelector('#amount_with_discount').textContent  = <%= current_user.amount_with_discount%>;

@@ -9,7 +9,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.integer :price, null: false
       t.integer :old_price
       t.integer :cost_price
-      t.string :dimentions
+      t.string :dimensions
       t.integer :difficulty, null: false
       t.string :materials
       t.integer :status, default: 0, null: false

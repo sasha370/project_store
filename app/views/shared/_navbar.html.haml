@@ -25,7 +25,7 @@
             %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
 
               %li= link_to 'Edit profile', edit_user_registration_path(current_user), class: 'dropdown-item'
-              %li= link_to 'My purchases', my_purchasments_path, class: 'dropdown-item'
+              %li= link_to 'My purchases', my_orders_path, class: 'dropdown-item'
               %li.dropdown-divider
               %li= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'dropdown-item'
         - else
@@ -35,4 +35,4 @@
     - if current_user
       = link_to cart_path, class: 'shop-link pull-right' do
         %span.shop-icon
-          %span.shop-quantity#item_counter= current_user.item_in_cart 
+          %span.shop-quantity#item_counter= current_user.qty_in_cart

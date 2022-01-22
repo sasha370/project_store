@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 module Projects
+  # Filters and sorts projects for Index page
   class SortingAndFilteringQuery < BaseQuery
-    SORTINGS = {
+    SORTING_TYPES = {
       newest: 'created_at desc',
       price_asc: 'price asc',
       price_desc: 'price desc',
@@ -23,13 +24,13 @@ module Projects
     private
 
     def filter_projects
-      @projects = @category_id ? @projects.where(category_id: @category_id) : @projects
+      @projects = @projects.where(category_id: @category_id) if @category_id
     end
 
     def order_projects
       return @projects unless @sorting
 
-      @projects.order(SORTINGS[@sorting.to_sym])
+      @projects.order(SORTING_TYPES[@sorting.to_sym])
     end
   end
 end

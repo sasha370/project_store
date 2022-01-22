@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PaymentsController < ApplicationController
+  before_action :authenticate_user!
+
   def checkout
     @payment = Payment.find(params[:id])
     @user = @payment.user
@@ -12,7 +14,7 @@ class PaymentsController < ApplicationController
 
   def fill_in_payments
     @payment.amount = @user.amount_with_discount
-    @payment.metadata[:purchasments] = @user.purchasments.pluck(:id)
+    @payment.metadata[:orders] = @user.orders.pluck(:id)
     @payment.save
   end
 end

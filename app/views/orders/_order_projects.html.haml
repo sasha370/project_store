@@ -1,0 +1,12 @@
+%table.table.table-hover
+  %tr.no-hover
+    %th.col-pic.pl-0
+      %span.in-grey-600 Product
+    %th.col-title
+    %th.col-price
+      %span.in-grey-600 Old Price
+    %th.col-total
+      %span.in-grey-600 Price
+    %th.col-close
+  - @order_projects.each do |order_project|
+    = render 'order_project', order_project: order_project
