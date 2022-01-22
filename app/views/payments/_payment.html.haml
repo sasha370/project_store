@@ -1,14 +1,21 @@
-%div.modal.hide.fade#checkout_form{'role'=>"dialog" 'aria-labelledby'=>"myModalLabel" 'aria-hidden'=>"true"}
-  %p
-    Это текст тоста
-    .mt-2.pt-2.border-top
-  %p
-    = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post do |f|
-      f.input name: "receiver", type: :hidden, value: "410011633433937",
-      f.input name: "formcomment", type: :hidden, value: 'diy-plans.ru',
-      f.input name: "label", type: :hidden, value: @payment.id,
-      f.input name: "quickpay-form", type: :hidden, value: "donate",
-      f.input name: "targets", type: :hidden, value: "транзакция #{@payment.id}",
-      f.input name: "sum", type: :hidden, value: @payment.amount,
-      f.input name: "paymentType", type: :hidden, value: 'AC',
-      f.input type: "submit", value:  "Оплатить", class: 'btn btn-primary btn-sm'
+%div.modal.show#checkout_form{'role'=>"dialog", 'data-backdrop' => "static",  'data-keyboard' => "false"}
+  .modal-dialog{'role'=>"document"}
+    .modal-content
+      .modal-header
+        .modal-title#checkoutFormLabel
+          Подтверждение оплаты
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+        .modal-body
+          Текст о подтверждении оплаты 
+        .modal-footer
+          %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", :type => "button"}
+          %p
+            = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post do |f|
+              f.input name: "receiver", type: :hidden, value: "410011633433937",
+              f.input name: "formcomment", type: :hidden, value: 'diy-plans.ru',
+              f.input name: "label", type: :hidden, value: @payment.id,
+              f.input name: "quickpay-form", type: :hidden, value: "donate",
+              f.input name: "targets", type: :hidden, value: "транзакция #{@payment.id}",
+              f.input name: "sum", type: :hidden, value: @payment.amount,
+              f.input name: "paymentType", type: :hidden, value: 'AC',
+              f.input type: "submit", value:  "Оплатить", class: 'btn btn-primary btn-sm'
