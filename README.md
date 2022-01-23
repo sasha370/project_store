@@ -12,4 +12,6 @@ yarn install
 1) add headless for capibara
 2) in show project page it is broken icon for 'Pain' ( shows as white box)
 3) Glue footer to bottom
-4) После нажания "Купить" иконка в каталоге и на странице товара должны быть разная ( нужно условия для выбора)
+4) Добавить иконку на галавную картинку, если товар уже в корзине
+5) Купоны + скидки ( )
+6) Fix mobile navbar
