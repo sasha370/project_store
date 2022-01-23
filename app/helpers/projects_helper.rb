@@ -2,6 +2,6 @@
 
 module ProjectsHelper
   def projects_sorting_options
-    Projects::SortingAndFilteringQuery::SORTINGS.keys
+    Projects::SortingAndFilteringQuery::SORTING_TYPES.keys
   end
 end

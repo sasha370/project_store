@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_101041) do
+ActiveRecord::Schema.define(version: 2022_01_22_091932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,35 @@ ActiveRecord::Schema.define(version: 2021_06_12_101041) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "order_projects", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "project_id"
+    t.index ["order_id"], name: "index_order_projects_on_order_id"
+    t.index ["project_id"], name: "index_order_projects_on_project_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "promocode_id"
+    t.integer "amount"
+    t.integer "discount", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promocode_id"], name: "index_orders_on_promocode_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.jsonb "metadata", default: {}
+    t.integer "amount", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.string "short_description", null: false
@@ -83,7 +112,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_101041) do
     t.integer "price", null: false
     t.integer "old_price"
     t.integer "cost_price"
-    t.string "dimentions"
+    t.string "dimensions"
     t.integer "difficulty", null: false
     t.string "materials"
     t.integer "status", default: 0, null: false
@@ -128,6 +157,7 @@ ActiveRecord::Schema.define(version: 2021_06_12_101041) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authorizations", "users"
+  add_foreign_key "payments", "orders"
   add_foreign_key "projects", "categories"
   add_foreign_key "projects", "users"
 end

@@ -1,4 +1,4 @@
-%main.container
+%main.container{ id: "project_card_#{@project.id}"}
   = link_to  :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
     = t('.back_to_result')
@@ -6,12 +6,12 @@
     .col-sm-6
       = react_component("Gallery", { images: @project.images_for_gallery })
 
-    <!-- #Цены  -->
+    <!-- #Prices  -->
     .col-sm-6
       %h1.mt-res-0
         = @project.title 
       %p.lead.small
-        = @project.user.first_name
+        = @project.author.first_name
       .row
         - if @project.old_price
           .col-xs-12.col-md-3.mt-2    
@@ -24,9 +24,9 @@
             %small.in-gold-500 ₽
 
         .col-xs-7.col-md-3.ml-auto
-          %button.btn.btn-default.pull-right.general-position= t('.add_to_cart') 
-      
-      <!-- #Описание  -->
+          = @project.cart_buttons
+              
+      <!-- #Description  -->
       .general-info-wrap.divider-lg
         %p= t('.description')
         %p.lead.small.line-height-2
@@ -42,7 +42,7 @@
             - else
               = @project.description
 
-      <!-- #Дополнительные параметры  -->        
+      <!-- #Additional params  -->
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.difficulty') 
@@ -50,9 +50,9 @@
             = @project.difficulty
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left= t('.dimention') 
+          %p.pull-left= t('.dimensions')
           %p.lead.small.pull-right
-            = @project.dimentions 
+            = @project.dimensions
             H:6.4 x W: 0.9 x D: 5.0
       .general-info-wrap.divider-lg
         .clearfix

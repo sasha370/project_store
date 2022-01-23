@@ -3,7 +3,17 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.after_initialize do
+    Bullet.enable        = true
+    Bullet.alert         = true
+    Bullet.bullet_logger = true
+    Bullet.console       = true
+  # Bullet.growl         = true
+    Bullet.rails_logger  = true
+    Bullet.add_footer    = true
+  end
+
+  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
 
   config.cache_classes = false
 

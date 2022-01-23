@@ -5,6 +5,7 @@
       %span.badge.ml-2= Project.all.size
   - @categories.each do |category|
     %li.mr-35
-      = link_to request.params.merge(category_id: category.id), class: 'filter-link custom-filter' do
+      = link_to request.params.merge(category_id: category.id),
+        class: "filter-link custom-filter #{'font-weight-bold' if @current_category_id == category.id }" do
         = category.title
         %span.badge.ml-2= category.projects_count

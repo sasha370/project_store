@@ -45,7 +45,7 @@ en:
       add_to_cart: 'Add to Cart'
       back_to_result: 'Back to results'
       difficulty: 'Difficulty'
-      dimention: 'Dimensions'
+      dimensions: 'dimensions'
       materials:  'Materials'
     sort_menu:
       newest_first: 'Newest first'

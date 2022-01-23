@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Setup
 
-Things you may want to cover:
+rails db:create
+rails db:migrate
+rails db:seed
+yarn install
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### TODO
+1) add headless for capibara
+2) in show project page it is broken icon for 'Pain' ( shows as white box)
+3) Glue footer to bottom
+4) Добавить иконку на галавную картинку, если товар уже в корзине
+5) Купоны + скидки ( )
+6) Fix mobile navbar

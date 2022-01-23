@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Project do
-  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimentions, :difficulty,
-                :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, { images: [] }
+  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimensions, :difficulty,
+                :materials, :status, :hit, :created_at, :updated_at, :category_id, :author_id, { images: [] }
 
-  includes :user, :category
+  includes :author, :category
   scope_to :current_user, unless: proc { current_user.admin? }
 
   scope :all
@@ -81,7 +81,7 @@ ActiveAdmin.register Project do
     bool_column :hit
     column :created_at
     column :category
-    column :user
+    column :author
     column 'Image' do |project|
       project.images.count
     end
@@ -102,15 +102,15 @@ ActiveAdmin.register Project do
       f.input :price
       f.input :old_price
       f.input :cost_price
-      f.input :dimentions
+      f.input :dimensions
       f.input :difficulty
       f.input :materials
       f.input :status
       f.input :hit
       f.input :category, as: :select, collection: Category.all.collect { |category| [category.title, category.id] }
-      f.input :user, as: :select, collection: User.all.collect { |user|
-                                                ["#{user.email} - #{user.first_name}", user.id]
-                                              }
+      f.input :author, as: :select, collection: User.all.collect { |author|
+                                                  ["#{author.email} - #{author.first_name}", author.id]
+                                                }
 
       panel 'Images' do
         f.input :images, as: :file, input_html: { multiple: true }
@@ -149,7 +149,7 @@ ActiveAdmin.register Project do
       row :price
       row :old_price
       row :cost_price
-      row :dimentions
+      row :dimensions
       row :difficulty
       row :materials
       tag_row :status

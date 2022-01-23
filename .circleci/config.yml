@@ -11,7 +11,7 @@ executors:
           RACK_ENV: test
       - image: circleci/postgres:11.3-alpine
         environment:
-          POSTGRES_USER: alex
+          POSTGRES_USER: postgres
           POSTGRES_HOST_AUTH_METHOD: trust
 
 caches:
