@@ -1,3 +1,5 @@
+[![Tests](https://github.com/sasha370/project_store/actions/workflows/ci.yml/badge.svg)](https://github.com/sasha370/project_store/actions/workflows/ci.yml)
+
 # README
 
 ### Setup
@@ -7,6 +9,12 @@ rails db:migrate
 rails db:seed
 yarn install
 
+### CI
+stage1: 
+- Run linters and test via GHA (done)
+- Made it require
+stage2: Deploy workflow
+- 
 
 ### TODO
 
