@@ -2,8 +2,8 @@ name: Tests
 on: push
 
 jobs:
-  verify:
-    name: Build
+  run_test:
+    name: Rspec test
     runs-on: ubuntu-latest
 
     services:
@@ -27,20 +27,19 @@ jobs:
       #   options: --entrypoint redis-server
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Set up Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.7.2
+          ruby-version: 2.7
+          bundler-cache: true
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
           node-version: 10.13.0
-      - name: Install dependencies
+      - name: Install yarn
         run: |
           #          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
           yarn install
       - name: Setup test database
         env:
