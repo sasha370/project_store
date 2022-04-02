@@ -98,8 +98,9 @@ ActiveRecord::Schema.define(version: 2022_01_22_091932) do
   create_table "payments", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.jsonb "metadata", default: {}
-    t.integer "amount", default: 0, null: false
     t.integer "status", default: 0, null: false
+    t.datetime "processed_at"
+    t.string "operation_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["order_id"], name: "index_payments_on_order_id"

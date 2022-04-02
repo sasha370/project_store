@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   enum status: { cart: 0, paid: 10 }
 
   def calculate_discount
-    self.discount = project.price - price
+    discount # TODO, with coupons
   end
 
   def total_amount
@@ -19,5 +19,9 @@ class Order < ApplicationRecord
 
   def amount_with_discount
     total_amount - discount
+  end
+
+  def update_amount
+    update(amount: amount_with_discount)
   end
 end

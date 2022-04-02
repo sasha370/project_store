@@ -2,10 +2,8 @@
 
 FactoryBot.define do
   factory :payment do
-    user { nil }
+    order
     metadata { '' }
-    amount { 1 }
-    status { 1 }
-    label { 'MyString' }
+    status { 0 }
   end
 end

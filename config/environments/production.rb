@@ -120,9 +120,9 @@ Rails.application.configure do
 
   # CUSTOM
 
-  config.default_url_options[:host] = '88.214.237.55'
+  config.default_url_options[:host] = '88.214.237.55' # TODO
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: '88.214.237.55' }
+  config.action_mailer.default_url_options = { host: '88.214.237.55' } # TODO
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
@@ -134,5 +134,5 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes }
-  config.action_cable.allowed_request_origins = ['http://88.214.237.55']
+  config.action_cable.allowed_request_origins = ['http://88.214.237.55'] #TODO, WTF?
 end
