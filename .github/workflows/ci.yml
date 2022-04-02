@@ -57,7 +57,8 @@ jobs:
         run: |
           yarn install --frozen-lockfile
       - name: install PostgreSQL client
-        run: sudo apt-get install libpq-dev
+        run: |
+          sudo apt-get install libpq-dev
 
       - name: Setup test database
         env:
