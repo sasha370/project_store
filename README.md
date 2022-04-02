@@ -7,6 +7,12 @@ rails db:migrate
 rails db:seed
 yarn install
 
+### CI
+stage1: 
+- Run linters and test via GHA (done)
+- Made it require
+stage2: Deploy workflow
+- 
 
 ### TODO
 
