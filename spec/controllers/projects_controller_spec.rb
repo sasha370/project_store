@@ -27,7 +27,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'assigns the requested projects to Category`s @projects' do
         get :index, params: { category_id: category1.id }
-        expect(assigns(:projects)).to eq(projects1)
+        expect(assigns(:projects).count).to eq(projects1.count)
       end
     end
 
