@@ -16,6 +16,7 @@ gem 'devise-bootstrap-views', '~> 1.0'
 gem 'draper'
 gem 'font-awesome-rails'
 gem 'haml-rails'
+gem 'httparty'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -48,6 +49,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem 'bullet'
 end
 
 group :test do

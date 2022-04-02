@@ -1,14 +1,13 @@
 .col-xs-6.col-sm-3
-  .general-thumb-wrap
+  .general-thumb-wrap{ id: "project_card_#{project.id}"}
     .thumbnail.general-thumbnail
       = image_tag project.main_image, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"  
       .thumb-hover
         .general-thumb-link-wrap
           = link_to project_path(project), class: 'thumb-hover-link' do 
             %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-          <!-- #TODO  переделать линку -->  
-          %a.thumb-hover-link{href: "#"}
-            %i.fa.fa-shopping-cart.thumb-icon
+          = project.cart_buttons_catalog
+
   .general-thumb-info
     %p.title= project.short_title
     %p.font-16.in-gold-500
@@ -16,4 +15,4 @@
       = project.price
     %span.divider-sm
     %p.lead.small
-      = project.user.first_name
+      = project.author.first_name
