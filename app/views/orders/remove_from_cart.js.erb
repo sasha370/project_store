@@ -4,3 +4,4 @@ document.querySelector('#item_counter').textContent = <%= current_user.qty_in_ca
 document.querySelector('#total_amount').textContent = <%= current_user.cart.total_amount%>;
 document.querySelector('#total_discount').textContent = <%= current_user.cart.discount%>;
 document.querySelector('#amount_with_discount').textContent  = <%= current_user.cart.amount_with_discount%>;
+document.querySelector('#checkout_sum').value = <%= current_user.cart.total_amount%>;

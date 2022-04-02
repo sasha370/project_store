@@ -2,5 +2,7 @@
 
 class Payment < ApplicationRecord
   belongs_to :order
-  enum status: { empty: 0, in_process: 5, paid: 10, canceled: 15 }
+  enum status: { empty: 0, paid: 10 }
+
+  delegate :amount, to: :order
 end

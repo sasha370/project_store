@@ -40,10 +40,9 @@ yarn-debug.log*
 .vscode/settings.json
 
 /config/credentials/test.key
-
 /config/credentials/development.key
-
+/config/credentials/environment.key
 /config/credentials/production.key
 /public/*
 /public/uploads/*
-/config/credentials/environment.key
+
