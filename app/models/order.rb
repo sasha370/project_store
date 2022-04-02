@@ -24,8 +24,4 @@ class Order < ApplicationRecord
   def update_amount
     update(amount: amount_with_discount)
   end
-
-
-
-
 end

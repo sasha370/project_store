@@ -3,7 +3,7 @@ on: push
 
 jobs:
   run_linters:
-    name: Run Linters
+    name: Run Rubocop
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,38 +16,38 @@ jobs:
         run: |
           bundle exec rubocop --parallel
 
-#  run_test:
-#    name: Run Rspec
-#      runs-on: ubuntu-latest
-#
-#      services:
-#        postgres:
-#          image: postgres:11
-#          env:
-#            POSTGRES_USER: postgres
-#            POSTGRES_DB: Project_store_test
-#            POSTGRES_PASSWORD: postgres
-#          ports: [ "5432:5432" ]
-#          options: >-
-#            --health-cmd pg_isready
-#            --health-interval 10s
-#            --health-timeout 5s
-#            --health-retries 5
-#        # if you need redis
-#        # redis:
-#        #   image: redis
-#        #   ports:
-#        #   - 6379:6379
-#        #   options: --entrypoint redis-server
-#
-#      steps:
-#        - uses: actions/checkout@v2
-#        - name: Set up Ruby
-#          uses: ruby/setup-ruby@v1
-#          with:
-#            ruby-version: 2.7
-#            bundler-cache: true
-#
+  run_tests:
+    needs: [run_linters]
+    name: Run Rspec
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: project_store_test
+        ports: [ "5432:5432" ]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      # if you need redis
+      # redis:
+      #   image: redis
+      #   ports:
+      #   - 6379:6379
+      #   options: --entrypoint redis-server
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
 #        - name: Set up Node
 #          uses: actions/setup-node@v1
 #          with:
@@ -56,25 +56,24 @@ jobs:
 #        - name: Install yarn
 #          run: |
 #            yarn install --pure-lockfile
-#
-#
-#        - name: Setup test database
-#          env:
-#            RAILS_ENV: test
-#            PGHOST: localhost
-#            POSTGRES_DB: Project_store_test
-#            POSTGRES_USER: rails_github_actions
-#            POSTGRES_PASSWORD: postgres
-#          run: |
-#            cp config/database.ci.yml config/database.yml
-#            rake db:create db:migrate
-#        - name: Run tests
-#          run: rspec
+      - name: install PostgreSQL client
+        run: sudo apt-get install libpq-dev
 
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPORT: ${ { job.services.postgres.ports[5432] }}
+        run: |
+          bundler exec rails db:create db:migrate
+      - name: Run tests
+        run: bundle exec rspec
 
-#        - name: Upload coverage results
-#          uses: actions/upload-artifact@v3
-#          if: always()
-#          with:
-#            name: coverage-report
-#            path: coverage
+      - name: Upload coverage results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage
