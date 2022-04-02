@@ -48,14 +48,14 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
 
-#        - name: Set up Node
-#          uses: actions/setup-node@v1
-#          with:
-#            node-version: 10.13.0
-#
-#        - name: Install yarn
-#          run: |
-#            yarn install --pure-lockfile
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install yarn
+        run: |
+          yarn install --frozen-lockfile
       - name: install PostgreSQL client
         run: sudo apt-get install libpq-dev
 
