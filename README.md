@@ -1,3 +1,5 @@
+[![Tests](https://github.com/sasha370/project_store/actions/workflows/ci.yml/badge.svg)](https://github.com/sasha370/project_store/actions/workflows/ci.yml)
+
 # README
 
 ### Setup
