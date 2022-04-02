@@ -3,7 +3,8 @@
     .general-img-wrap-table
       = image_tag order_project.project.main_image, class: 'cart-img-shadow pull-left', alt: order_project.project.title
   %td
-    %p.title= order_project.project.title
+    %p.title
+      = link_to order_project.project.title, project_path(order_project.project)
   %td
     %span.font-16.in-gold-500= number_to_currency order_project.project.old_price
   %td
