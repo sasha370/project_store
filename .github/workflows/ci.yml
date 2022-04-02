@@ -56,7 +56,7 @@ jobs:
           yarn install --frozen-lockfile
       - name: install PostgreSQL client
         run: |
-          sudo apt-get -yqq install libpq-dev chromium-chromedriver
+          sudo apt-get -yqq install libpq-dev
 
       - name: Setup test database
         env:
