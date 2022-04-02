@@ -22,7 +22,6 @@
 /storage/*
 !/storage/.keep
 
-/public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
@@ -30,6 +29,7 @@
 
 /public/packs
 /public/packs-test
+/public/uploads/*
 /node_modules
 /yarn-error.log
 yarn-debug.log*
@@ -37,12 +37,10 @@ yarn-debug.log*
 /coverage
 .idea
 .idea/*
-.vscode/settings.json
 
 /config/credentials/test.key
 /config/credentials/development.key
 /config/credentials/environment.key
 /config/credentials/production.key
-/public/*
-/public/uploads/*
+
 
