@@ -45,15 +45,12 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
-      - uses: actions/cache@v2
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 14
+          cache: 'yarn'
 
       - name: Install yarn
         run: |
