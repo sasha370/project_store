@@ -2,54 +2,101 @@ name: Tests
 on: push
 
 jobs:
-  run_test:
-    name: Rspec test
+  run_linters:
+    name: Run Linters
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:11
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: Project_store_test
-          POSTGRES_PASSWORD: postgres
-        ports: ["5432:5432"]
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-      # if you need redis
-      # redis:
-      #   image: redis
-      #   ports:
-      #   - 6379:6379
-      #   options: --entrypoint redis-server
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 2.7.2
           bundler-cache: true
+
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
           node-version: 10.13.0
+
+      - name: Find yarn cache location
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: JS package cache
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install yarn
         run: |
-          #          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
-          yarn install
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          POSTGRES_DB: Project_store_test
-          POSTGRES_USER: rails_github_actions
-          POSTGRES_PASSWORD: postgres
+          yarn install --pure-lockfile
+
+      - name: Run linters
         run: |
-          cp config/database.ci.yml config/database.yml
-          rake db:create db:migrate
-      - name: Run tests
-        run: rspec
+          bin/rubocop --parallel
+
+
+#  run_test:
+#    name: Run Rspec
+#      runs-on: ubuntu-latest
+#
+#      services:
+#        postgres:
+#          image: postgres:11
+#          env:
+#            POSTGRES_USER: postgres
+#            POSTGRES_DB: Project_store_test
+#            POSTGRES_PASSWORD: postgres
+#          ports: [ "5432:5432" ]
+#          options: >-
+#            --health-cmd pg_isready
+#            --health-interval 10s
+#            --health-timeout 5s
+#            --health-retries 5
+#        # if you need redis
+#        # redis:
+#        #   image: redis
+#        #   ports:
+#        #   - 6379:6379
+#        #   options: --entrypoint redis-server
+#
+#      steps:
+#        - uses: actions/checkout@v2
+#        - name: Set up Ruby
+#          uses: ruby/setup-ruby@v1
+#          with:
+#            ruby-version: 2.7
+#            bundler-cache: true
+#
+#        - name: Set up Node
+#          uses: actions/setup-node@v1
+#          with:
+#            node-version: 10.13.0
+#
+#        - name: Install yarn
+#          run: |
+#            yarn install --pure-lockfile
+#
+#
+#        - name: Setup test database
+#          env:
+#            RAILS_ENV: test
+#            PGHOST: localhost
+#            POSTGRES_DB: Project_store_test
+#            POSTGRES_USER: rails_github_actions
+#            POSTGRES_PASSWORD: postgres
+#          run: |
+#            cp config/database.ci.yml config/database.yml
+#            rake db:create db:migrate
+#        - name: Run tests
+#          run: rspec
+
+
+#        - name: Upload coverage results
+#          uses: actions/upload-artifact@v3
+#          if: always()
+#          with:
+#            name: coverage-report
+#            path: coverage
