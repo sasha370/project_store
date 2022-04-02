@@ -106,6 +106,36 @@ ActiveRecord::Schema.define(version: 2022_01_22_091932) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
+  create_table "order_projects", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "project_id"
+    t.index ["order_id"], name: "index_order_projects_on_order_id"
+    t.index ["project_id"], name: "index_order_projects_on_project_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "promocode_id"
+    t.integer "amount"
+    t.integer "discount", default: 0
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["promocode_id"], name: "index_orders_on_promocode_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.jsonb "metadata", default: {}
+    t.integer "status", default: 0, null: false
+    t.datetime "processed_at"
+    t.string "operation_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
     t.string "short_description", null: false
