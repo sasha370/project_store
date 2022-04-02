@@ -23,4 +23,8 @@ class User < ApplicationRecord
   def cart
     orders.cart.find_or_create_by!(status: 'cart')
   end
+
+  def paid_orders
+    orders.paid.includes(:projects)
+  end
 end

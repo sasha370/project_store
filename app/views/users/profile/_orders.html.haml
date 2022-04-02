@@ -1,0 +1,23 @@
+- @orders.each do |order|
+  %h3= "Order ##{order.id}"
+  -#TODO prettify time
+  %p.small= "Created at: #{order.created_at}"
+
+  %table.table.table-hover
+    %tr.no-hover
+      %th.col-pic.pl-0
+        %span.in-grey-600 Product
+      %th.col-title
+        %span.in-grey-600 Title
+      %th.col-download
+        %span.in-grey-600 Download
+    - order.projects.each do |project|
+      %tr{ id: "paid_project_#{project.id}"}
+        %td
+          .general-img-wrap-table
+            = image_tag project.main_image, class: 'cart-img-shadow pull-left', alt: project.title
+        %td
+          %p.title= project.title
+        %td
+          = link_to download_project_path(project.id), class: 'close general-cart-close', aria_label: "Close", remote: true do
+            %i.fa.fa-download
