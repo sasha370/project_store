@@ -21,18 +21,16 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def cart_buttons
-    @for_catalog = false
-    return ask_register unless h.current_user
+    return ask_register(for_catalog: false) unless h.current_user
 
-    return go_to_cart_button if already_in_cart
+    return go_to_cart_button(for_catalog: false) if already_in_cart
 
-    return download_button if already_bought
+    return download_button(for_catalog: false) if already_bought
 
-    add_to_cart_button
+    add_to_cart_button(for_catalog: false)
   end
 
   def cart_buttons_catalog
-    @for_catalog = true
     return download_button if already_bought
 
     go_to_cart_button if already_in_cart
@@ -48,35 +46,35 @@ class ProjectDecorator < Draper::Decorator
     h.current_user.orders.cart.map(&:project_ids).flatten.include?(id) if h.current_user
   end
 
-  def download_button
-    h.link_to '#', class: style_for_link do  # TODO, create download link
-      h.tag.i(' Скачать', class: 'fa fa-download', aria_hidden: true)
+  def download_button(for_catalog: true)
+    h.link_to download_project_path(self), class: style_for_link(for_catalog) do  # TODO, create download link
+      h.tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
     end
   end
 
-  def add_to_cart_button
-    h.link_to add_to_cart_path(self), class: style_for_link, id: "add_to_cart_#{id}", remote: true do
+  def add_to_cart_button(for_catalog: true)
+    h.link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}", remote: true do
       h.tag.i(' Купить', class: 'fa fa-shopping-cart', aria_hidden: true)
     end
   end
 
-  def go_to_cart_button
-    h.link_to cart_path, class: style_for_link do
-      h.tag.i(add_text(' В корзине'), class: 'fas fa-coins', aria_hidden: true)
+  def go_to_cart_button(for_catalog: true)
+    h.link_to cart_path, class: style_for_link(for_catalog) do
+      h.tag.i(add_text(' В корзине', for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
 
-  def ask_register
-    h.link_to new_user_session_path, class: style_for_link do
+  def ask_register(for_catalog: true)
+    h.link_to new_user_session_path, class: style_for_link(for_catalog) do
       h.tag.i(' Войти', class: 'fas fas fa-sign-in-alt', aria_hidden: true)
     end
   end
 
-  def style_for_link
-    @for_catalog ? 'thumb-hover-link thumb-icon' : 'btn btn-default pull-right general-position'
+  def style_for_link(for_catalog)
+    for_catalog ? 'thumb-hover-link thumb-icon' : 'btn btn-default pull-right general-position'
   end
 
-  def add_text(text)
-    @for_catalog ? '' : text
+  def add_text(text, for_catalog)
+    for_catalog ? '' : text
   end
 end
