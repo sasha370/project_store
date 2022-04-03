@@ -17,7 +17,7 @@ class User < ApplicationRecord
   enum role: { usual: 0, author: 1, admin: 2 }
 
   def qty_in_cart
-    cart.order_projects.count
+    cart.projects.count
   end
 
   def cart
