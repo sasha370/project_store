@@ -11,6 +11,7 @@ gem 'acts_as_list'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'carrierwave', '~> 2.0'
+gem 'carrierwave-aws'
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'draper'

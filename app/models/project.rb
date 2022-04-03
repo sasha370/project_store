@@ -5,6 +5,8 @@ class Project < ApplicationRecord
   belongs_to :category, counter_cache: true
   belongs_to :author, class_name: :User, foreign_key: 'user_id', inverse_of: :products
   mount_uploaders :images, ImageUploader
+  has_many_attached :images
+  has_one_attached :archive
 
   has_many :order_projects, dependent: :destroy
   has_many :orders, through: :order_projects

@@ -55,7 +55,7 @@ ActiveAdmin.register Project do
   controller do
     def update
       project = Project.find(params[:id])
-      params[:project][:images].concat(project.images.map(&:identifier)).uniq
+      params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
       project.update(permitted_params[:project])
       redirect_to admin_project_path(project)
     end
