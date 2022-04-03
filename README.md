@@ -11,20 +11,24 @@ yarn install
 
 ### CI
 stage1: 
-- Run linters and test via GHA (done)
+- Run linters and test via GHA (done) +
 - Made it require
 stage2: Deploy workflow
 - 
 
 ### TODO
-
-- Активные ссылки на товары из корзины 
 - Хранение и скачивание файлов ( выбрать провайдера и настроить)
 
+### Админка
+- проверить права доступа
+- Нельзя загрузить сразу пачку картинок
+- ошибка при удалении картинки
+- Улучшить интерфейс и рассположение кнопок (Слишком мелкий интрефейс)
+
+
 ### Tests
-- Запускать капибару без открытия окон (в тихом режиме)
-- There are flaky tests with a pagination inside the catalog !!!
-- Add Pundit https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make
+
+- Add Pundit 
 - Adaptive Title for all product pages
 
 > ### яндекс
@@ -38,6 +42,8 @@ stage2: Deploy workflow
 
 
 Backlog: 
+- поправить дату для заказа на странице Мои покупки
 - Купоны + скидки ( )
 - Fix mobile navbar
 - Страница с условиями оплаты ( статика)
+- https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make
