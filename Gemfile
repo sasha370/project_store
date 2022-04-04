@@ -17,7 +17,7 @@ gem 'capistrano-rails', '~> 1.4',  require: false
 gem 'capistrano-rvm',  require: false
 gem 'carrierwave', '~> 2.0'
 gem 'carrierwave-aws'
-gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
+gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'draper'
 gem 'font-awesome-rails'
