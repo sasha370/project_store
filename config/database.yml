@@ -20,4 +20,4 @@ test:
 
 production:
   <<: *default
-  database: Project_store_production
+  database: project_store_production

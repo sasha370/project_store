@@ -10,6 +10,11 @@ gem 'activeadmin_addons'
 gem 'acts_as_list'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'capistrano', '~> 3.11',  require: false
+gem 'capistrano-bundler', require: false
+gem 'capistrano-passenger', '~> 0.2.0',  require: false
+gem 'capistrano-rails', '~> 1.4',  require: false
+gem 'capistrano-rvm',  require: false
 gem 'carrierwave', '~> 2.0'
 gem 'carrierwave-aws'
 gem 'devise', github: 'heartcombo/devise', branch: 'ca-omniauth-2'
