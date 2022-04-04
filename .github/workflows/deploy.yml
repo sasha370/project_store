@@ -1,0 +1,41 @@
+#  https://github.com/LightningFF/deploy/wiki/Deploy-with-Capistrano-&-Github-Actions-on-Git-merge
+
+name: Deploy To Server
+
+on:
+  # Deploy on merge to master
+  push:
+    branches: [ master ]
+  # Manually deploy branch
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: Which branch to deploy
+        required: false
+        default: master
+
+jobs:
+  deploy:
+    name: Capistrano Deploy to Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create SSH key
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/github_action
+          echo "${{ secrets.SSH_DEPLOY_KEY }}" > ~/.ssh/github_action
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+
+      - uses: actions/checkout@v2
+        with:
+          ref: "${{ github.event.inputs.branch || 'master' }}"
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+          bundler-cache: true
+
+      - name: Deploy to production
+        run: |
+          eval "$(ssh-agent -s)"
+          bundle exec cap production deploy

@@ -14,10 +14,17 @@ stage1:
 - Run linters and test via GHA (done) +
 - Made it require
 stage2: Deploy workflow
+- CD with GHA and capistrano 
 - 
 
 ### TODO
+- 
 - Хранение и скачивание файлов ( выбрать провайдера и настроить)
+> рассылки
+- подтверждение регистрации\восстановление и т.п.
+- подтверждение заказа
+- Подписка на новинки
+- 
 
 ### Админка
 - проверить права доступа
@@ -27,7 +34,7 @@ stage2: Deploy workflow
 
 
 ### Tests
-
+- Покрыть страницу "Мои заказы" тестами
 - Add Pundit 
 - Adaptive Title for all product pages
 
@@ -42,6 +49,7 @@ stage2: Deploy workflow
 
 
 Backlog: 
+- поправить чекбокс в форме регистрации (Remember me)
 - поправить дату для заказа на странице Мои покупки
 - Купоны + скидки ( )
 - Fix mobile navbar

@@ -2,7 +2,7 @@
 
 RSpec.describe ProjectsController, type: :controller do
   describe 'GET #index' do
-    context 'when success ' do
+    context 'when success' do
       before { get :index }
 
       it 'returns 200 status' do
@@ -44,7 +44,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     before { get :show, params: { id: project } }
 
-    it 'assigns the requested project to  @project' do
+    it 'assigns the requested project to @project' do
       expect(assigns(:project)).to eq(project)
     end
 

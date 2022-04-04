@@ -14,12 +14,12 @@ module Callbacks
 
     def authenticate_sender
       sha1 = Digest::SHA1.hexdigest(process_params)
-      head 401 unless parsed_data[:sha1_hash] == sha1
+      head :unauthorized unless parsed_data[:sha1_hash] == sha1
     end
 
     def update_payment
       @payment = Payment.find_by(id: parsed_data[:label])
-      return head 400 unless @payment
+      return head :bad_request unless @payment
 
       @payment&.update(
         processed_at: parsed_data[:datetime],

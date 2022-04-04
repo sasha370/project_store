@@ -39,7 +39,7 @@ RSpec.describe OrdersController, type: :controller do
       end
 
       it 'assigns the user to @user' do
-        expect(assigns(:current_user)).to eq(nil)
+        expect(assigns(:current_user)).to be_nil
       end
 
       it 'assigns the purchase to @purchase' do
