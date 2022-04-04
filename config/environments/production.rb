@@ -120,9 +120,8 @@ Rails.application.configure do
 
   # CUSTOM
 
-  config.default_url_options[:host] = '88.214.237.55' # TODO
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: '88.214.237.55' } # TODO
+  config.action_mailer.default_url_options = { host: '94.154.11.225' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
