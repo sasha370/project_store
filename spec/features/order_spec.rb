@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Order', type: :feature do
-  describe 'Authorized User ' do
+  describe 'Authorized User' do
     context 'with Catalog page' do
       # TODO, turned off
       # context 'when press Add_to_cart ', js: true do
@@ -72,7 +72,7 @@ RSpec.describe 'Order', type: :feature do
       end
     end
 
-    context 'with  Cart page', js: true do
+    context 'with Cart page', js: true do
       let(:user) { create(:user) }
       let!(:order) { create(:order, :with_items, user: user) }
       let(:order_project) { order.order_projects.first }

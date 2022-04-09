@@ -27,6 +27,10 @@ Documentation:
 Lint/MissingSuper:
   Enabled: false
 
+#TODO  Remove after I18 integration
+Rails/I18nLocaleTexts:
+  Enabled: false
+
 RSpec/MultipleExpectations:
    Max: 2
 

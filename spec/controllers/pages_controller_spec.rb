@@ -2,7 +2,7 @@
 
 RSpec.describe PagesController, type: :controller do
   describe '#index' do
-    context 'when success ' do
+    context 'when success' do
       before { get :index }
 
       it 'returns 200 status' do
