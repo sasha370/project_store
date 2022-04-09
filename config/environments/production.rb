@@ -133,5 +133,4 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes }
-  config.action_cable.allowed_request_origins = ['http://88.214.237.55'] #TODO, WTF?
 end

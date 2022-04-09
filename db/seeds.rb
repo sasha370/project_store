@@ -8,6 +8,8 @@ categories_title.each do |title|
   15.times { FactoryBot.create(:project, category: category, author: authors.sample) }
 end
 
+FactoryBot.create_list(:order, 3, :with_items, user: admin)
+
 usual_user = User.create(first_name: 'Alex', phone: '+7906368000', email: 'kng.sasha@mail.ru', password: 'A123456a',
                          password_confirmation: 'A123456a', confirmed_at: DateTime.now)
 
