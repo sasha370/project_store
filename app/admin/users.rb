@@ -36,8 +36,7 @@ ActiveAdmin.register User do
           row "Avatar" do |user|
             columns do
               column do
-                # image_tag(user.avatar.thumb.url) #TODO
-                # image_tag user.avatar.url, size: '100x100' if user.avatar
+                user_avatar(user)
               end
             end
           end

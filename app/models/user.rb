@@ -11,7 +11,10 @@ class User < ApplicationRecord
                                                                                            }
   has_many :authorizations, dependent: :destroy
   has_many :orders, dependent: :destroy
-  has_one_attached :avatar
+  has_one_attached :avatar, service: :amazon do |attachable|
+    attachable.variant :thumb, resize: '500x500'
+    attachable.variant :icon, resize: '50x50'
+  end
 
   enum role: { usual: 0, admin: 2 }
 

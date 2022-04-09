@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
+gem "active_storage_variant"
 gem 'activeadmin'
 gem 'activeadmin_addons'
 gem 'acts_as_list'
