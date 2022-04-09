@@ -66,7 +66,9 @@ ActiveAdmin.register Project do
   index do
     selectable_column
     id_column
-    column :title
+    column :title do |project|
+      link_to project.title, admin_project_path(project)
+    end
     column 'Short description' do |project|
       project.short_description.truncate(30)
     end
@@ -154,8 +156,12 @@ ActiveAdmin.register Project do
       row :title
       row :short_description
       row :description
-      row :price
-      row :old_price
+      row :price do |project|
+        number_to_currency project.price
+      end
+      row :old_price do |project|
+        number_to_currency project.old_price
+      end
       row :cost_price
       row :dimensions
       row :difficulty

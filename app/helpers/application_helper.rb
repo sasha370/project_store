@@ -6,8 +6,6 @@ module ApplicationHelper
   end
 
   def user_avatar(user)
-    if user.avatar.attached?
-      image_tag(user.avatar.variant(:thumb))
-    end
+    image_tag(user.avatar.variant(:thumb)) if user.avatar.attached?
   end
 end

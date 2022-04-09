@@ -20,6 +20,8 @@ $sidebar-width: 400px !default;
   &.published { background: #08A510; }
   &.yes { background: #0058fc; }
   &.no { background: #d3d3d3; }
+  &.cart { background: #FF9900; }
+  &.paid { background: #08A510; }
 }
 
 html { font-size:150%; }
