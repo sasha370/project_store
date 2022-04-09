@@ -1,7 +1,7 @@
 - @orders.each do |order|
   %h3= "Order ##{order.id}"
   -#TODO prettify time
-  %p.small= "Created at: #{order.created_at}"
+  %p.small= "Created at: #{format_date(order.`created_at`)}"
 
   %table.table.table-hover
     %tr.no-hover
