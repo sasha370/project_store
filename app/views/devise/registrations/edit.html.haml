@@ -5,7 +5,14 @@
     .col-md-6
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = bootstrap_devise_error_messages!
-        .row.text-left  
+        .row.text-left
+          .col-md-6
+            = user_avatar(resource)
+          .col-md-6
+            = f.label :avatar
+            = f.file_field :avatar
+        %br
+        .row.text-left
           .col-md-6
             .form-group
               = f.label :first_name
@@ -19,9 +26,7 @@
           .col-md-6
             = f.label :email
             = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control', :required => true
-          .col-md-6
-            = f.label :avatar
-            = f.file_field :avatar
+
         .row.text-left
           .col-md-6
             .form-group

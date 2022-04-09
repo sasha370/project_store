@@ -15,15 +15,15 @@ ActiveAdmin.register_page 'Dashboard' do
     #
     # columns do
     #   column do
-    #     panel "Recent Posts" do
+    #     panel "Recent Orders" do
     #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
+    #         Order.paid.last(10).map do |order|
+    #           li link_to(order.id, order_path(order))
     #         end
     #       end
     #     end
     #   end
-
+    #
     #   column do
     #     panel "Info" do
     #       para "Welcome to ActiveAdmin."

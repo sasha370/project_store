@@ -1,22 +1,64 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation
-  sidebar 'Users Projects', only: %i[show edit] do
+  permit_params :email, :password, :password_confirmation, :first_name, :last_name
+
+  sidebar 'Users Orders', only: %i[show],  max_width: "100%" do
     ul do
-      li link_to 'Projects', admin_user_projects_path(resource)
+      resource.orders.each do |order|
+        li link_to "##{order.id} | Сумма: #{order.amount}", admin_order_path(order)
+      end
     end
   end
 
   index do
     selectable_column
-    id_column
-    column :email
-    column :current_sign_in_at
-    column :sign_in_count
+    index_column
+    column :email do |user|
+      link_to user.email, admin_user_path(user)
+    end
+    column :first_name
+    column :last_name
+    column 'Orders' do |user|
+      link_to user.orders.count, admin_user_path(user)
+    end
     column :created_at
-    column :products
+    column :sign_in_count
+    column :current_sign_in_at
     actions
+  end
+
+  show do
+    columns do
+      column max_width: "50%" do
+
+        attributes_table do
+          row "Avatar" do |user|
+            columns do
+              column do
+                user_avatar(user)
+              end
+            end
+          end
+
+          row :role
+          row :email
+          row :first_name
+          row :last_name
+          row :phone
+          row :provider
+          row :reset_password_sent_at
+          row :sign_in_count
+          row :current_sign_in_at
+          row :last_sigh_in_at
+          row :confirmed_at
+          row :confirmation_sent_at
+          row :unconfirmed_email
+          row :created_at
+          row :updated_at
+        end
+      end
+    end
   end
 
   filter :email
@@ -27,6 +69,9 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
+      f.input :first_name
+      f.input :last_name
+      f.input :phone
       f.input :password
       f.input :password_confirmation
     end

@@ -1,0 +1,26 @@
+#TODO Не используется , Это образец
+
+# вызов через
+#
+# show do
+#   # This will render app/views/admin/order/_show.html.erb
+#   render 'show', order: resource
+# end
+#
+
+panel 'Детали заказа' do
+  attributes_table_for order.projects do
+    row :title do |project|
+      link_to project.title, admin_project_path(project)
+    end
+    row :price
+  end
+
+  div class: 'blank_slate_container', id: 'dashboard_default_message' do
+    span class: 'blank_slate' do
+      span "Общая сумма по заказу: #{order.amount} руб."
+      small "Создан #{format_date(order.created_at)}."
+      small "Статус: #{order.status.upcase}"
+    end
+  end
+end

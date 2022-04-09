@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'pages#privacy_policy'
   resources :projects
 
+  resources :orders, only: [:index, :show]
   get '/add_to_cart/:id', to: 'orders#add_to_cart', as: 'add_to_cart'
   get '/cart', to: 'orders#cart', as: 'cart'
   get '/remove_from_cart/:id', to: 'orders#remove_from_cart', as: 'remove_from_cart'

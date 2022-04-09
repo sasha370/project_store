@@ -9,12 +9,14 @@ class User < ApplicationRecord
   validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{6,}\z/ }, if: proc { |user|
                                                                                              user.password.present?
                                                                                            }
-  has_many :products,  class_name: :Project, dependent: :destroy
   has_many :authorizations, dependent: :destroy
-
   has_many :orders, dependent: :destroy
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize: '500x500'
+    attachable.variant :icon, resize: '50x50'
+  end
 
-  enum role: { usual: 0, author: 1, admin: 2 }
+  enum role: { usual: 0, admin: 2 }
 
   def qty_in_cart
     cart.projects.count
