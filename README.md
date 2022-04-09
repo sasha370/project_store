@@ -51,8 +51,8 @@ Backlog:
 - Страница с условиями оплаты ( статика)
 - https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make
 
-## DONE 
 
 ### CI & CD
-- Realized with Capistrano and GHA. See `.github/workflows/`
+ - +Realized with Capistrano and GHA. See `.github/workflows/`
+ - Добавить стопер на 95% для покрытия тестами в CI
 

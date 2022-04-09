@@ -9,12 +9,11 @@ class ProjectsController < ApplicationController
     @projects = Projects::SortingAndFilteringQuery.call(@projects, params[:category_id], params[:sorting])
                                                   .page(params[:page])
                                                   .per(PER_PAGE)
-                                                  .includes(%i[author])
                                                   .decorate
   end
 
   def show
-    @project = Project.includes(%i[author]).find(params[:id]).decorate
+    @project = Project.find(params[:id]).decorate
   end
 
   private
