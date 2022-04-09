@@ -10,8 +10,8 @@ class User < ApplicationRecord
                                                                                              user.password.present?
                                                                                            }
   has_many :authorizations, dependent: :destroy
-
   has_many :orders, dependent: :destroy
+  has_one_attached :avatar
 
   enum role: { usual: 0, admin: 2 }
 

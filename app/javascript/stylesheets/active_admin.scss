@@ -1,11 +1,18 @@
 
-@import "~@activeadmin/activeadmin/src/scss/mixins";
-@import "~@activeadmin/activeadmin/src/scss/base";
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+// Sidebar Forms
+$sidebar-width: 400px !default;
+
+@import "~@activeadmin/activeadmin/src/scss/mixins";
+@import "~@activeadmin/activeadmin/src/scss/base";
 
 .status_tag {
   &.newest { background: #FF0000; }
@@ -14,6 +21,8 @@
   &.yes { background: #0058fc; }
   &.no { background: #d3d3d3; }
 }
+
+html { font-size:150%; }
 
 .bool-value {
   font-size: 16px;

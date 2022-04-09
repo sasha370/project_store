@@ -11,6 +11,7 @@ yarn install
 ```
 
 ### TODO
+- Учитывать в счетчике проектов для категории только опубликованные 
 - Вывести аватар\имя пользователя в навбаре
 - Хранение и скачивание файлов ( выбрать провайдера и настроить)
 
@@ -45,8 +46,10 @@ yarn install
 
 
 Backlog: 
+- activeAdmin css brokes links and colors  (https://skryukov.github.io/rails/activeadmin/2020/09/29/an-unofficial-active-admin-guide.html)
 
 - Купоны + скидки ( )
+- Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки)
 - Fix mobile navbar
 - Страница с условиями оплаты ( статика)
 - https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make

@@ -18,16 +18,21 @@ RSpec.describe ProjectsController, type: :controller do
       let(:category1) { create(:category) }
       let(:category2) { create(:category) }
       let!(:projects1) { create_list(:project, 2, category: category1) }
-      let(:projects2) { create_list(:project, 3, category: category2) }
+      let!(:projects2) { create_list(:project, 3, category: category2) }
 
-      it 'assigns the requested projects to ALL @projects' do
+      before do
+        # Seed unpublished project to DB
+        create_list(:project, 3, category: category2, status: :newest)
+      end
+
+      it 'assigns the requested projects to ALL published @projects' do
         get :index
         expect(assigns(:projects)).to eq(projects1 + projects2)
       end
 
       it 'assigns the requested projects to Category`s @projects' do
-        get :index, params: { category_id: category1.id }
-        expect(assigns(:projects).count).to eq(projects1.count)
+        get :index, params: { category_id: category2.id }
+        expect(assigns(:projects).count).to eq(projects2.count)
       end
     end
 
