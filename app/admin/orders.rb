@@ -3,6 +3,7 @@
 ActiveAdmin.register Order do
   includes(:user, :payment)
 
+  #Index sort buttons
   scope :all
   scope :paid
   scope :cart
@@ -19,7 +20,6 @@ ActiveAdmin.register Order do
     column 'Item count' do |order|
       order.projects.count
     end
-
     column "Promocode" do |promocode|
       # link_to promocode.name, admin_promocode_path(promocode) #TDOD
     end

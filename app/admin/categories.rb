@@ -13,7 +13,6 @@ ActiveAdmin.register Category do
     actions
   end
 
-
   show do
     attributes_table do
       row :title
