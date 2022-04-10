@@ -1,3 +1,4 @@
+= content_for :title, @project.title
 %main.container{ id: "project_card_#{@project.id}"}
   = link_to  :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
@@ -54,7 +55,6 @@
           %p.pull-left= t('.dimensions')
           %p.lead.small.pull-right
             = @project.dimensions
-            H:6.4 x W: 0.9 x D: 5.0
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.materials')
@@ -63,5 +63,5 @@
 
   <!-- #TODO передвинуть в отдельный паршл, когда будут Ревью -->
 
-  = render 'reviews/new'
-  = render 'reviews/review'
+  -# = render 'reviews/new'
+  -# = render 'reviews/review'
