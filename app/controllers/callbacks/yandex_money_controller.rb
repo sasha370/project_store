@@ -1,33 +1,35 @@
 # frozen_string_literal: true
 
+# https://yoomoney.ru/transfer/myservices/http-notification?_openstat=settings%3Bother%3Bmoney%3Bhttp%3Bset
+
 module Callbacks
   class YandexMoneyController < ApplicationController
     protect_from_forgery unless: -> { request.format.json? }
 
-    before_action :authenticate_sender, only: [:perform]
-
     def perform
+      return head :unauthorized unless correct_sender?
+      return head :bad_request unless payment && correct_amount?
+
+      # TODO. Move all update logic to separate Worker
       update_payment
+      head :ok
     end
 
     private
 
-    def authenticate_sender
+    def correct_sender?
       sha1 = Digest::SHA1.hexdigest(process_params)
-      head :unauthorized unless parsed_data[:sha1_hash] == sha1
+      parsed_data[:sha1_hash] == sha1
     end
 
     def update_payment
-      @payment = Payment.find_by(id: parsed_data[:label])
-      return head :bad_request unless @payment
-
-      @payment&.update(
+      payment.update(
         processed_at: parsed_data[:datetime],
         operation_id: parsed_data[:operation_id],
+        metadata: parsed_data,
         status: :paid
       )
-      @payment.order.update(status: :paid)
-      head :ok
+      payment.order.paid!
     end
 
     def parsed_data
@@ -46,6 +48,14 @@ module Callbacks
         Rails.application.credentials[:ym_secret_key],
         parsed_data[:label]
       ].join('&').force_encoding('UTF-8')
+    end
+
+    def payment
+      @payment ||= Payment.find_by(id: parsed_data[:label])
+    end
+
+    def correct_amount?
+      payment.amount == parsed_data[:amount].to_i
     end
   end
 end

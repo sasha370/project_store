@@ -15,7 +15,6 @@ class Project < ApplicationRecord
   enum status: { newest: 0, published: 10 }
   after_create :set_vendor_code
 
-  default_scope { where(status: :published) }
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'default_cover.jpg'
 

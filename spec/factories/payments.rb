@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :payment do
     order
-    metadata { '' }
+    metadata { {} }
     status { 0 }
   end
 end
