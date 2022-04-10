@@ -3,14 +3,6 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name, :last_name
 
-  sidebar 'Users Orders', only: %i[show],  max_width: "100%" do
-    ul do
-      resource.orders.each do |order|
-        li link_to "##{order.id} | Сумма: #{order.amount}", admin_order_path(order)
-      end
-    end
-  end
-
   index do
     selectable_column
     index_column
@@ -40,12 +32,15 @@ ActiveAdmin.register User do
               end
             end
           end
-
           row :role
           row :email
           row :first_name
           row :last_name
           row :phone
+        end
+      end
+      column  max_width: "50%" do
+        attributes_table 'Регистрационные данные' do
           row :provider
           row :reset_password_sent_at
           row :sign_in_count
@@ -57,6 +52,17 @@ ActiveAdmin.register User do
           row :created_at
           row :updated_at
         end
+      end
+    end
+  end
+
+  sidebar 'Users Orders', only: %i[show] do
+    ul do
+      "Заказов #{resource.orders.count}. На сумму: #{number_to_currency resource.orders.sum(:amount)}"
+    end
+    ul do
+      resource.orders.each do |order|
+        li link_to "##{order.id} | Сумма: #{number_to_currency order.amount}", admin_order_path(order)
       end
     end
   end

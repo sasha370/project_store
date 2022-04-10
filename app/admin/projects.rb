@@ -5,18 +5,23 @@ ActiveAdmin.register Project do
                 :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}
 
   includes :category
-  scope_to :current_user, unless: proc { current_user.admin? }
+  # scope_to :current_user, unless: proc { current_user.admin? }
+
+  controller do
+    def scoped_collection
+      Project.unscoped
+    end
+  end
 
   scope :all
   scope :newest
-  scope :approved
   scope :published
 
   action_item :publish, only: :show do
     link_to 'Publish', publish_admin_project_path(project), method: :put unless project.published?
   end
 
-  action_item :publish, only: :show do
+  action_item :unpublish, only: :show do
     link_to 'Unpublish', unpublish_admin_project_path(project), method: :put if project.published?
   end
 
@@ -32,7 +37,7 @@ ActiveAdmin.register Project do
 
   member_action :unpublish, method: :put do
     project = Project.find(params[:id])
-    project.update(status: :approved)
+    project.update(status: :newest)
     redirect_to admin_project_path(project)
   end
 
@@ -71,9 +76,6 @@ ActiveAdmin.register Project do
     end
     column 'Short description' do |project|
       project.short_description.truncate(30)
-    end
-    column 'Description' do |project|
-      project.description.truncate(30)
     end
     column :price do |project|
       number_to_currency project.price
@@ -170,6 +172,10 @@ ActiveAdmin.register Project do
       tag_row :hit
       row :created_at
       row :updated_at
+      row 'Кол-во покупок' do |project|
+        OrderProject.where(project_id: project).count
+      end
+      row :orders
     end
   end
 end

@@ -12,8 +12,9 @@ class Project < ApplicationRecord
 
   scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
-  enum status: { newest: 0, approved: 5, published: 10 }
+  enum status: { newest: 0, published: 10 }
 
+  default_scope { where(status: :published) }
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'default_cover.jpg'
 

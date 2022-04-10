@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Order do
-  # controller do
-  #   def scoped_collection
-  #     # Order.includes(:user, :payment)
-  #   end
-  # end
+  controller do
+    def scoped_collection
+      Order.includes(:user, :payment)
+    end
+  end
 
   scope :all
   scope :paid
