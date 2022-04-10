@@ -13,6 +13,7 @@ class Project < ApplicationRecord
   scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
   enum status: { newest: 0, published: 10 }
+  after_create :set_vendor_code
 
   default_scope { where(status: :published) }
   mount_uploaders :images, ImageUploader
@@ -20,5 +21,11 @@ class Project < ApplicationRecord
 
   def main_image
     images&.first&.url || PLACEHOLDER_IMAGE
+  end
+
+  private
+
+  def set_vendor_code
+    update(vendor_code: format('P-%.6d', id))
   end
 end

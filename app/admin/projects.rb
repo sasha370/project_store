@@ -86,6 +86,7 @@ ActiveAdmin.register Project do
 
     tag_column :status
     bool_column :hit
+    column :vendor_code
     column :created_at
     column :category
     column 'Image' do |project|
@@ -97,6 +98,7 @@ ActiveAdmin.register Project do
   filter :price, as: :numeric_range_filter
   filter :status, as: :numeric_range_filter
   filter :difficulty, as: :numeric_range_filter
+  filter :vendor_code
   filter :category
   filter :hit
 
@@ -165,6 +167,7 @@ ActiveAdmin.register Project do
         number_to_currency project.old_price
       end
       row :cost_price
+      row :vendor_code
       row :dimensions
       row :difficulty
       row :materials
