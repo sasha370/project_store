@@ -1,6 +1,10 @@
 name: Tests
 on: push
 
+env:
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
+  RAILS_ENV: test
+  
 jobs:
   run_linters:
     name: Run Rubocop
@@ -61,7 +65,6 @@ jobs:
 
       - name: Setup test database
         env:
-          RAILS_ENV: test
           PGHOST: localhost
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres

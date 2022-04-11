@@ -5,53 +5,27 @@ ActiveAdmin.register Project do
                 :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}
 
   includes :category
-  scope_to :current_user, unless: proc { current_user.admin? }
+  # scope_to :current_user, unless: proc { current_user.admin? }
 
+  controller do
+    def scoped_collection
+      Project.unscoped
+    end
+  end
+
+  #Index sort buttons
   scope :all
   scope :newest
-  scope :approved
   scope :published
 
-  action_item :publish, only: :show do
-    link_to 'Publish', publish_admin_project_path(project), method: :put unless project.published?
-  end
+  #Index filters
+  filter :price, as: :numeric_range_filter
+  filter :status, as: :numeric_range_filter
+  filter :difficulty, as: :numeric_range_filter
+  filter :vendor_code
+  filter :category
+  filter :hit
 
-  action_item :publish, only: :show do
-    link_to 'Unpublish', unpublish_admin_project_path(project), method: :put if project.published?
-  end
-
-  action_item :view, only: :show do
-    link_to 'View on site', project_path(project) if project.published?
-  end
-
-  member_action :publish, method: :put do
-    project = Project.find(params[:id])
-    project.update(status: :published)
-    redirect_to admin_project_path(project)
-  end
-
-  member_action :unpublish, method: :put do
-    project = Project.find(params[:id])
-    project.update(status: :approved)
-    redirect_to admin_project_path(project)
-  end
-
-  member_action :destroy_image, method: :delete do
-    project = Project.find(params[:id])
-    index = params[:index].to_i
-
-    remain_images = project.images.map(&:identifier)
-    if index.zero? && project.images.size == 1
-      project.remove_images!
-    else
-      deleted_image = remain_images.delete_at(index)
-      deleted_image.try(:remove!)
-      project.images = remain_images
-    end
-    project.save
-    flash[:notice] = 'Image deleted!'
-    redirect_to edit_admin_project_path(project)
-  end
 
   controller do
     def update
@@ -72,9 +46,6 @@ ActiveAdmin.register Project do
     column 'Short description' do |project|
       project.short_description.truncate(30)
     end
-    column 'Description' do |project|
-      project.description.truncate(30)
-    end
     column :price do |project|
       number_to_currency project.price
     end
@@ -84,6 +55,7 @@ ActiveAdmin.register Project do
 
     tag_column :status
     bool_column :hit
+    column :vendor_code
     column :created_at
     column :category
     column 'Image' do |project|
@@ -92,12 +64,44 @@ ActiveAdmin.register Project do
     actions
   end
 
-  filter :price, as: :numeric_range_filter
-  filter :status, as: :numeric_range_filter
-  filter :difficulty, as: :numeric_range_filter
-  filter :category
-  filter :hit
+  show do
+    attributes_table do
+      row :images do
+        columns do
+          project.images.each do |img|
+            column do
+              image_tag img.url, size: '100x100'
+            end
+          end
+        end
+      end
+      row :category
+      row :title
+      row :short_description
+      row :description
+      row :price do |project|
+        number_to_currency project.price
+      end
+      row :old_price do |project|
+        number_to_currency project.old_price
+      end
+      row :cost_price
+      row :vendor_code
+      row :dimensions
+      row :difficulty
+      row :materials
+      tag_row :status
+      tag_row :hit
+      row :created_at
+      row :updated_at
+      row 'Кол-во покупок' do |project|
+        OrderProject.where(project_id: project).count
+      end
+      row :orders
+    end
+  end
 
+  #New and Edit form fields
   form do |f|
     columns do
       column max_width: "50%" do
@@ -128,8 +132,6 @@ ActiveAdmin.register Project do
                 span do
                   image_tag(img.thumb.url)
                 end
-                # link_to 'Delete', admin_project_image_path(project_id: project.id, id: index), "data-method": :delete,
-                #                                                                                "data-confirm": 'Are you sure?', remote: true
                 link_to 'Delete', destroy_image_admin_project_path(id: project.id, index: index), "data-method": :delete,
                         "data-confirm": 'Are you sure?'
               end
@@ -141,35 +143,48 @@ ActiveAdmin.register Project do
     f.actions
   end
 
-  show do
-    attributes_table do
-      row :images do
-        columns do
-          project.images.each do |img|
-            column do
-              image_tag img.url, size: '100x100'
-            end
-          end
-        end
-      end
-      row :category
-      row :title
-      row :short_description
-      row :description
-      row :price do |project|
-        number_to_currency project.price
-      end
-      row :old_price do |project|
-        number_to_currency project.old_price
-      end
-      row :cost_price
-      row :dimensions
-      row :difficulty
-      row :materials
-      tag_row :status
-      tag_row :hit
-      row :created_at
-      row :updated_at
+  # Publish Project button
+  action_item :publish, only: :show do
+    link_to 'Publish', publish_admin_project_path(project), method: :put unless project.published?
+  end
+
+  member_action :publish, method: :put do
+    project = Project.find(params[:id])
+    project.update(status: :published)
+    redirect_to admin_project_path(project)
+  end
+
+  # Unpublish Project button
+  action_item :unpublish, only: :show do
+    link_to 'Unpublish', unpublish_admin_project_path(project), method: :put if project.published?
+  end
+
+  member_action :unpublish, method: :put do
+    project = Project.find(params[:id])
+    project.update(status: :newest)
+    redirect_to admin_project_path(project)
+  end
+
+  # Redirect to Project page button
+  action_item :view, only: :show do
+    link_to 'View on site', project_path(project) if project.published?
+  end
+
+  # Destroy one of project images
+  member_action :destroy_image, method: :delete do
+    project = Project.find(params[:id])
+    index = params[:index].to_i
+
+    remain_images = project.images.map(&:identifier)
+    if index.zero? && project.images.size == 1
+      project.remove_images!
+    else
+      deleted_image = remain_images.delete_at(index)
+      deleted_image.try(:remove!)
+      project.images = remain_images
     end
+    project.save
+    flash[:notice] = 'Image deleted!'
+    redirect_to edit_admin_project_path(project)
   end
 end

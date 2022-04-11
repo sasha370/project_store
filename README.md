@@ -11,9 +11,13 @@ yarn install
 ```
 
 ### TODO
+
+
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Вывести аватар\имя пользователя в навбаре
 - Хранение и скачивание файлов ( выбрать провайдера и настроить)
+- добавить теги для Материалы проекта + Админка
+- авторотация для SSL сертификата )90 дней)
 
 > рассылки
 > - настроить сервер
@@ -26,8 +30,6 @@ yarn install
 - проверить права доступа
 - Нельзя загрузить сразу пачку картинок
 - ошибка при удалении картинки
-- Улучшить интерфейс и рассположение кнопок (Слишком мелкий интрефейс)
-- Некоректная привязка автора к проекту ( не дает создать товар)
 
 
 ### Tests
@@ -36,12 +38,11 @@ yarn install
 - Adaptive Title for all product pages
 
 > ### яндекс
->- После колбека об оплате проверять сумму заказа и только потом записывать
->- Добавить дату оплаты и обработки платежа в таблицу Payments
->- настройть коллбек тут https://yoomoney.ru/transfer/myservices/http-notification?_openstat=settings%3Bother%3Bmoney%3Bhttp%3Bset
->- АПИ коллбека https://yoomoney.ru/docs/wallet/using-api/notification-p2p-incoming
->- настройка формы для отправки данных https://yoomoney.ru/docs/payment-buttons/using-api/forms
+> - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
+> 
+> 
 >- настройки общие https://yoomoney.ru/settings?w=other#apiown
+>- настройка формы для отправки данных https://yoomoney.ru/docs/payment-buttons/using-api/forms
 >- сценарий работы формы https://yoomoney.ru/docs/payment-buttons/using-api/flow
 
 
