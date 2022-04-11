@@ -14,15 +14,15 @@
             %td
               %p.font-16 Subtotal:
             %td
-              %p.font-16#total_amount= current_user.cart.total_amount
+              %p.font-16#total_amount= number_to_currency(@cart.total_amount)
           %tr
             %td
               %p.font-16 Coupon:
             %td
-              %p.font-16#total_discount= current_user.cart.discount
+              %p.font-16#total_discount= number_to_currency(@cart.discount)
           %tr
             %td
               %strong.font-18 Order Total:
             %td
-              %strong.font-18#amount_with_discount= current_user.cart.amount_with_discount
+              %strong.font-18#amount_with_discount= number_to_currency(@cart.amount_with_discount)
 

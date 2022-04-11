@@ -4,7 +4,7 @@ on: push
 env:
   RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}
   RAILS_ENV: test
-  
+
 jobs:
   run_linters:
     name: Run Rubocop
