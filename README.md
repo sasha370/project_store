@@ -2,22 +2,13 @@
 
 # README
 
-### Setup
-```yaml
-rails db:create
-rails db:migrate
-rails db:seed
-yarn install
-```
-
 ### TODO
-
 
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Вывести аватар\имя пользователя в навбаре
 - Хранение и скачивание файлов ( выбрать провайдера и настроить)
 - добавить теги для Материалы проекта + Админка
-- авторотация для SSL сертификата )90 дней)
+- авторотация для SSL сертификата (90 дней)
 
 > рассылки
 > - настроить сервер
@@ -57,3 +48,11 @@ Backlog:
  - +Realized with Capistrano and GHA. See `.github/workflows/`
  - Добавить стопер на 95% для покрытия тестами в CI
 
+
+### Setup
+```yaml
+rails db:create
+rails db:migrate
+rails db:seed
+yarn install
+```
