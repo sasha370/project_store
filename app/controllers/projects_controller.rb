@@ -5,8 +5,7 @@ class ProjectsController < ApplicationController
   before_action :set_categories, only: %i[index]
 
   def index
-    @projects = Project.all.published
-    @projects = Projects::SortingAndFilteringQuery.call(@projects, params[:category_id], params[:sorting])
+    @projects = Projects::SortingAndFilteringQuery.call(params[:category_id], params[:sorting])
                                                   .page(params[:page])
                                                   .per(PER_PAGE)
                                                   .decorate

@@ -27,7 +27,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'assigns the requested projects to ALL published @projects' do
         get :index
-        expect(assigns(:projects)).to eq(projects1 + projects2)
+        expect(assigns(:projects).count).to eq (projects1 + projects2).count
       end
 
       it 'assigns the requested projects to Category`s @projects' do

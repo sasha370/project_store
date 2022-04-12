@@ -4,9 +4,9 @@ class OrdersController < ApplicationController
   skip_forgery_protection only: %i[add_to_cart remove_from_cart]
   before_action :authenticate_user!, :find_cart
 
-  def show
-    @orders = Order.find_by(id: params[:id])
-  end
+  # def show
+  #   @orders = Order.find_by(id: params[:id])
+  # end
 
   def add_to_cart
     respond_to do |format|

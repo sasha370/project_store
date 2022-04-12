@@ -34,6 +34,7 @@ yarn install
 ### Tests
 - Покрыть страницу "Мои заказы" тестами
 - Add Pundit 
+- FLaky тесты для сортировок и "показать еще" кнопки
 
 > ### яндекс
 > - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
