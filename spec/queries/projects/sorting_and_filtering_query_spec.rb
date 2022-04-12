@@ -23,7 +23,7 @@ RSpec.describe Projects::SortingAndFilteringQuery do
       let(:order) { 'price_asc' }
 
       it 'returns cheapest book first' do
-        expect(sorted_projects[1..].pluck(:price)).to all(be > sorted_projects.first.price)
+        expect(sorted_projects[1..].pluck(:price)).to all(be >= sorted_projects.first.price)
       end
 
       it 'changes projects order' do

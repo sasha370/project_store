@@ -1,5 +1,8 @@
 name: Tests
-on: push
+on:
+  push:
+    branches-ignore:
+      - master
 
 env:
   RAILS_MASTER_KEY: ${{ secrets.RAILS_TEST_KEY }}

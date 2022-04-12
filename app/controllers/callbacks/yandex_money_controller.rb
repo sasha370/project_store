@@ -4,9 +4,10 @@
 
 module Callbacks
   class YandexMoneyController < ApplicationController
-    protect_from_forgery unless: -> { request.format.json? }
+    # protect_from_forgery unless: -> { request.format.json? }
 
     def perform
+      callbacks_logger.debug(parsed_data)
       return head :unauthorized unless correct_sender?
       return head :bad_request unless payment && correct_amount?
 
@@ -56,6 +57,10 @@ module Callbacks
 
     def correct_amount?
       payment.amount.to_i == parsed_data[:amount].to_i
+    end
+
+    def callbacks_logger
+      @callbacks_logger ||= Logger.new(Rails.root.join('log/yandex_callbacks.log'))
     end
   end
 end
