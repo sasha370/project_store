@@ -1,21 +1,24 @@
 %p
   <!-- # TODO -->
-  Продолжив, вы соглашаетесь с условиями оплаты.
-  %br
-  После оплаты вы сможете найти все проекты в списке Покупок
+  %div
+    %span
+      Продолжив, вы соглашаетесь с условиями оплаты.
+      %br
+      После оплаты вы сможете найти все проекты в списке Покупок
+    %span
+      - if @cart.amount > 0
+        = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post, class: 'pull-right general-position', id: 'payment_button' do |f|
+          = f.hidden_field_tag :receiver, "410011633433937"
+          = f.hidden_field_tag 'quickpay-form', "donate"
+          = f.hidden_field_tag :targets, "Заказ №#{@payment.order.id}"
+          = f.hidden_field_tag :paymentType, 'AC'
+          = f.hidden_field_tag :sum, @payment.amount.to_f, id: 'checkout_sum', data_type: "number"
+          = f.hidden_field_tag :formcomment, 'diy-plans.ru'
+          = f.hidden_field_tag :label, @payment.id #  label for callback
+          = f.hidden_field_tag :successURL, my_orders_url # redirect after success
+          = f.submit value: "Оплатить", class: 'btn btn-primary btn-sm'
 
-  = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post, class: 'pull-right general-position' do |f|
-    = f.hidden_field_tag :receiver, "410011633433937"
-    = f.hidden_field_tag 'quickpay-form', "donate"
-    = f.hidden_field_tag :targets, "Транзакция №#{@payment.id}"
-    = f.hidden_field_tag :paymentType, 'AC'
-    = f.hidden_field_tag :sum, @payment.amount.to_f, id: 'checkout_sum', data_type: "number"
-    = f.hidden_field_tag :formcomment, 'diy-plans.ru'
-    = f.hidden_field_tag :label, @payment.id #  label for callback
-    = f.hidden_field_tag :successURL, my_orders_url # redirect after success
-    = f.submit value: "Оплатить", class: 'btn btn-primary btn-sm'
-
-  = image_tag('visa-master-icon.png')
+= image_tag('visa-master-icon.png')
 
 
 

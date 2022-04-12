@@ -10,8 +10,8 @@ module Projects
       popular: nil
     }.freeze
 
-    def initialize(projects, category_id, sorting)
-      @projects = projects
+    def initialize(category_id, sorting, projects: nil)
+      @projects = projects || Project.all.published
       @category_id = category_id
       @sorting = sorting
     end

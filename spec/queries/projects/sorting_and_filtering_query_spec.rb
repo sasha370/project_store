@@ -4,7 +4,7 @@ RSpec.describe Projects::SortingAndFilteringQuery do
   before { create_list(:project, 20) }
 
   let(:projects) { Project.all }
-  let(:sorted_projects) { described_class.new(projects, nil, order).call }
+  let(:sorted_projects) { described_class.new(nil, order, projects: projects).call }
 
   describe '#call' do
     context 'when newest first' do

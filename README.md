@@ -28,19 +28,16 @@ yarn install
 
 ### Админка
 - проверить права доступа
-- Нельзя загрузить сразу пачку картинок
 - ошибка при удалении картинки
 
 
 ### Tests
 - Покрыть страницу "Мои заказы" тестами
 - Add Pundit 
-- Adaptive Title for all product pages
+- FLaky тесты для сортировок и "показать еще" кнопки
 
 > ### яндекс
 > - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
-> 
-> 
 >- настройки общие https://yoomoney.ru/settings?w=other#apiown
 >- настройка формы для отправки данных https://yoomoney.ru/docs/payment-buttons/using-api/forms
 >- сценарий работы формы https://yoomoney.ru/docs/payment-buttons/using-api/flow

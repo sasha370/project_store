@@ -55,7 +55,7 @@ module Callbacks
     end
 
     def correct_amount?
-      payment.amount == parsed_data[:amount].to_i
+      payment.amount.to_i == parsed_data[:amount].to_i
     end
   end
 end
