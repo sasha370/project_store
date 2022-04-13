@@ -3,7 +3,8 @@
 RSpec.describe Callbacks::YandexMoneyController, type: :controller do
   subject(:perform) { post :perform, params: json }
 
-  let(:order) { create :order, amount: 300.99, status: 0 }
+  let(:amount) { 300.99 }
+  let(:order) { create :order, amount: amount, status: 0 }
   let(:json) do
     {
       operation_id: '1234567',
@@ -13,8 +14,8 @@ RSpec.describe Callbacks::YandexMoneyController, type: :controller do
       sender: '41001XXXXXXXX',
       codepro: false,
       currency: 643,
-      amount: '300.99', # to_json cuts last symbol if float with .00
-      withdraw_amount: 1.00,
+      amount: amount, # in real responce amount will be with tax
+      withdraw_amount: amount,
       label: '1'
     }
   end
@@ -37,12 +38,16 @@ RSpec.describe Callbacks::YandexMoneyController, type: :controller do
       end
     end
 
-    context 'when incorrect amount' do
-      before { json.merge!(amount: 100) }
+    context 'when incorrect withdraw_amount' do
+      before do
+        # sha1 in callback_payload depends of Payment.id
+        allow(Payment).to receive(:find_by).and_return(payment)
+        json.merge!(withdraw_amount: 100)
+      end
 
       it 'return 400 status' do
         perform
-        expect(response).to have_http_status :unauthorized
+        expect(response).to have_http_status :bad_request
       end
     end
   end
