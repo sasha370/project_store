@@ -7,15 +7,27 @@ RSpec.describe Projects::SortingAndFilteringQuery do
   let(:sorted_projects) { described_class.new(nil, order, projects: projects).call }
 
   describe '#call' do
+    context 'when sorting not set (default)' do
+      let(:order) { nil }
+
+      it 'returns newest book first' do
+        expect(sorted_projects[1..].pluck(:created_at)).to all(be < sorted_projects.first.created_at)
+      end
+    end
+
     context 'when newest first' do
       let(:order) { 'newest' }
 
       it 'returns newest book first' do
         expect(sorted_projects[1..].pluck(:created_at)).to all(be < sorted_projects.first.created_at)
       end
+    end
 
-      it 'changes books orde' do
-        expect(sorted_projects).not_to eq(projects)
+    context 'when oldest first' do
+      let(:order) { 'oldest' }
+
+      it 'returns oldest book first' do
+        expect(sorted_projects[1..].pluck(:created_at)).to all(be > sorted_projects.first.created_at)
       end
     end
 
@@ -25,10 +37,6 @@ RSpec.describe Projects::SortingAndFilteringQuery do
       it 'returns cheapest book first' do
         expect(sorted_projects[1..].pluck(:price)).to all(be >= sorted_projects.first.price)
       end
-
-      it 'changes projects order' do
-        expect(sorted_projects).not_to eq(projects)
-      end
     end
 
     context 'when high price first' do
@@ -36,18 +44,6 @@ RSpec.describe Projects::SortingAndFilteringQuery do
 
       it 'returns cheapest book first' do
         expect(sorted_projects[1..].pluck(:price)).to all(be < sorted_projects.first.price)
-      end
-
-      it 'changes projects order' do
-        expect(sorted_projects).not_to eq(projects)
-      end
-    end
-
-    context 'when order not set' do
-      let(:order) { FFaker::Lorem.word }
-
-      it 'not changes projects order' do
-        expect(sorted_projects).to eq(projects)
       end
     end
   end
