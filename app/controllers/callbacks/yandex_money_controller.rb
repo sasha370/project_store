@@ -3,10 +3,10 @@
 # https://yoomoney.ru/transfer/myservices/http-notification?_openstat=settings%3Bother%3Bmoney%3Bhttp%3Bset
 require_relative '../../../lib/loggers/request_logger'
 
+# API class to process YM webhook
 module Callbacks
-  class YandexMoneyController < ApplicationController
+  class YandexMoneyController < ActionController::API
     around_action :log_everything, only: :perform
-    protect_from_forgery unless: -> { request.format.json? }
 
     def perform
       return head :unauthorized unless correct_sender?
@@ -62,7 +62,7 @@ module Callbacks
     end
 
     def log_amount(status, in_payment, in_request)
-      logger.info "Amount is #{status ? 'correct' : 'incorrect!'} (#{in_payment}:#{in_request})"
+      logger.warn "Amount is #{status ? 'correct' : 'incorrect!'} (#{in_payment}:#{in_request})"
     end
 
     def logger
