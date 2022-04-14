@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Project', type: :feature do
-  describe 'User can visit Catalog pages', '
-    To see projects by categories, I`d must be able to select it in catalog
-' do
+  describe 'User can visit Catalog pages.
+            To see projects by categories,
+            I`d must be able to select it in catalog' do
     context 'when goes directly to Catalog' do
       it 'success' do
         visit(projects_path)
@@ -36,7 +36,7 @@ RSpec.describe 'Project', type: :feature do
 
       it 'show only per_page projects' do
         visit(projects_path)
-        projects.first(ProjectsController::PER_PAGE).each do |project|
+        projects.last(ProjectsController::PER_PAGE).each do |project|
           expect(page).to have_content project.decorate.short_title
         end
       end

@@ -5,15 +5,17 @@ module Projects
   class SortingAndFilteringQuery < BaseQuery
     SORTING_TYPES = {
       newest: 'created_at desc',
+      oldest: 'created_at asc',
       price_asc: 'price asc',
       price_desc: 'price desc',
       popular: nil
     }.freeze
+    DEFAULT_SORTING = 'newest'
 
     def initialize(category_id, sorting, projects: nil)
-      @projects = projects || Project.all.published
+      @projects = projects || Project.published
       @category_id = category_id
-      @sorting = sorting
+      @sorting = sorting || DEFAULT_SORTING
     end
 
     def call
@@ -28,8 +30,6 @@ module Projects
     end
 
     def order_projects
-      return @projects unless @sorting
-
       @projects.order(SORTING_TYPES[@sorting.to_sym])
     end
   end
