@@ -12,15 +12,15 @@ class Project < ApplicationRecord
 
   scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
-  enum status: {newest: 0, published: 10}
+  enum status: { newest: 0, published: 10 }
   after_create :set_vendor_code
 
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
 
   def self.best_projects
-    hits = self.where(hit: true)
-    hits.count > 2 ? hits : self.take(3)
+    hits = where(hit: true).includes(:archive_attachment)
+    hits.count > 2 ? hits : includes(:archive_attachment).take(3)
   end
 
   def main_image

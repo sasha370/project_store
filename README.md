@@ -4,16 +4,16 @@
 
 ### TODO
 
+- Написать тесты для Скачивания и прикрепления файла + проверка прав на скачивание 
+- Add more test for SortingAndFilteringQuery class (categories)
+- Покрыть страницу "Мои заказы" тестами
+- 
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Вывести аватар\имя пользователя в навбаре
-- Хранение и скачивание файлов ( выбрать провайдера и настроить)
 - добавить теги для Материалы проекта + Админка
-- авторотация для SSL сертификата (90 дней)
 - Обновлять корзины если товар сменил цену (сделать сумму динамической ??)
-- Съехали поля ввода при ЛОгин  и Регистрации
-- Add more test for SortingAndFilteringQuery class (categories)
 - Общий мониторинг на системц ( nginx, redis, passenger, rails)
-- Добавить статичные старницы "Условия оплаты" и "Пользовательское соглашение" + ссылки в футере 
+
 
 > рассылки
 > - настроить серверa
@@ -25,24 +25,13 @@
 ### Админка
 
 
-### Tests
-- Покрыть страницу "Мои заказы" тестами
-- Add Pundit 
-
-> ### яндекс
-> - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
->- настройки общие https://yoomoney.ru/settings?w=other#apiown
->- настройка формы для отправки данных https://yoomoney.ru/docs/payment-buttons/using-api/forms
->- сценарий работы формы https://yoomoney.ru/docs/payment-buttons/using-api/flow
-
-
 Backlog: 
 - activeAdmin css brokes links and colors  (https://skryukov.github.io/rails/activeadmin/2020/09/29/an-unofficial-active-admin-guide.html)
-
+- создать форму ообратной связи для Вопросов клиентов, чтобы была возможность редиректить при отсутвии файла и автозаполнять ее
 - Купоны + скидки ( )
-- Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки)
+- Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки).   К нему привязаны ТОП по продажам
 - Fix mobile navbar
-- Страница с условиями оплаты ( статика)
+- Добавить статичные старницы "Условия оплаты" и "Пользовательское соглашение" + ссылки в футере
 - https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make
 - React and new design with //  https://mdbootstrap.com/plugins/react/e-commerce-components/
 
@@ -50,6 +39,8 @@ Backlog:
  - +Realized with Capistrano and GHA. See `.github/workflows/`
  - Добавить стопер на 95% для покрытия тестами в CI
 
+> ### яндекс
+> - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
 
 ### Setup
 ```yaml
@@ -58,3 +49,4 @@ rails db:migrate
 rails db:seed
 yarn install
 ```
+

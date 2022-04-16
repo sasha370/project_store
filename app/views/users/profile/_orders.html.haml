@@ -19,5 +19,7 @@
         %td
           %p.title= link_to project.title, project_path(project)
         %td
-          = link_to download_project_path(project.id), class: 'close general-cart-close', aria_label: "Close", remote: true do
-            %i.fa.fa-download
+          -#TODO Сделать вызов кнопки через декоратор в метод download_button
+          - if project.archive.attached?
+            = link_to rails_blob_path(project.archive, disposition: 'attachment'), class: 'close general-cart-close' do
+              %i.fa.fa-download

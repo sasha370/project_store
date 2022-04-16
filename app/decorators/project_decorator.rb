@@ -2,7 +2,7 @@
 
 class ProjectDecorator < Draper::Decorator
   include Rails.application.routes.url_helpers
-  # include Draper::LazyHelpers
+  include Draper::LazyHelpers
 
   delegate_all
   MAX_TITLE_LENGTH = 27
@@ -22,7 +22,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def cart_buttons
-    return ask_register(for_catalog: false) unless h.current_user
+    return ask_register(for_catalog: false) unless current_user
 
     return go_to_cart_button(for_catalog: false) if already_in_cart
 
@@ -40,34 +40,44 @@ class ProjectDecorator < Draper::Decorator
   private
 
   def already_bought
-    h.current_user.orders.paid.map(&:project_ids).flatten.include?(id) if h.current_user
+    current_user.orders.paid.map(&:project_ids).flatten.include?(id) if current_user
   end
 
   def already_in_cart
-    h.current_user.orders.cart.map(&:project_ids).flatten.include?(id) if h.current_user
+    current_user.orders.cart.map(&:project_ids).flatten.include?(id) if current_user
   end
 
-  def download_button(for_catalog: true)
-    h.link_to download_project_path(self), class: style_for_link(for_catalog) do  # TODO, create download link
-      h.tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
+  def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
+    if archive.attached?
+      link_to rails_blob_path(archive, disposition: 'attachment'), class: style_for_link(for_catalog) do
+        tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
+      end
+    else
+      # TODO, отправлять на форму обратной связи
+      link_to '#', class: style_for_link(for_catalog) do
+        tag.i(for_catalog ? '' : 'Файл не найден!',
+              class: 'fa fa-download',
+              aria_hidden: true,
+              title: 'Файл не найден! Пожалуйста обратитесь в службу поддержки')
+      end
     end
   end
 
   def add_to_cart_button(for_catalog: true)
-    h.link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}", remote: true do
-      h.tag.i(' Купить', class: 'fa fa-shopping-cart', aria_hidden: true)
+    link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}", remote: true do
+      tag.i(' Купить', class: 'fa fa-shopping-cart', aria_hidden: true)
     end
   end
 
   def go_to_cart_button(for_catalog: true)
-    h.link_to cart_path, class: style_for_link(for_catalog) do
-      h.tag.i(add_text(' В корзине', for_catalog), class: 'fas fa-coins', aria_hidden: true)
+    link_to cart_path, class: style_for_link(for_catalog) do
+      tag.i(add_text(' В корзине', for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
 
   def ask_register(for_catalog: true)
-    h.link_to new_user_session_path, class: style_for_link(for_catalog) do
-      h.tag.i(' Войти', class: 'fas fas fa-sign-in-alt', aria_hidden: true)
+    link_to new_user_session_path, class: style_for_link(for_catalog) do
+      tag.i(' Войти', class: 'fas fas fa-sign-in-alt', aria_hidden: true)
     end
   end
 

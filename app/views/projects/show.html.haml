@@ -34,6 +34,7 @@
           %div
             - if @project.description.length > 250
               = truncate(@project.description, length: 250)
+              %br
               = link_to 'Подробнее ...', '', class: "in-gold-500 ml-10 read-more"
               :javascript
                 $('.read-more').on('click', function(e) {
