@@ -11,6 +11,6 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/css/all"
 
-import("../stylesheets/application.scss")
-import("./server_rendering")
+require("../stylesheets/application.scss")
+require("./server_rendering")
 

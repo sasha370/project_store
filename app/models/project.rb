@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
-  validates :title, :short_description, :description, :difficulty, :price, :status, :images, presence: true
+  validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
 
   belongs_to :category, counter_cache: true
   has_many :order_projects, dependent: :destroy
@@ -12,11 +12,16 @@ class Project < ApplicationRecord
 
   scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
-  enum status: { newest: 0, published: 10 }
+  enum status: {newest: 0, published: 10}
   after_create :set_vendor_code
 
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+
+  def self.best_projects
+    hits = self.where(hit: true)
+    hits.count > 2 ? hits : self.take(3)
+  end
 
   def main_image
     images&.first&.url || PLACEHOLDER_IMAGE

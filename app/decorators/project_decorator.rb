@@ -2,6 +2,7 @@
 
 class ProjectDecorator < Draper::Decorator
   include Rails.application.routes.url_helpers
+  # include Draper::LazyHelpers
 
   delegate_all
   MAX_TITLE_LENGTH = 27
