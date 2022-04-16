@@ -10,9 +10,7 @@ require("@rails/activestorage").start();
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/css/all"
-require("stylesheets/application.scss")
 
+import("../stylesheets/application.scss")
+import("./server_rendering")
 
-//= require active_admin/base
-
-require("./server_rendering")
