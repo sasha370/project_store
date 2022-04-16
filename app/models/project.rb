@@ -16,7 +16,7 @@ class Project < ApplicationRecord
   after_create :set_vendor_code
 
   mount_uploaders :images, ImageUploader
-  PLACEHOLDER_IMAGE = 'default_cover.jpg'
+  PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
 
   def main_image
     images&.first&.url || PLACEHOLDER_IMAGE
