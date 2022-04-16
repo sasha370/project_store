@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ProjectDecorator < Draper::Decorator
-  include Rails.application.routes.url_helpers
   include Draper::LazyHelpers
 
   delegate_all
@@ -37,6 +36,15 @@ class ProjectDecorator < Draper::Decorator
     go_to_cart_button if already_in_cart
   end
 
+  def archive_link
+    Rails.application.routes.url_helpers.rails_blob_url(
+      archive.blob,
+      disposition: 'attachment',
+      only_path: true,
+      target: '_blank'
+    )
+  end
+
   private
 
   def already_bought
@@ -49,7 +57,7 @@ class ProjectDecorator < Draper::Decorator
 
   def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
     if archive.attached?
-      link_to rails_blob_path(archive, disposition: 'attachment'), class: style_for_link(for_catalog) do
+      link_to archive_link, class: style_for_link(for_catalog) do
         tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
       end
     else

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
+  include Rails.application.routes.url_helpers
   validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
 
   belongs_to :category, counter_cache: true

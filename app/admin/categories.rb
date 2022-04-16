@@ -4,7 +4,7 @@ ActiveAdmin.register Category do
 
   index do
     selectable_column
-    index_column
+    id_column
     column :title
     column :description
     column :created_at

@@ -26,7 +26,7 @@ append :linked_files, "config/database.yml", 'config/master.key', 'config/creden
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", \
-"vendor", "storage", '.bundle', 'public/system', 'public/uploads'
+"vendor", "storage", '.bundle', 'public/uploads'
 #
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -35,7 +35,6 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpack
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
-set :keep_releases, 5
-
+set :keep_releases, 2
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure

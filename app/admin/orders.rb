@@ -10,7 +10,7 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
-    index_column
+    id_column
     actions
     tag_column :status
     column :amount do |order|

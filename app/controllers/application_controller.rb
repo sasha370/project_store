@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pundit::Authorization
+  include Rails.application.routes.url_helpers
 
   protect_from_forgery with: :exception
 

@@ -9,7 +9,13 @@ users = FactoryBot.create_list(:user, 3)
 categories_title = ['Mobile development', 'Photo', 'Web design']
 categories_title.each do |title|
   category = FactoryBot.create(:category, title: title)
-  15.times { FactoryBot.create(:project, category: category, status: :published) }
+  # With attached archive
+  12.times { FactoryBot.create(:project, :with_archive, category: category, status: :published) }
+
+  # Without attached archive
+  3.times { FactoryBot.create(:project, category: category, status: :published) }
+
+  # Unpublished
   3.times { FactoryBot.create(:project, category: category, status: :newest) }
 end
 
@@ -18,6 +24,10 @@ end
   order = Order.create!(user: admin, status: :paid)
   order.projects << Project.take(5)
 end
+
+# Cart for Admin
+order = Order.create!(user: admin, status: :cart)
+order.projects << Project.includes(:buyers).select { |p| !p.buyers.include?(admin) }.take(5)
 
 #Payment
 json = {

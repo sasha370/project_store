@@ -3,7 +3,7 @@
 module Users
   class ProfileController < ApplicationController
     def my_orders
-      @orders = current_user.paid_orders if current_user
+      @orders = current_user.paid_orders.includes(:projects).decorate if current_user
     end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Project do
+  include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimensions, :difficulty,
                 :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive
 
@@ -63,7 +64,7 @@ ActiveAdmin.register Project do
     end
     column :archive do |project|
       if project.archive.attached?
-        link_to 'File', rails_blob_path(project.archive)
+        link_to 'File', project.decorate.archive_link
       else
         'no_file'
       end
@@ -86,7 +87,7 @@ ActiveAdmin.register Project do
         columns do
           column do
             if project.archive.attached?
-              link_to project.archive.blob.filename, rails_blob_path(project.archive)
+              link_to project.archive.blob.filename, project.decorate.archive_link
             else
               'no_file'
             end

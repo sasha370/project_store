@@ -18,5 +18,13 @@ FactoryBot.define do
         Rack::Test::UploadedFile.new(file_path, 'image/jpeg')
       end
     end
+
+    trait :with_archive do
+      after :build do |project|
+        file_name = 'logo.png'
+        file_path = Rails.root.join('spec/fixtures/files/uploads', file_name)
+        project.archive.attach(io: File.open(file_path), filename: file_name, content_type: 'image/png')
+      end
+    end
   end
 end
