@@ -46,7 +46,7 @@ Backlog:
 - Fix mobile navbar
 - Страница с условиями оплаты ( статика)
 - https://www.toptal.com/ruby-on-rails/top-10-mistakes-that-rails-programmers-make
-
+- React and new design with //  https://mdbootstrap.com/plugins/react/e-commerce-components/
 
 ### CI & CD
  - +Realized with Capistrano and GHA. See `.github/workflows/`
