@@ -6,26 +6,15 @@
         %ul.list-inline.general-align.mb-25
           <!-- #TODO прописать линки -->
           %li
-            = link_to t('.home'), root_path, class: 'nav-link'
+            = "\xC2\xA9".force_encoding('UTF-8') + '2022'
           %li
-            = link_to t('.shop'), projects_path, class: 'nav-link'
+            = link_to 'Главная', root_path, class: 'nav-link'
           %li
-            = link_to t('.order'), '', class: 'nav-link'
+            = link_to 'Мои покупки', my_orders_path, class: 'nav-link'
           %li
-            = link_to t('.settings'), '', class: 'nav-link'
+            = link_to 'Условия оплаты', '#', class: 'nav-link'
+          %li
+            = link_to 'Пользовательское соглашение', '#', class: 'nav-link'
       .col-sm-3
-        %p.general-nav-mail budka52@bk.ru
-        %p.general-nav-number +7(906) 368-29-69
-        %ul.list-inline.general-align
-          %li
-            %a.nav-link{href: "#"} 
-              %i.fa.fa-facebook{'aria-hidden': "true"}
-          %li
-            %a.nav-link{href: "#"} 
-              %i.fa.fa-twitter{'aria-hidden': "true"}
-          %li
-            %a.nav-link{href: "#"} 
-              %i.fa.fa-google-plus{'aria-hidden': "true"}
-          %li
-            %a.nav-link{href: "#"} 
-              %i.fa.fa-instagram{'aria-hidden': "true"}
+        %p.general-nav-mail= mail_to 'budka52@bk.ru', 'budka52@bk.ru'
+        %p.general-nav-number= link_to '+7(906)-368-29-69', "tel:+7(906)-368-29-69"

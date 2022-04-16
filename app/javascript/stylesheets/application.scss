@@ -1,9 +1,10 @@
-@import 'active_admin';
 @import 'font-awesome';
 @import 'bootstrap';
 @import 'custom/variables';
 @import 'custom/theme';
-@import 'projectstore/general';
-@import 'projectstore/utils/helpers';
+@import 'custom/general';
+@import 'custom/utils/helpers';
 @import 'common';
+
+//https://www.npmjs.com/package/react-image-gallery
 @import "~react-image-gallery/styles/scss/image-gallery.scss";

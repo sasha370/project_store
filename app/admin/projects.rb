@@ -2,9 +2,9 @@
 
 ActiveAdmin.register Project do
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimensions, :difficulty,
-                :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}
+                :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive
 
-  includes :category
+  includes :category, :archive_attachment
   # scope_to :current_user, unless: proc { current_user.admin? }
 
   controller do
@@ -19,13 +19,13 @@ ActiveAdmin.register Project do
   scope :published
 
   #Index filters
+  filter :title
   filter :price, as: :numeric_range_filter
   filter :status, as: :numeric_range_filter
   filter :difficulty, as: :numeric_range_filter
   filter :vendor_code
   filter :category
   filter :hit
-
 
   controller do
     def update
@@ -61,6 +61,13 @@ ActiveAdmin.register Project do
     column 'Image' do |project|
       project.images.count
     end
+    column :archive do |project|
+      if project.archive.attached?
+        link_to 'File', rails_blob_path(project.archive)
+      else
+        'no_file'
+      end
+    end
     actions
   end
 
@@ -71,6 +78,17 @@ ActiveAdmin.register Project do
           project.images.each do |img|
             column do
               image_tag img.url, size: '100x100'
+            end
+          end
+        end
+      end
+      row :archive do
+        columns do
+          column do
+            if project.archive.attached?
+              link_to project.archive.blob.filename, rails_blob_path(project.archive)
+            else
+              'no_file'
             end
           end
         end
@@ -127,7 +145,6 @@ ActiveAdmin.register Project do
           f.inputs do
             f.input :images, as: :file, input_html: {multiple: true}
             if f.object.images.any?
-
               f.object.images.each.with_index do |img, index|
                 span do
                   image_tag(img.thumb.url)
@@ -136,6 +153,14 @@ ActiveAdmin.register Project do
                         "data-confirm": 'Are you sure?'
               end
             end
+          end
+        end
+        panel 'Files' do
+          span do
+            link_to f.object.archive.blob.filename, rails_blob_url(f.object.archive), target: "_blank" if object.archive.attached?
+          end
+          span do
+            f.input :archive, as: :file, input_html: {multiple: false}
           end
         end
       end

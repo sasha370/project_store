@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Project < ApplicationRecord
-  validates :title, :short_description, :description, :difficulty, :price, :status, :images, presence: true
+  validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
 
   belongs_to :category, counter_cache: true
   has_many :order_projects, dependent: :destroy
@@ -16,7 +16,12 @@ class Project < ApplicationRecord
   after_create :set_vendor_code
 
   mount_uploaders :images, ImageUploader
-  PLACEHOLDER_IMAGE = 'default_cover.jpg'
+  PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+
+  def self.best_projects
+    hits = where(hit: true).includes(:archive_attachment)
+    hits.count > 2 ? hits : includes(:archive_attachment).take(3)
+  end
 
   def main_image
     images&.first&.url || PLACEHOLDER_IMAGE

@@ -30,12 +30,12 @@
               
       <!-- #Description  -->
       .general-info-wrap.divider-lg
-        %p= t('.description')
         %p.lead.small.line-height-2
           %div
             - if @project.description.length > 250
               = truncate(@project.description, length: 250)
-              = link_to t('.read_more'), '', class: "in-gold-500 ml-10 read-more"
+              %br
+              = link_to 'Подробнее ...', '', class: "in-gold-500 ml-10 read-more"
               :javascript
                 $('.read-more').on('click', function(e) {
                   e.preventDefault()

@@ -27,6 +27,6 @@ class User < ApplicationRecord
   end
 
   def paid_orders
-    orders.paid.includes(:projects)
+    orders.paid.includes(projects: :archive_attachment)
   end
 end
