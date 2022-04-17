@@ -22,7 +22,8 @@ end
 #Orders
 5.times do
   order = Order.create!(user: admin, status: :paid)
-  order.projects << Project.take(5)
+  order.projects << Project.take(3)
+  order.projects << Project.select{|p| p.archive.attached? == false}.take(2)
 end
 
 # Cart for Admin

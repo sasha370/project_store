@@ -15,6 +15,7 @@ class Project < ApplicationRecord
 
   enum status: { newest: 0, published: 10 }
   after_create :set_vendor_code
+  after_update :update_all_carts
 
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
@@ -32,5 +33,11 @@ class Project < ApplicationRecord
 
   def set_vendor_code
     update(vendor_code: format('P-%.6d', id))
+  end
+
+  def update_all_carts
+    return unless saved_change_to_price?
+
+    orders.cart.each(&:update_amount)
   end
 end

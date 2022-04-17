@@ -3,6 +3,7 @@
 class OrdersController < ApplicationController
   skip_forgery_protection only: %i[add_to_cart remove_from_cart]
   before_action :authenticate_user!, :find_cart
+  include ActionView::Helpers::NumberHelper
 
   def add_to_cart
     respond_to do |format|

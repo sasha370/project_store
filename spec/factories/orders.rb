@@ -11,4 +11,11 @@ FactoryBot.define do
       create_list(:order_project, 3, order: order)
     end
   end
+
+  trait :with_items_and_archive do
+    after(:create) do |order|
+      projects = create_list(:project, 3, :with_archive)
+      order.projects << projects
+    end
+  end
 end
