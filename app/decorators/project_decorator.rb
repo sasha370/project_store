@@ -45,6 +45,22 @@ class ProjectDecorator < Draper::Decorator
     )
   end
 
+  def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
+    if archive.attached?
+      link_to archive_link, class: style_for_link(for_catalog), id: "download_project_#{id}" do
+        tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
+      end
+    else
+      # TODO, отправлять на форму обратной связи
+      link_to '#', class: style_for_link(for_catalog), id: "file_not_found_#{id}" do
+        tag.i(for_catalog ? '' : ' Файл не найден!',
+              class: 'fa fa-download',
+              aria_hidden: true,
+              title: 'Файл не найден! Пожалуйста обратитесь в службу поддержки')
+      end
+    end
+  end
+
   private
 
   def already_bought
@@ -53,22 +69,6 @@ class ProjectDecorator < Draper::Decorator
 
   def already_in_cart
     current_user.orders.cart.map(&:project_ids).flatten.include?(id) if current_user
-  end
-
-  def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
-    if archive.attached?
-      link_to archive_link, class: style_for_link(for_catalog) do
-        tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
-      end
-    else
-      # TODO, отправлять на форму обратной связи
-      link_to '#', class: style_for_link(for_catalog) do
-        tag.i(for_catalog ? '' : 'Файл не найден!',
-              class: 'fa fa-download',
-              aria_hidden: true,
-              title: 'Файл не найден! Пожалуйста обратитесь в службу поддержки')
-      end
-    end
   end
 
   def add_to_cart_button(for_catalog: true)

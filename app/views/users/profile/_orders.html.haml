@@ -1,5 +1,5 @@
 - @orders.each do |order|
-  %h3= "Order ##{order.id}"
+  %h3{ id: "paid_order_#{order.id}"}= "Order ##{order.id}"
   -#TODO prettify time
   %p.small= "Created at: #{format_date(order.created_at)}"
 
@@ -20,6 +20,4 @@
           %p.title= link_to project.title, project_path(project)
         %td
           -#TODO Сделать вызов кнопки через декоратор в метод download_button
-          - if project.archive.attached?
-            = link_to project.archive_link, class: 'close general-cart-close' do
-              %i.fa.fa-download
+          = link_to project.download_button(for_catalog: false), class: 'close general-cart-close'
