@@ -26,7 +26,7 @@ append :linked_files, "config/database.yml", 'config/master.key', 'config/creden
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", \
-"vendor", "storage", '.bundle', 'public/uploads'
+"vendor", "storage", '.bundle', 'public/uploads', 'node_modules'
 #
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

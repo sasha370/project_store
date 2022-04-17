@@ -14,3 +14,5 @@ import "@fortawesome/fontawesome-free/css/all"
 require("../stylesheets/application.scss")
 require("./server_rendering")
 
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)
