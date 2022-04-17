@@ -6,10 +6,6 @@ class ProjectDecorator < Draper::Decorator
   delegate_all
   MAX_TITLE_LENGTH = 27
 
-  def self.collection_decorator_class
-    PaginatingDecorator
-  end
-
   def short_title
     title.truncate(MAX_TITLE_LENGTH, separator: /\s/)
   end

@@ -7,8 +7,7 @@ module Projects
       newest: 'created_at desc',
       oldest: 'created_at asc',
       price_asc: 'price asc',
-      price_desc: 'price desc',
-      popular: nil
+      price_desc: 'price desc'
     }.freeze
     DEFAULT_SORTING = 'newest'
 
