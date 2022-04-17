@@ -1,7 +1,9 @@
+//TODO Возвращать суммы с использованием number_to_currency
+
 document.querySelector('.flash_wrapper').insertAdjacentHTML('beforeend', "<%=  j render 'shared/message' %>");
 document.getElementById("order_project_<%=@order_project.id%>").remove();
 document.querySelector('#item_counter').textContent = <%= current_user.qty_in_cart%>;
 document.querySelector('#total_amount').textContent = <%= current_user.cart.total_amount%>;
 document.querySelector('#total_discount').textContent = <%= current_user.cart.discount%>;
 document.querySelector('#amount_with_discount').textContent  = <%= current_user.cart.amount_with_discount%>;
-document.querySelector('#checkout_sum').value = <%= current_user.cart.total_amount%>;
+document.querySelector('#checkout_sum').value = <%= current_user.cart.amount_with_discount%>;

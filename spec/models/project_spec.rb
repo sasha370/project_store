@@ -13,4 +13,15 @@ RSpec.describe Project, type: :model do
   it { is_expected.to have_many(:order_projects) }
 
   # TODO, test for main_image
+  #
+  describe 'when price for on project in cart was changed' do
+    let!(:cart) { create :order, :with_items }
+
+    it 'do not touch order' do
+      allow(cart).to receive(:update_amount)
+      project = cart.projects.first
+      project.update(title: 'new_title')
+      expect(cart).not_to have_received(:update_amount)
+    end
+  end
 end
