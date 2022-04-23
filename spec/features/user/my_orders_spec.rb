@@ -7,7 +7,9 @@ RSpec.describe 'MyOrders', type: :feature do
     it 'with success' do
       sign_in user
       visit(my_orders_path)
-      expect(page).to have_content 'My Orders'
+      within('.general-title-margin') do
+        expect(page).to have_content I18n.t('shared.navbar.my_orders')
+      end
     end
   end
 

@@ -1,13 +1,13 @@
 %table.table.table-hover
   %tr.no-hover
     %th.col-pic.pl-0
-      %span.in-grey-600 Product
+      %span.in-grey-600= t('models.project.model_name_plural')
     %th.col-title
-      %span.in-grey-600 Title
+      %span.in-grey-600= t('models.project.title')
     %th.col-price
-      %span.in-grey-600 Old Price
+      %span.in-grey-600= t('models.project.old_price')
     %th.col-total
-      %span.in-grey-600 Price
+      %span.in-grey-600= t('models.project.price')
     %th.col-close
   - @order_projects.each do |order_project|
     = render 'order_project', order_project: order_project

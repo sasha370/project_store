@@ -6,6 +6,6 @@ module FeatureHelpers
     fill_in 'email', with: user.email
     fill_in 'password', with: user.password
 
-    click_button I18n.t('.devise.buttons.log_in')
+    click_button I18n.t('devise.shared.links.sign_in')
   end
 end

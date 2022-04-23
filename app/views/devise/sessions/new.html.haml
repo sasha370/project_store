@@ -11,7 +11,7 @@
         
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .form-group
-          = f.label :email
+          = f.label :email, t('models.user.email')
           = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control', id: 'email'
         .form-group
           = f.label :password

@@ -10,7 +10,9 @@ ActiveAdmin.register Payment do
     tag_column :status
     column :operation_id
     column :processed_at
-    column :metadata
+    column :metadata do |payment|
+      tag.pre JSON.pretty_generate(payment.metadata)
+    end
     column :created_at
     column :updated_at
     actions

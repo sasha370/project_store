@@ -9,42 +9,42 @@
           .col-md-6
             = user_avatar(resource)
           .col-md-6
-            = f.label :avatar
+            = f.label :avatar, t("models.user.avatar")
             = f.file_field :avatar
         %br
         .row.text-left
           .col-md-6
             .form-group
-              = f.label :first_name
-              = f.text_field :first_name, autofocus: true, autocomplete: 'first_name', placeholder: 'First name', class: 'form-control', :required => true, minlength: 3
+              = f.label :first_name, t('models.user.first_name')
+              = f.text_field :first_name, autofocus: true, autocomplete: 'first_name', placeholder: t('models.user.first_name_placeholder'), class: 'form-control', :required => true, minlength: 3
           .col-md-6
             .form-group
-              = f.label :last_name
-              = f.text_field :last_name, autofocus: true, autocomplete: 'last_name', placeholder: 'Last name', class: 'form-control'
+              = f.label :last_name, t('models.user.last_name')
+              = f.text_field :last_name, autofocus: true, autocomplete: 'last_name', placeholder: t('models.user.last_name_placeholder'), class: 'form-control'
         .form-group.text-left
         .row.text-left  
           .col-md-6
-            = f.label :email
-            = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Enter Email', class: 'form-control', :required => true
+            = f.label :email, t('models.user.email')
+            = f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: t('models.user.email_placeholder'), class: 'form-control', :required => true
 
         .row.text-left
           .col-md-6
             .form-group
             = f.label :password
-            = f.password_field :password, autocomplete: 'current-password', placeholder: 'New password', class: 'form-control'
+            = f.password_field :password, autocomplete: 'current-password', placeholder: t('models.user.password_placeholder'), class: 'form-control'
             - if @minimum_password_length
               %small.form-text.text-muted= t('devise.shared.minimum_password_length', count: @minimum_password_length)
           .col-md-6
             .form-group
             = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: 'current-password', placeholder: 'New password confirmation',  class: 'form-control'
+            = f.password_field :password_confirmation, autocomplete: 'current-password', placeholder: t('models.user.password_confirm_placeholder'),  class: 'form-control'
         .form-group.text-left
-          = f.label :phone
-          = f.telephone_field :phone, autocomplete: 'phone', placeholder: '+7-999-999-99-99',  class: 'form-control',  minlength: 11
+          = f.label :phone, t('models.user.phone')
+          = f.telephone_field :phone, autocomplete: 'phone', placeholder: t('models.user.phone_placeholder'),  class: 'form-control',  minlength: 11
         .form-group
           = f.submit t('.update'), class: 'btn btn-primary'
       %br     
       %p
         = t('.unhappy')
         = link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete
-      = link_to t('.back'), :back
+      = link_to t('devise.shared.links.back'), :back

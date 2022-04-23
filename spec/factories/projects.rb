@@ -11,7 +11,6 @@ FactoryBot.define do
     old_price { rand(1..1000) }
     dimensions { '1000x111x222' }
     difficulty { rand(0..5) }
-    materials { %w[plastic wood papper].sample }
     images do
       Array.new(5) do
         file_path = Rails.root.join("spec/fixtures/files/images/default_cover#{rand(0 - 6)}.jpg")

@@ -2,8 +2,8 @@
 
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
-  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :cost_price, :dimensions, :difficulty,
-                :materials, :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive
+  permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
+                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive
 
   includes :category, :archive_attachment
   # scope_to :current_user, unless: proc { current_user.admin? }
@@ -104,11 +104,9 @@ ActiveAdmin.register Project do
       row :old_price do |project|
         number_to_currency project.old_price
       end
-      row :cost_price
       row :vendor_code
       row :dimensions
       row :difficulty
-      row :materials
       tag_row :status
       tag_row :hit
       row :created_at
@@ -131,10 +129,8 @@ ActiveAdmin.register Project do
             f.input :description
             f.input :price
             f.input :old_price
-            f.input :cost_price
             f.input :dimensions
             f.input :difficulty
-            f.input :materials
             f.input :status
             f.input :category, as: :select, collection: Category.all.collect { |category| [category.title, category.id] }
             f.input :hit

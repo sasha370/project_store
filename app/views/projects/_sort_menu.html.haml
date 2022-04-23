@@ -1,7 +1,7 @@
 .dropdown.pull-right
   = link_to('#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false', class: 'dropdown-toggle sorting-dropdown lead small') do
-    = t(".#{params[:sorting] || 'newest'}")
+    = t("sorting.sort_by")
   %ul.dropdown-menu.sorting-menu
     - projects_sorting_options.each do |sorting_option|
       %li
-        = link_to t(".#{sorting_option}"), request.params.merge(sorting: sorting_option)
+        = link_to t("sorting.#{sorting_option}"), request.params.merge(sorting: sorting_option)

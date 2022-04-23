@@ -12,7 +12,7 @@
       %h1.mt-res-0
         = @project.title
       %small
-        Артикул:
+        = t('projects.show.vendor_code')
         = @project.vendor_code
       .row
         - if @project.old_price
@@ -23,7 +23,7 @@
         .col-xs-12.col-md-3
           %p.h1.in-gold-500.mt-10 
             = @project.price
-            %small.in-gold-500 ₽
+            %small.in-gold-500= t('number.currency.symbol')
 
         .col-xs-7.col-md-3.ml-auto
           = @project.cart_buttons
@@ -35,7 +35,7 @@
             - if @project.description.length > 250
               = truncate(@project.description, length: 250)
               %br
-              = link_to 'Подробнее ...', '', class: "in-gold-500 ml-10 read-more"
+              = link_to t('projects.show.read_more'), '', class: "in-gold-500 ml-10 read-more"
               :javascript
                 $('.read-more').on('click', function(e) {
                   e.preventDefault()
@@ -55,11 +55,6 @@
           %p.pull-left= t('.dimensions')
           %p.lead.small.pull-right
             = @project.dimensions
-      .general-info-wrap.divider-lg
-        .clearfix
-          %p.pull-left= t('.materials')
-          %p.lead.small.pull-right
-            = @project.materials  
 
   <!-- #TODO передвинуть в отдельный паршл, когда будут Ревью -->
 
