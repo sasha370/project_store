@@ -64,7 +64,7 @@ en:
       order: 'Orders'
       settings: 'Settings'
     navbar:
-      title: 'Project Store'
+      title: 'DIY Plans'
       home: 'Home'
       all: 'All'
       log_in: 'Log in'

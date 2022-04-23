@@ -6,9 +6,7 @@ class User < ApplicationRecord
          omniauth_providers: [:facebook]
 
   validates :first_name, :email, presence: true
-  validates :password, format: { with: /\A(?=.*\d)(?=.*[A-Z])(?=.*[a-z])[^ ]{6,}\z/ }, if: proc { |user|
-                                                                                             user.password.present?
-                                                                                           }
+
   has_many :authorizations, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_one_attached :avatar do |attachable|

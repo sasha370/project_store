@@ -1,8 +1,8 @@
 # Users
-admin = User.create(first_name: 'Alex', phone: '+79063682969', email: 'budka52@bk.ru', password: 'A123456a',
-                    password_confirmation: 'A123456a', role: 2, confirmed_at: DateTime.now)
-not_admin = User.create(first_name: 'Alex', phone: '+79063682969', email: 'kng.sasha@mail.ru', password: 'A123456a',
-                        password_confirmation: 'A123456a', role: 0, confirmed_at: DateTime.now)
+admin = User.create(first_name: 'Alex', phone: '+79063682969', email: 'budka52@bk.ru', password: '123456',
+                    password_confirmation: '123456', role: 2, confirmed_at: DateTime.now)
+not_admin = User.create(first_name: 'Alex', phone: '+79063682969', email: 'kng.sasha@mail.ru', password: '123456',
+                        password_confirmation: '123456', role: 0, confirmed_at: DateTime.now)
 users = FactoryBot.create_list(:user, 3)
 
 #Projects

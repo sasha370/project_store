@@ -6,7 +6,7 @@ RSpec.describe 'Pages', type: :feature do
 ' do
     it 'Guest can visit root page' do
       visit(root_path)
-      expect(page).to have_content I18n.t('pages.index.welcome')
+      expect(page).to have_content 'Best Sellers'
     end
   end
 end
