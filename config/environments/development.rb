@@ -14,15 +14,6 @@ Rails.application.configure do
     Bullet.add_footer    = true
   end
 
-  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
-
-  #Setup for mailcatcher
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: '127.0.0.1',
-    port: 1025
-  }
-
   config.cache_classes = false
 
   # Do not eager load code on boot.
@@ -93,4 +84,26 @@ Rails.application.configure do
 
   # CUSTOM
   config.console = Pry
+
+  config.action_mailer.default_url_options = { host: '127.0.0.1', port: 3000 }
+
+  # Setup for mailcatcher
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: '127.0.0.1',
+  #   port: 1025
+  # }
+
+  # Setup for Google mail
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: Rails.application.credentials.dig(:smtp_username),
+    password: Rails.application.credentials.dig(:smtp_password),
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
 end

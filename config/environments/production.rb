@@ -125,7 +125,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
+    address: 'smtp-relay.sendinblue.com',
     port: 587,
     user_name: Rails.application.credentials.dig(:smtp_username),
     password: Rails.application.credentials.dig(:smtp_password),
