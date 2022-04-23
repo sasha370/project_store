@@ -10,6 +10,10 @@
 - Обновлять корзины если товар сменил цену (сделать сумму динамической ??)
 - Общий мониторинг на системц ( nginx, redis, passenger, rails)
 - После удаления товара из корзины JS возвращет число без преобразования  number_to_currency
+- Отображать сложность звездочками
+- Убрать Материалы
+- Переработать форму отправки на плтеж, вынести в контроллер
+- 
 
 > рассылки
 > - настроить серверa
@@ -34,6 +38,7 @@ Backlog:
 ### CI & CD
  - +Realized with Capistrano and GHA. See `.github/workflows/`
  - Добавить стопер на 95% для покрытия тестами в CI
+ - Monit  в качестве мониторинга сервера https://github.com/FoRuby/deploy#monit-utility
 
 > ### яндекс
 > - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
