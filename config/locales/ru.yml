@@ -1,9 +1,133 @@
 ru:
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
   number:
     currency:
+      symbol: ₽
       format:
         delimiter: ! ','
         format: ! '%n %u'
         precision: 2
         separator: '.'
         unit: руб.
+
+  projects:
+    index:
+      page_title: 'Каталог'
+    categories_list:
+      all: 'Все'
+    show:
+      back_to_result: 'Назад'
+      vendor_code: 'Артикул'
+      read_more: 'Подробнее'
+      difficulty: 'Сложность'
+      dimensions: 'Размеры'
+    sort_menu:
+      newest_first: 'Newest first'
+      popular_first: 'Popular first'
+      price_low_first: 'Price: Low to hight'
+      price_high_first: 'Price: Hight to low'
+
+  pages:
+    partials:
+      best_sellers:
+        title: 'Лидеры продаж'
+    index:
+      welcome:
+        'Добро пожаловать'
+    privacy_police:
+      title: 'Политика конфиденциальности'
+
+  shared:
+    footer:
+      home: 'Главная'
+      my_orders: 'Мои заказы'
+      payment_terms: 'Условия оплаты'
+      privacy_police: 'Пользовательское соглашение'
+
+    navbar:
+      admin: 'Админка'
+      title: 'DIY Plans'
+      home: 'Главная'
+      catalog: 'Каталог'
+      all: 'Все'
+      profile: 'Личный кабинет'
+      edit: 'Редактирвоать'
+      my_orders: 'Мои заказы'
+      log_out: 'Выйти'
+      log_in: 'Войти'
+      register: 'Зарегистрироваться'
+
+  orders:
+    checkout:
+      continue_agree: 'Продолжив, вы соглашаетесь с условиями оплаты'
+      after_checkout: 'После оплаты вы сможете найти все купленные проекты в Личном кабинете'
+      pay_button: 'Оплатить'
+    summary:
+      subtotal: 'Сумма:'
+      discount: 'Скидка:'
+      total: 'Итого:'
+      promocode: 'Промокод'
+      activate: 'Активировать'
+    cart:
+      title: 'Cart'
+
+  cart_buttons:
+    in_cart: ' В корзину'
+    download: ' Скачать'
+    not_found: ' Файл не найден'
+    not_found_description: 'Файл не найден! Пожалуйста обратитесь в службу поддержки.'
+
+
+  sorting:
+    newest: 'Сначала новые'
+    oldest: 'Сначала старые'
+    price_asc: 'Сначала дешевые'
+    price_desc: 'Сначала дорогие'
+    sort_by: 'Сортировать по:'
+
+
+
+  models:
+    project:
+      model_name: 'Проект'
+      model_name_plural: 'Проекты'
+      title: 'Название'
+      short_description: 'Короткое описание'
+      description: 'Описание'
+      difficulty: 'Сложность'
+      price: 'Цена'
+      old_price: 'старая цена'
+      status: 'Статус'
+      created_at: 'Создано'
+      hit: 'ХИТ'
+      images: 'Изображения'
+      download: 'Скачать'
+    order:
+      model_name: 'Заказ'
+      model_name_plural: 'Заказы'
+      amount: 'Сумма'
+      discount: 'Скидка'
+      status: 'Статус'
+      created_at: 'Создано'
+    payment:
+      model_name: 'Платеж'
+      model_name_plural: 'Платежы'
+      status: 'Статус'
+      operation_id: 'ИД операции'
+      created_at: 'Создано'
+    user:
+      email: 'Email'
+      email_placeholder: 'my_email@box.com'
+      first_name: 'Имя'
+      first_name_placeholder: 'Иван'
+      last_name: 'Фамилия'
+      last_name_placeholder: 'Иванов'
+      phone: 'Телефон'
+      phone_placeholder: '+7-906-999-99-99'
+      avatar: 'Изображение'
+      password_placeholder: 'От 6-ти символов'
+      password_confirm_placeholder: 'Не сделайте ошибок и повторите пароль'
+
+

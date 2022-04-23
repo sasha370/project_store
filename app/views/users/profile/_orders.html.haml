@@ -1,16 +1,16 @@
 - @orders.each do |order|
-  %h3{ id: "paid_order_#{order.id}"}= "Order ##{order.id}"
+  %h3{ id: "paid_order_#{order.id}"}= "#{t('models.order.model_name')} ##{order.id}"
   -#TODO prettify time
-  %p.small= "Created at: #{format_date(order.created_at)}"
+  %p.small= "#{t('models.order.created_at')}: #{format_date(order.created_at)}"
 
   %table.table.table-hover
     %tr.no-hover
       %th.col-pic.pl-0
-        %span.in-grey-600 Product
+        %span.in-grey-600= t('models.project.model_name')
       %th.col-title
-        %span.in-grey-600 Title
+        %span.in-grey-600= t('models.project.title')
       %th.col-download
-        %span.in-grey-600 Download
+        %span.in-grey-600= t('models.project.download')
     - order.projects.each do |project|
       %tr{ id: "paid_project_#{project.id}"}
         %td

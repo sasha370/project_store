@@ -8,13 +8,13 @@
           %li
             = "\xC2\xA9".force_encoding('UTF-8') + '2022'
           %li
-            = link_to 'Главная', root_path, class: 'nav-link'
+            = link_to t('shared.footer.home'), root_path, class: 'nav-link'
           %li
-            = link_to 'Мои покупки', my_orders_path, class: 'nav-link'
+            = link_to t('shared.footer.my_orders'), my_orders_path, class: 'nav-link'
           %li
-            = link_to 'Условия оплаты', '#', class: 'nav-link'
+            = link_to t('shared.footer.payment_terms'), '#', class: 'nav-link'
           %li
-            = link_to 'Пользовательское соглашение', '#', class: 'nav-link'
+            = link_to t('shared.footer.privacy_police'), '#', class: 'nav-link'
       .col-sm-3
         %p.general-nav-mail= mail_to 'budka52@bk.ru', 'budka52@bk.ru'
         %p.general-nav-number= link_to '+7(906)-368-29-69', "tel:+7(906)-368-29-69"

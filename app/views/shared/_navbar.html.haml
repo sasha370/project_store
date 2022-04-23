@@ -10,12 +10,12 @@
         <!-- TODO  replace  current_user -->
         - if current_user && current_user.admin?
           %li.nav-item
-            = link_to 'Admin', admin_root_path, class: 'nav-link'
+            = link_to t('shared.navbar.admin'), admin_root_path, class: 'nav-link'
         %li.nav-item
           = link_to t('.home'), root_path, class: 'nav-link'
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-            Каталог
+            = t('shared.navbar.catalog')
           %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             %li= link_to t('.all'), projects_path, class: 'dropdown-item'
             %li.dropdown-divider
@@ -25,16 +25,16 @@
         - if current_user 
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
-              Личный кабинет
+              = t('shared.navbar.profile')
             %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
 
-              %li= link_to 'Редактировать', edit_user_registration_path(current_user), class: 'dropdown-item'
-              %li= link_to 'Мои покупки', my_orders_path, class: 'dropdown-item'
+              %li= link_to t('shared.navbar.edit'), edit_user_registration_path(current_user), class: 'dropdown-item'
+              %li= link_to t('shared.navbar.my_orders'), my_orders_path, class: 'dropdown-item'
               %li.dropdown-divider
-              %li= link_to 'Выйти', destroy_user_session_path, :method => :delete, class: 'dropdown-item'
+              %li= link_to t('shared.navbar.log_out'), destroy_user_session_path, :method => :delete, class: 'dropdown-item'
         - else
-          %li= link_to 'Войти', new_user_session_path, class: 'nav-link'
-          %li= link_to 'Зарегистрироваться', new_user_registration_path, class: 'nav-link'
+          %li= link_to t('shared.navbar.log_in'), new_user_session_path, class: 'nav-link'
+          %li= link_to t('shared.navbar.register'), new_user_registration_path, class: 'nav-link'
     
     - if current_user
       = link_to cart_path, class: 'shop-link pull-right' do

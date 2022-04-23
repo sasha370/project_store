@@ -44,15 +44,15 @@ class ProjectDecorator < Draper::Decorator
   def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
     if archive.attached?
       link_to archive_link, class: style_for_link(for_catalog), id: "download_project_#{id}" do
-        tag.i(for_catalog ? '' : ' Скачать', class: 'fa fa-download', aria_hidden: true)
+        tag.i(for_catalog ? '' : t('cart_buttons.download'), class: 'fa fa-download', aria_hidden: true)
       end
     else
       # TODO, отправлять на форму обратной связи
       link_to '#', class: style_for_link(for_catalog), id: "file_not_found_#{id}" do
-        tag.i(for_catalog ? '' : ' Файл не найден!',
+        tag.i(for_catalog ? '' : t('cart_buttons.not_found'),
               class: 'fa fa-download',
               aria_hidden: true,
-              title: 'Файл не найден! Пожалуйста обратитесь в службу поддержки')
+              title: t('cart_buttons.not_found_description'))
       end
     end
   end

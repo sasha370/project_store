@@ -1,7 +1,7 @@
 %ul.list-inline.mb-25
   %li.mr-35
     = link_to request.params.merge(category_id: nil), class: 'filter-link' do
-      = t('.all')
+      = t('projects.categories_list.all')
       %span.badge.ml-2= Project.all.size
   - @categories.each do |category|
     %li.mr-35
