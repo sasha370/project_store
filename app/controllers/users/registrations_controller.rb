@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Allow User to update Profile without password confirmation
 module Users
   class RegistrationsController < Devise::RegistrationsController
     protected
