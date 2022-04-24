@@ -2,6 +2,9 @@
 
 class Project < ApplicationRecord
   include Rails.application.routes.url_helpers
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
 
   belongs_to :category, counter_cache: true

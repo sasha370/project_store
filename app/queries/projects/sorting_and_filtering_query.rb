@@ -20,6 +20,7 @@ module Projects
     def call
       filter_projects
       order_projects
+      @projects.friendly
     end
 
     private

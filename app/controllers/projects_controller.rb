@@ -8,13 +8,13 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id]).decorate
+    @project = Project.friendly.find(params[:id]).decorate
   end
 
   private
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.all.friendly
     @current_category_id = params[:category_id].to_i
   end
 end
