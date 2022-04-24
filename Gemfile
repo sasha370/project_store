@@ -22,10 +22,12 @@ gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'draper'
 gem 'font-awesome-rails'
+gem 'friendly_id', '~> 5.4.0'
 gem 'haml-rails'
 gem 'httparty'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
+gem 'meta-tags'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
@@ -35,9 +37,11 @@ gem 'rails', '~> 6.1.3'
 gem 'react-rails'
 gem "redis", "~> 4.0"
 gem 'sass-rails', '>= 6'
+gem 'sitemap_generator'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'webpacker', '~> 5.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

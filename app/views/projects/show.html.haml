@@ -1,4 +1,5 @@
-= content_for :title, @project.title
+- set_meta_tags title: ['Своими руками чертежи, инструкции', @project.title], keywords: @project.category.title, index: true
+
 %main.container{ id: "project_card_#{@project.id}"}
   = link_to  :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15

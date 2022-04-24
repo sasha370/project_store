@@ -38,6 +38,8 @@ ru:
         'Добро пожаловать'
     privacy_police:
       title: 'Политика конфиденциальности'
+    donate_police:
+      title: 'Условия оплаты'
 
   shared:
     footer:
@@ -56,13 +58,15 @@ ru:
       edit: 'Редактирвоать'
       my_orders: 'Мои заказы'
       log_out: 'Выйти'
-      log_in: 'Войти'
+      log_in: ' Войти'
       register: 'Зарегистрироваться'
 
   orders:
     checkout:
-      continue_agree: 'Продолжив, вы соглашаетесь с условиями оплаты'
-      after_checkout: 'После оплаты вы сможете найти все купленные проекты в Личном кабинете'
+      continue_agree: 'Продолжив, вы соглашаетесь с '
+      continue_agree_link: 'Условиями перевода'
+      after_checkout: 'После оплаты вы сможете найти все доступные проекты в '
+      after_checkout_link: 'Личном кабинете'
       pay_button: 'Оплатить'
     summary:
       subtotal: 'Сумма:'
@@ -74,6 +78,7 @@ ru:
       title: 'Cart'
 
   cart_buttons:
+    pay: ' Оплатить'
     in_cart: ' В корзину'
     download: ' Скачать'
     not_found: ' Файл не найден'
@@ -130,4 +135,7 @@ ru:
       password_placeholder: 'От 6-ти символов'
       password_confirm_placeholder: 'Не сделайте ошибок и повторите пароль'
 
-
+  alerts:
+    email_not_found: 'Мы не смогли определить ваш email в данном профиле, пожалуйста зарегистрируйтесь через форму'
+    wrong_msg: 'Что-то пошло не так'
+    unauthorized: 'У Вас нет прав на это!'

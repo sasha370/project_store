@@ -8,6 +8,10 @@
           %span{:style => "font-size: 3em; color: #c59c71;"}
             %i.bi.bi-facebook
         %p.general-login-text or
+      = t('devise.registrations.agreement')
+      = link_to t('devise.registrations.agreement_link'), privacy_policy_path
+      %br
+      %br
 
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = bootstrap_devise_error_messages!
@@ -45,3 +49,4 @@
         .form-group
           = f.submit t('.sign_up'), class: 'btn btn-primary'
       = render 'devise/shared/links'
+

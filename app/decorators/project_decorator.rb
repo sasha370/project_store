@@ -69,19 +69,19 @@ class ProjectDecorator < Draper::Decorator
 
   def add_to_cart_button(for_catalog: true)
     link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}", remote: true do
-      tag.i(' Купить', class: 'fa fa-shopping-cart', aria_hidden: true)
+      tag.i(t('cart_buttons.in_cart'), class: 'fa fa-shopping-cart', aria_hidden: true)
     end
   end
 
   def go_to_cart_button(for_catalog: true)
     link_to cart_path, class: style_for_link(for_catalog) do
-      tag.i(add_text(' В корзине', for_catalog), class: 'fas fa-coins', aria_hidden: true)
+      tag.i(add_text(t('cart_buttons.pay'), for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
 
   def ask_register(for_catalog: true)
     link_to new_user_session_path, class: style_for_link(for_catalog) do
-      tag.i(' Войти', class: 'fas fas fa-sign-in-alt', aria_hidden: true)
+      tag.i(t('shared.navbar.log_in'), class: 'fas fas fa-sign-in-alt', aria_hidden: true)
     end
   end
 

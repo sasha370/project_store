@@ -18,7 +18,7 @@ RSpec.describe 'Project', type: :feature do
       let!(:project2) { create(:project, category: category2) }
 
       it 'includes First Category`s projects' do
-        visit(projects_path(category_id: category1))
+        visit(projects_path(category_id: category1.id))
         expect(page).to have_content project1.decorate.short_title
         expect(page).not_to have_content project2.decorate.short_title
       end

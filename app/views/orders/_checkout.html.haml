@@ -3,8 +3,10 @@
   %div
     %span
       = t('orders.checkout.continue_agree')
+      = link_to t('orders.checkout.continue_agree_link'), donate_policy_path
       %br
       = t('orders.checkout.after_checkout')
+      = link_to t('orders.checkout.after_checkout_link'), my_orders_path
     %span
       - if @cart.amount > 0
         = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post, class: 'pull-right general-position', id: 'payment_button' do |f|
