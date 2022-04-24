@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Category do
+  permit_params :id, :title, :description, :created_at, :updated_at, :projects_count
+
+  controller do
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
+  end
 
   index do
     selectable_column

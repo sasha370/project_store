@@ -331,5 +331,13 @@ ActiveAdmin.setup do |config|
   # By default, Active Admin uses Sprocket's asset pipeline.
   # You can switch to using Webpacker here.
   #
+  # Custom
   config.use_webpacker = true
+end
+
+ActiveAdmin::ResourceController.class_eval do
+  def find_resource
+    finder = resource_class.is_a?(FriendlyId) ? :slug : :id
+    scoped_collection.find_by(finder => params[:id])
+  end
 end

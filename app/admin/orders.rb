@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Order do
+  permit_params  :id, :status, :amount, :promocode, :discount, :user_id
   includes(:user, :payment)
 
   #Index sort buttons

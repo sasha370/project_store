@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :first_name, :last_name
+  permit_params :email, :phone, :password, :password_confirmation, :first_name, :last_name
 
   #Index filters
   filter :email
@@ -47,7 +47,7 @@ ActiveAdmin.register User do
           row :confirmed?
         end
       end
-      column  max_width: "50%" do
+      column max_width: "50%" do
         attributes_table 'Регистрационные данные' do
           row :provider
           row :reset_password_sent_at
@@ -83,8 +83,8 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :phone
-      f.input :password
-      f.input :password_confirmation
+      f.input :password if f.object.new_record?
+      f.input :password_confirmation if f.object.new_record?
     end
     f.actions
   end

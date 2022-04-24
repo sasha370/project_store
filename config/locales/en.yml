@@ -148,3 +148,6 @@ en:
     email_not_found: 'We don`t found email in your`s profile, please register with form'
     wrong_msg: 'Something went wrong'
     unauthorized: 'Unauthorized Access!'
+  errors:
+    messages:
+      blank: "Please fill the %{model}'s %{attribute}"

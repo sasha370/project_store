@@ -30,7 +30,7 @@ ActiveAdmin.register Project do
 
   controller do
     def update
-      project = Project.find(params[:id])
+      project = Project.friendly.find(params[:id])
       params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
       project.update(permitted_params[:project])
       flash[:notice] = 'Project Updated!'
@@ -47,17 +47,13 @@ ActiveAdmin.register Project do
     column 'Short description' do |project|
       project.short_description.truncate(30)
     end
-    column :price do |project|
-      number_to_currency project.price
-    end
-    column :old_price do |project|
-      number_to_currency project.old_price
-    end
+    column :price
+    column :old_price
 
     tag_column :status
     bool_column :hit
     column :vendor_code
-    column :created_at
+    # column :created_at
     column :category
     column 'Image' do |project|
       project.images.count
@@ -132,7 +128,7 @@ ActiveAdmin.register Project do
             f.input :dimensions
             f.input :difficulty
             f.input :status
-            f.input :category, as: :select, collection: Category.all.collect { |category| [category.title, category.id] }
+            f.input :category, as: :select, collection: Category.all.friendly.collect { |category| [category.title, category.id] }
             f.input :hit
           end
         end
@@ -171,7 +167,7 @@ ActiveAdmin.register Project do
   end
 
   member_action :publish, method: :put do
-    project = Project.find(params[:id])
+    project = Project.friendly.find(params[:id])
     project.update(status: :published)
     redirect_to admin_project_path(project)
   end
@@ -182,7 +178,7 @@ ActiveAdmin.register Project do
   end
 
   member_action :unpublish, method: :put do
-    project = Project.find(params[:id])
+    project = Project.friendly.find(params[:id])
     project.update(status: :newest)
     redirect_to admin_project_path(project)
   end
@@ -194,7 +190,7 @@ ActiveAdmin.register Project do
 
   # Destroy one of project images
   member_action :destroy_image, method: :delete do
-    project = Project.find(params[:id])
+    project = Project.friendly.find(params[:id])
     index = params[:index].to_i
 
     remain_images = project.images.map(&:identifier)
