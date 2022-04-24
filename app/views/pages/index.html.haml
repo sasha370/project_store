@@ -1,5 +1,3 @@
 = render 'pages/partials/carousel'
-
-.container
-  -# = render 'pages/partials/jumbotron'
-  = render 'pages/partials/best_sellers'
+= render 'pages/partials/jumbotron' unless current_user
+= render 'pages/partials/best_sellers'

@@ -1,7 +1,17 @@
--#НЕ ИСПОЛЬЗУЕТСЯ
+.container
+  .jumbotron.text-center.mb-0
+    .row
+      .col-sm-4
+        .general-img-wrap
+          .img-shadow.general-thumbnail-img= image_pack_tag "main_page/selfi.jpg"
+      .col-sm-8
 
--#.jumbotron.text-center.mb-0
--#  %h2.h1 Добро пожаловать!
--#  .mb-res-50
--#    %p Каждый месяц
--#  %button.btn.btn-default Регистрация
+        %h2= t('pages.jumbotron.welcome')
+        .mb-res-50
+          %small= t('pages.jumbotron.small1')
+          %br
+          %small= t('pages.jumbotron.small2')
+          %br
+          %br
+          %small= t('pages.jumbotron.small3')
+        = link_to t('shared.navbar.register'), new_user_registration_path, class: 'btn btn-default'

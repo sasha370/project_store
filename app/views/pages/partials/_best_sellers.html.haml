@@ -1,5 +1,6 @@
-.mb-35
-  %h3= t('pages.partials.best_sellers.title')
-  .row
-    - @best_projects.each do |project|
-      = render 'projects/project', project: project
+.container
+  .mb-35
+    %h3= t('pages.partials.best_sellers.title')
+    .row
+      - @best_projects.each do |project|
+        = render 'projects/project', project: project

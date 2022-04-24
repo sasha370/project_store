@@ -37,6 +37,21 @@ en:
       title: 'Privacy police'
     donate_police:
       title: 'Donate police'
+    carousel:
+      slide1_title: 'Drawings, instructions, diagrams'
+      slide1_p1: 'For those who want to do everything by hand'
+      slide1_p2: 'With real photos and examples'
+      slide2_title: 'Step by step assembly'
+      slide2_p1: 'What, how to cut, where and how to fix'
+      slide2_p2: 'Even for those with no experience'
+      slide3_title: 'Full set of materials'
+      slide3_p1: 'Drawing + assembly instructions + photos + cutting'
+      slide3_p2: 'Only home tools and the most popular materials'
+    jumbotron:
+      welcome: 'Welcome!'
+      small1: 'My name is Alexander. I have more than 10 years of work with outdoor wooden structures behind me.'
+      small2: 'I collected and packaged all my experience so that anyone can make something beautiful with their own hands.'
+      small3: "let's introduce ourselves!"
 
   shared:
     footer:

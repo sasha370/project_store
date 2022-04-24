@@ -10,40 +10,40 @@
         .row
           .col-sm-5
             .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              .img-shadow.general-thumbnail-img= image_pack_tag "main_page/1.jpg"
           .col-sm-7
             .mb-60
-              %h1 Real-Life Responsive Web Design
-              %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-              %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
+              %h1= t('pages.carousel.slide1_title')
+              %p.lead= t('pages.carousel.slide1_p1')
+              %p.lead.small= t('pages.carousel.slide1_p2')
               .general-align
-                %button.disabled.btn Buy Now
+                = link_to t('shared.navbar.catalog'), projects_path, class: 'btn btn-primary'
 
       .carousel-item
         .row
           .col-sm-5
             .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              .img-shadow.general-thumbnail-img= image_pack_tag "main_page/2.jpg"
           .col-sm-7
             .mb-60
-              %h1 Real-Life Responsive Web Design
-              %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-              %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
+              %h1= t('pages.carousel.slide2_title')
+              %p.lead= t('pages.carousel.slide2_p1')
+              %p.lead.small= t('pages.carousel.slide2_p2')
               .general-align
-                %button.disabled.btn Buy Now
+                = link_to t('shared.navbar.catalog'), projects_path, class: 'btn btn-primary'
 
       .carousel-item
         .row
           .col-sm-5
             .general-img-wrap
-              %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+              .img-shadow.general-thumbnail-img= image_pack_tag "main_page/3.jpg"
           .col-sm-7
             .mb-60
-              %h1 Real-Life Responsive Web Design
-              %p.lead Smart front-end techniques and design patterns derived from real-life responsive projects
-              %p.lead.small Vitaly Friedman, Daniel Mall,Vitaly Friedman
+              %h1= t('pages.carousel.slide3_title')
+              %p.lead= t('pages.carousel.slide3_p1')
+              %p.lead.small= t('pages.carousel.slide3_p2')
               .general-align
-                %button.disabled.btn Buy Now
+                = link_to t('shared.navbar.catalog'), projects_path, class: 'btn btn-primary'
                 
     %a.left.carousel-control-prev{"data-slide" => "prev", href: "#carouselExampleIndicators", role: "button"}
       %span.carousel-control-prev-icon{"aria-hidden" => "true"}
