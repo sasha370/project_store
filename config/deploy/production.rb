@@ -5,6 +5,8 @@
 
 server "94.154.11.225", user: "deploy", roles: %w{app db web}
 set :rails_env, :production
+
+sitemap :refresh
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 

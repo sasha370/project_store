@@ -1,6 +1,6 @@
 # Load DSL and set up stages
 require "capistrano/setup"
-
+require 'capistrano/sitemap_generator'
 # Include default deployment tasks
 require "capistrano/deploy"
 
@@ -40,3 +40,4 @@ Dir.glob("lib/capistrano/tasks/*.rake").each { |r| import r }
 
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.7.2'      # Defaults to: 'default'
+
