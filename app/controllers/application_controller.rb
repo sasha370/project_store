@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     authenticate_user!
     return unless current_user.role == 'usual'
 
-    flash[:alert] = 'Unauthorized Access!'
+    flash[:alert] = t('alerts.unauthorized')
     redirect_to root_path
   end
 

@@ -3,8 +3,7 @@
 RSpec.describe Projects::SortingAndFilteringQuery do
   before { create_list(:project, 20) }
 
-  let(:projects) { Project.all }
-  let(:sorted_projects) { described_class.new(nil, order, projects: projects).call }
+  let(:sorted_projects) { described_class.new(nil, order).call }
 
   describe '#call' do
     context 'when sorting not set (default)' do

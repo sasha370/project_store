@@ -18,9 +18,9 @@ module Projects
     end
 
     def call
+      @projects.friendly
       filter_projects
       order_projects
-      @projects.friendly
     end
 
     private

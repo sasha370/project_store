@@ -12,7 +12,7 @@ FactoryBot.define do
     dimensions { '1000x111x222' }
     difficulty { rand(0..5) }
     images do
-      Array.new(5) do
+      Array.new(7) do
         file_path = Rails.root.join("spec/fixtures/files/images/default_cover#{rand(0 - 6)}.jpg")
         Rack::Test::UploadedFile.new(file_path, 'image/jpeg')
       end

@@ -3,7 +3,7 @@
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     def facebook
-      return redirect_to root_path, alert: 'Something went wrong' if auth == :invalid_credentials || auth.nil?
+      return redirect_to root_path, alert: t('alerts.wrong_msg') if auth == :invalid_credentials || auth.nil?
 
       connect_to('Facebook')
     end
@@ -18,7 +18,7 @@ module Users
         set_flash_message(:notice, :success, kind: provider.to_s)
       else
         session[:auth] = auth.except('extra')
-        redirect_to new_user_registration_url, alert: 'We don`t found email in your`s profile, please register'
+        redirect_to new_user_registration_url, alert: t('alerts.email_not_found')
       end
     end
 

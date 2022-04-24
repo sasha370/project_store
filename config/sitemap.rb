@@ -29,5 +29,6 @@ SitemapGenerator::Sitemap.create do
   end
 
   # TODO, Добавить список статичных страниц для индексации
+  add privacy_policy_path, :priority => 0.5, :changefreq => 'weekly'
   # add contacts_path, :priority => 0.5, :changefreq => 'weekly'
 end

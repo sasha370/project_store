@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def add_to_cart
     respond_to do |format|
       format.js do
-        @project = Project.find(params[:id])
+        @project = Project.friendly.find(params[:id])
         @cart.order_projects.find_or_create_by(project_id: @project.id)
         flash.now[:notice] = 'Project was successfully add to cart'
       end

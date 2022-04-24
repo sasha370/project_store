@@ -19,5 +19,4 @@
         %td
           %p.title= link_to project.title, project_path(project)
         %td
-          -#TODO Сделать вызов кнопки через декоратор в метод download_button
           = link_to project.download_button(for_catalog: false), class: 'close general-cart-close'

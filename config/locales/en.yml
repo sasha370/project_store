@@ -35,7 +35,8 @@ en:
         'Welcome'
     privacy_police:
       title: 'Privacy police'
-
+    donate_police:
+      title: 'Donate police'
 
   shared:
     footer:
@@ -59,8 +60,10 @@ en:
 
   orders:
     checkout:
-      continue_agree: 'By continuing, you agree to the payment terms.'
-      after_checkout: 'After payment, you can find all purchased projects in your Personal Account'
+      continue_agree: 'By continuing, you agree to the '
+      continue_agree_link: 'Donate policy'
+      after_checkout: 'After payment, you can find all available projects in your '
+      after_checkout_link: 'My orders'
       pay_button: 'Pay'
     summary:
       subtotal: 'Subtotal:'
@@ -72,6 +75,7 @@ en:
       title: 'Cart'
 
   cart_buttons:
+    pay: ' Pay'
     in_cart: ' In cart'
     download: ' Download'
     not_found: ' File not found'
@@ -125,4 +129,7 @@ en:
       password_placeholder: 'From 6 characters'
       password_confirm_placeholder: 'Make no mistake and repeat your password'
 
-
+  alerts:
+    email_not_found: 'We don`t found email in your`s profile, please register with form'
+    wrong_msg: 'Something went wrong'
+    unauthorized: 'Unauthorized Access!'

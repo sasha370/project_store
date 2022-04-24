@@ -4,22 +4,14 @@
 
 ### TODO
 #### seo
-https://medium.com/la-revanche-des-sites/seo-ruby-on-rails-the-comprehensive-guide-2018-b4101cc51b78
-- Friendly URL
-- Meta
-- Title
-- Error pages
-- Breadcrumbs
-- Sitemap
-- Robot.txt
-- friendly_id and sitemap_generator gems
+- Доработать Главную: если новый полььзователь, то добавить блок WELOCOME под галереей
 
+- добавить Breadcrumbs  в карточку проекта
 - переименовать все на `diy plans`
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Вывести аватар\имя пользователя в навбаре
 - добавить теги для Материалы проекта + Админка
-- Обновлять корзины если товар сменил цену (сделать сумму динамической ??)
-- Общий мониторинг на системц ( nginx, redis, passenger, rails)
+- Общий мониторинг на систем ( nginx, redis, passenger, rails)
 - После удаления товара из корзины JS возвращет число без преобразования  number_to_currency
 - Отображать сложность звездочками
 - Переработать форму отправки на платеж, вынести в контроллер
