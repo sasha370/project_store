@@ -3,6 +3,16 @@
 # README
 
 ### TODO
+#### seo
+https://medium.com/la-revanche-des-sites/seo-ruby-on-rails-the-comprehensive-guide-2018-b4101cc51b78
+- Friendly URL
+- Meta
+- Title
+- Error pages
+- Breadcrumbs
+- Sitemap
+- Robot.txt
+- friendly_id and sitemap_generator gems
 
 - переименовать все на `diy plans`
 - Учитывать в счетчике проектов для категории только опубликованные 
