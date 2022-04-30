@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  %body
+    .container
+      %h1
+        Добрый день!
+      %p
+        Мы получили ваш вопрос на сайте #{ link_to 'diy-plans.ru', '/'}.
+        %br/
+      %p
+        Заголовок: #{ @feedback.title }.
+        %br/
+        Текст: #{ @feedback.title }.
+      %p
+        Мы рассмотрим ваш вопрос в самые кратчайшие сроки!
+      %p
+        Все заказы вы можете найти в личном кабинете в разделе: #{ link_to t('shared.footer.my_orders'), my_orders_url}

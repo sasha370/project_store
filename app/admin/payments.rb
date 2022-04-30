@@ -31,4 +31,14 @@ ActiveAdmin.register Payment do
       row :updated_at
     end
   end
+
+  #New and Edit form fields
+  form do |f|
+    f.inputs do
+      f.input :order, as: :select, collection: Order.all.collect { |order| ["Заказ: #{order.id}", order.id] }
+      f.input :metadata
+      f.input :status
+    end
+    f.actions
+  end
 end

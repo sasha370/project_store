@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Order do
-  permit_params  :id, :status, :amount, :promocode, :discount, :user_id
+  permit_params :id, :status, :amount, :promocode, :discount, :user_id
   includes(:user, :payment)
 
   #Index sort buttons
@@ -27,7 +27,7 @@ ActiveAdmin.register Order do
     column :payment
     column :user
     column :created_at
-    column :updated_at
+    bool_column :notification_sent_at
   end
 
   show do
@@ -56,5 +56,16 @@ ActiveAdmin.register Order do
       row :updated_at
     end
     active_admin_comments
+  end
+
+  #New and Edit form fields
+  form do |f|
+    f.inputs do
+      f.input :user, as: :select, collection: User.all.collect { |user| [user.email, user.id] }
+      f.input :amount, input_html: { disabled: true }
+      f.input :discount
+      f.input :status
+    end
+    f.actions
   end
 end

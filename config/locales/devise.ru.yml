@@ -31,6 +31,36 @@ ru:
         many: Пользователей
         one: Пользователь
         other: Пользователи
+      project:
+        few: Проекта
+        many: Проектов
+        one: Проект
+        other: Проекты
+      order:
+        few: Заказа
+        many: Заказов
+        one: Заказ
+        other: Заказы
+      feedback:
+        few: Отзыва
+        many: Отзывов
+        one: Отзыв
+        other: Отзывы
+      payment:
+        few: Платежа
+        many: Платежей
+        one: Платеж
+        other: Платежи
+      category:
+        few: Категории
+        many: Категорий
+        one: Категория
+        other: Категории
+      comment:
+        few: Комментария
+        many: Комментариев
+        one: Комментарий
+        other: Комментарии
   devise:
     confirmations:
       confirmed: Ваш адрес эл. почты успешно подтвержден.

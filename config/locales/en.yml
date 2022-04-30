@@ -165,3 +165,7 @@ en:
     messages:
       blank: "Please fill the %{model}'s %{attribute}"
     feedback: 'We were unable to process your request, please contact us in any other way available.'
+
+  mailer:
+    feedback:
+      title: 'Question on the site diy-plans.ru'

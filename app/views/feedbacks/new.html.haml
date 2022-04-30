@@ -6,7 +6,6 @@
       %p= t('pages.feedback.description')
       %br
       = form_for(@feedback, url: feedbacks_path) do |f|
-        -# = bootstrap_devise_error_messages!
         .form-group
           = f.label :title, t('models.feedback.title')
           = f.text_field :title, autofocus: true, placeholder: t('models.feedback.title_placeholder'), class: 'form-control', :required => true
