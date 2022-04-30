@@ -1,0 +1,7 @@
+%h1
+  Добрый день, #{@user.first_name}!
+%p
+  Ваш заказ ##{@order.id} на сайте #{ link_to 'diy-plans.ru', '/'} успешно оплачен.
+  %br/
+%p
+  Все заказы вы можете найти в личном кабинете в разделе: #{ link_to t('shared.footer.my_orders'), my_orders_url}

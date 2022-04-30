@@ -1,7 +1,7 @@
 .col-xs-12.col-sm-4
   .general-thumb-wrap{ id: "project_card_#{project.id}"}
     .thumbnail.general-thumbnail
-      = image_tag project.main_image, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
+      = image_tag project.main_image.catalog_image.url, class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
       .thumb-hover
         .general-thumb-link-wrap
           = link_to project_path(project), class: 'thumb-hover-link' do

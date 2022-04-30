@@ -36,6 +36,10 @@ RSpec.describe Callbacks::YandexMoneyController, type: :controller do
         perform
         expect(response).to have_http_status :unauthorized
       end
+
+      it 'do not trigger OrderMailer' do
+        expect { perform }.not_to change(ActionMailer::Base.deliveries, :count)
+      end
     end
 
     context 'when incorrect withdraw_amount' do
@@ -48,6 +52,10 @@ RSpec.describe Callbacks::YandexMoneyController, type: :controller do
       it 'return 400 status' do
         perform
         expect(response).to have_http_status :bad_request
+      end
+
+      it 'do not trigger OrderMailer' do
+        expect { perform }.not_to change(ActionMailer::Base.deliveries, :count)
       end
     end
   end
@@ -63,6 +71,10 @@ RSpec.describe Callbacks::YandexMoneyController, type: :controller do
         perform
         expect(payment).to be_paid
         expect(payment.order).to be_paid
+      end
+
+      it 'send confirmation email' do
+        expect { perform }.to change { ActionMailer::Base.deliveries.count }.by(1)
       end
     end
   end

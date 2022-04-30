@@ -29,7 +29,7 @@ class Project < ApplicationRecord
   end
 
   def main_image
-    images&.first&.url || PLACEHOLDER_IMAGE
+    images&.first
   end
 
   private
