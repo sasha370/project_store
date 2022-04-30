@@ -25,7 +25,7 @@ RSpec.describe 'Order', type: :feature do
           sign_in user
           visit(project_path(project))
           page.find("#add_to_cart_#{project.id}", visible: :all).click
-          expect(page).to have_content 'Project was successfully add to cart'
+          expect(page).to have_content I18n.t('orders.success')
           expect(page.find('#item_counter', visible: :all)).to have_content ''
         end
       end
@@ -61,6 +61,7 @@ RSpec.describe 'Order', type: :feature do
         visit(cart_path)
         page.find("#remove_order_project_#{order_project.id}").click
         expect(page).to have_no_content(order_project.project.title)
+        expect(page).to have_content I18n.t('orders.removed')
         expect(page.find('#item_counter', visible: :all)).to have_content order.projects.count.to_s
       end
     end

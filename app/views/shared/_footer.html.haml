@@ -13,6 +13,8 @@
             = link_to t('shared.footer.payment_terms'), donate_policy_path, class: 'nav-link'
           %li
             = link_to t('shared.footer.privacy_police'), privacy_policy_path, class: 'nav-link'
+          %li
+            = link_to t('shared.footer.feedback'), new_feedback_path, class: 'nav-link'
       .col-sm-3
         %p.general-nav-mail= mail_to 'budka52@bk.ru', 'budka52@bk.ru'
         %p.general-nav-number= link_to '+7(906)-368-29-69', "tel:+7(906)-368-29-69"

@@ -13,6 +13,7 @@ class User < ApplicationRecord
     attachable.variant :thumb, resize: '500x500'
     attachable.variant :icon, resize: '50x50'
   end
+  has_many :feedbacks, dependent: :destroy
 
   enum role: { usual: 0, admin: 2 }
 

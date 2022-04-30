@@ -48,7 +48,7 @@ class ProjectDecorator < Draper::Decorator
       end
     else
       # TODO, отправлять на форму обратной связи
-      link_to '#', class: style_for_link(for_catalog), id: "file_not_found_#{id}" do
+      link_to new_feedback_path, class: style_for_link(for_catalog), id: "file_not_found_#{id}" do
         tag.i(for_catalog ? '' : t('cart_buttons.not_found'),
               class: 'fa fa-download',
               aria_hidden: true,

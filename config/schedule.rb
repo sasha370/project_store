@@ -20,6 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 
 # Update sitemap and notify Google
-every 7.day, :at => '5:00 am' do
+every 1.day, :at => '5:00 am' do
   rake "-s sitemap:refresh"
 end
