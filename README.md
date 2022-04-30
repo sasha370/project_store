@@ -4,6 +4,8 @@
 
 ### TODO
 - Админка в Заказах, Пайментаз и т.п. сделать выбор выпадающих польщователей по именам не по ID 
+- Подставлять разные варианты картнок для корзины, каталога и т.п.
+- 
 #### seo
 - добавить Breadcrumbs  в карточку проекта
 - переименовать все на `diy plans`
@@ -16,6 +18,7 @@
 - Переработать форму отправки на платеж, вынести в контроллер
 - Тесты для смены пароля в личном кабинете
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
+- Настроить электронную комерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
 
 ### SMTP server
 https://app-smtp.sendinblue.com/real-time
