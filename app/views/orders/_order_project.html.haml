@@ -1,7 +1,7 @@
 %tr{ id: "order_project_#{order_project.id}"}
   %td
     .general-img-wrap-table
-      = image_tag order_project.project.main_image, class: 'cart-img-shadow pull-left', alt: order_project.project.title
+      = image_tag order_project.project.main_image.cart_image.url, class: 'cart-img-shadow pull-left', alt: order_project.project.title
   %td
     %p.title
       = link_to order_project.project.title, project_path(order_project.project)

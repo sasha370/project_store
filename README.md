@@ -15,7 +15,6 @@
 - Общий мониторинг на систем ( nginx, redis, passenger, rails)
 - После удаления товара из корзины JS возвращет число без преобразования  number_to_currency
 - Отображать сложность звездочками
-- Переработать форму отправки на платеж, вынести в контроллер
 - Тесты для смены пароля в личном кабинете
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 - Настроить электронную комерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
