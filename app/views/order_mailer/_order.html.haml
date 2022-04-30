@@ -1,0 +1,45 @@
+%table.table.table-hover
+  %tr.no-hover
+    %th.col-pic.pl-0
+      %span.in-grey-600= t('models.project.model_name')
+    %th.col-title
+      %span.in-grey-600= t('models.project.title')
+    %th.col-price
+      %span.in-grey-600= t('models.project.price')
+    %th.col-download
+      %span.in-grey-600= t('models.project.download')
+  - @order.projects.each do |project|
+    %tr
+      %td
+        .general-img-wrap-table
+          = image_tag project.main_image.cart_image.url, class: 'cart-img-shadow pull-left', alt: project.title
+      %td
+        %p.title
+          = link_to project.title, project_url(project)
+      %td
+        %span.font-16.in-gold-500= number_to_currency project.price
+      %td
+        = project.download_button(for_catalog: false)
+
+  .general-order-wrap
+    .row
+      .col-sm-4
+      .col-sm-8
+        .res-mr-200.text-center.general-text-right
+          %p.in-gold-500.font-18
+          %table.general-summary-table.general-summary-table-right.general-text-right
+            %tr
+              %td
+                %p.font-16= t('orders.summary.subtotal')
+              %td
+                %p.font-16#total_amount= number_to_currency(@order.total_amount)
+            %tr
+              %td
+                %p.font-16= t('orders.summary.discount')
+              %td
+                %p.font-16#total_discount= number_to_currency(@order.discount)
+            %tr
+              %td
+                %strong.font-18= t('orders.summary.total')
+              %td
+                %strong.font-18#amount_with_discount= number_to_currency(@order.amount_with_discount)

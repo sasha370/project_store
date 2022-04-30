@@ -13,6 +13,8 @@ module Callbacks
       return head :bad_request unless correct_amount?
 
       update_payment
+      OrderMailer.with(id: payment.order.id).new_order.deliver_later
+
       head :ok
     end
 
