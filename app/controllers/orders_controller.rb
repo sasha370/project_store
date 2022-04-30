@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
       format.js do
         @project = Project.friendly.find(params[:id])
         @cart.order_projects.find_or_create_by(project_id: @project.id)
-        flash.now[:notice] = 'Project was successfully add to cart'
+        flash.now[:notice] = t('orders.success')
       end
     end
   end
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       format.js do
         @order_project = OrderProject.find(params[:id])
         @order_project.destroy
-        flash.now[:notice] = 'Project was removed from cart'
+        flash.now[:notice] = t('orders.removed')
       end
     end
   end

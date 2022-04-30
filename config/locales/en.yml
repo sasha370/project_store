@@ -52,6 +52,10 @@ en:
       small1: 'My name is Alexander. I have more than 10 years of work with outdoor wooden structures behind me.'
       small2: 'I collected and packaged all my experience so that anyone can make something beautiful with their own hands.'
       small3: "let's introduce ourselves!"
+    feedback:
+      title: 'Feedback form'
+      submit: 'Submit'
+      description: 'If you have any difficulties when placing, paying for an order, or you cannot download / open the necessary files, fill in the required fields and we will do our best to help you as soon as possible'
 
   shared:
     footer:
@@ -59,6 +63,7 @@ en:
       my_orders: 'My orders'
       payment_terms: 'Terms of payment'
       privacy_police: 'Privacy police'
+      feedback: 'Feedback'
 
     navbar:
       admin: 'Admin'
@@ -88,6 +93,8 @@ en:
       activate: 'Activate'
     cart:
       title: 'Cart'
+    success: 'Project was successfully add to cart'
+    removed: 'Project was removed from cart'
 
   cart_buttons:
     pay: ' Pay'
@@ -143,11 +150,18 @@ en:
       avatar: 'Avatar'
       password_placeholder: 'From 6 characters'
       password_confirm_placeholder: 'Make no mistake and repeat your password'
+    feedback:
+      title: 'Title'
+      title_placeholder: 'Shortly describe your question'
+      body: 'Description'
+      body_placeholder: 'What was your problem? What you already tried to do?'
 
   alerts:
     email_not_found: 'We don`t found email in your`s profile, please register with form'
     wrong_msg: 'Something went wrong'
     unauthorized: 'Unauthorized Access!'
+    feedback: 'Thank you! We received your question!'
   errors:
     messages:
       blank: "Please fill the %{model}'s %{attribute}"
+    feedback: 'We were unable to process your request, please contact us in any other way available.'

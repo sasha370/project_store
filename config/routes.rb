@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   # Static Pages
   get 'privacy_policy', to: 'pages#privacy_policy'
   get 'donate_policy', to: 'pages#donate_policy'
+
+  # Feedback
+  resources :feedbacks, only: [:new, :create]
 end

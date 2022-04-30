@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://diy-plans.ru"
+SitemapGenerator::Sitemap.default_host = "https://diy-plans.ru"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -28,7 +28,6 @@ SitemapGenerator::Sitemap.create do
     add project_path(project), :lastmod => project.updated_at
   end
 
-  # TODO, Добавить список статичных страниц для индексации
   add privacy_policy_path, :priority => 0.5, :changefreq => 'weekly'
   # add contacts_path, :priority => 0.5, :changefreq => 'weekly'
 end

@@ -1,0 +1,21 @@
+%main.container.general-main-wrap.text-center
+  .row
+    .col-md-2
+    .col-md-8
+      %h1.general-title-margin= t('pages.feedback.title')
+      %p= t('pages.feedback.description')
+      %br
+      = form_for(@feedback, url: feedbacks_path) do |f|
+        -# = bootstrap_devise_error_messages!
+        .form-group
+          = f.label :title, t('models.feedback.title')
+          = f.text_field :title, autofocus: true, placeholder: t('models.feedback.title_placeholder'), class: 'form-control', :required => true
+        .form-group
+          = f.label :body, t('models.feedback.body')
+          = f.text_area :body, autofocus: true, size: "180x10", placeholder: t('models.feedback.body_placeholder'), class: 'form-control', :required => true
+        .form-group
+          = f.hidden_field :user_id, :value => current_user.id
+        .form-group
+          = f.submit t('pages.feedback.submit'), class: 'btn btn-primary'
+      %br
+      %p= link_to t('devise.shared.links.back'), :back
