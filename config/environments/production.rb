@@ -121,6 +121,7 @@ Rails.application.configure do
   # CUSTOM
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.asset_host = { host: '94.154.11.225' }
   config.action_mailer.default_url_options = { host: '94.154.11.225' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
