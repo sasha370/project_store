@@ -10,7 +10,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     if @feedback.save
-      # TODO: , отправить письма
+      FeedbackMailer.with(id: @feedback.id).new_feedback.deliver_later
       flash[:notice] = t('alerts.feedback')
       redirect_to root_path
     else

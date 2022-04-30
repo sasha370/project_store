@@ -43,6 +43,10 @@ RSpec.describe FeedbacksController, type: :controller do
         expect { post :create, params: params }.to change(Feedback, :count).by(1)
       end
 
+      it 'notify user' do
+        expect { post :create, params: params }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+
       it 'creates feedback with correct data' do
         post :create, params: params
         expect(Feedback.last).to have_attributes(title: params[:feedback][:title],
