@@ -4,6 +4,8 @@
   = link_to  :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
     = t('.back_to_result')
+    - if  current_user&.admin?
+      = link_to "Редактировать", edit_admin_project_path(@project), target: '_blank', class: 'btn btn-default pull-right general-position'
   .row
     .col-sm-6
       = react_component("Gallery", { images: @project.images_for_gallery })
@@ -22,40 +24,41 @@
               = "#{@project.old_price} <small>₽</small>".html_safe
               
         .col-xs-12.col-md-3
-          %p.h1.in-gold-500.mt-10 
+          %p.h1.in-blue-500.mt-10
             = @project.price
-            %small.in-gold-500= t('number.currency.symbol')
+            %small.in-blue-500= t('number.currency.symbol')
 
         .col-xs-7.col-md-3.ml-auto
           = @project.cart_buttons
-              
+
       <!-- #Description  -->
       .general-info-wrap.divider-lg
         %p.lead.small.line-height-2
           %div
-            - if @project.description.length > 250
-              = truncate(@project.description, length: 250)
-              %br
-              = link_to t('projects.show.read_more'), '', class: "in-gold-500 ml-10 read-more"
-              :javascript
-                $('.read-more').on('click', function(e) {
-                  e.preventDefault()
-                  $(this).parent().html("#{j @project.description}")
-                })
-            - else
-              = @project.description
+            = simple_format(@project.description)
 
       <!-- #Additional params  -->
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.difficulty') 
-          %p.lead.small.pull-right
-            = @project.difficulty
+          %p.difficulty.pull-right
+            = @project.difficult_icons
+
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.dimensions')
           %p.lead.small.pull-right
             = @project.dimensions
+
+      - unless @project.set_description.nil?
+        .general-info-wrap.divider-lg
+          .clearfix
+            %p.pull-left
+              %button.btn.btn-default{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", :type => "button"}
+                Состав документации
+            #collapseExample.collapse
+              .card.card-body
+                = simple_format(@project.set_description)
 
   <!-- #TODO передвинуть в отдельный паршл, когда будут Ревью -->
 

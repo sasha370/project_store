@@ -17,7 +17,7 @@
         %p.title
           = link_to project.title, project_url(project)
       %td
-        %span.font-16.in-gold-500= number_to_currency project.price
+        %span.font-16.in-blue-500= number_to_currency project.price
       %td
         = project.download_button(for_catalog: false)
 
@@ -26,7 +26,7 @@
       .col-sm-4
       .col-sm-8
         .res-mr-200.text-center.general-text-right
-          %p.in-gold-500.font-18
+          %p.in-blue-500.font-18
           %table.general-summary-table.general-summary-table-right.general-text-right
             %tr
               %td

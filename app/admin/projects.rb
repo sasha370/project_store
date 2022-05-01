@@ -3,7 +3,7 @@
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
-                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive
+                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description
 
   includes :category, :archive_attachment
   # scope_to :current_user, unless: proc { current_user.admin? }
@@ -119,10 +119,16 @@ ActiveAdmin.register Project do
     columns do
       column max_width: "50%" do
         panel 'Project' do
+          # row :vendor_code
           f.inputs do
+            li do
+              link_to 'Preview', project_path(@resource), target: '_blank', class: 'action_item'
+            end
             f.input :title
+            f.input :vendor_code
             f.input :short_description
-            f.input :description
+            f.input :description, as: :quill_editor
+            f.input :set_description, as: :quill_editor
             f.input :price
             f.input :old_price
             f.input :dimensions

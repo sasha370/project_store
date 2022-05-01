@@ -3,11 +3,7 @@
 # README
 
 ### TODO
-- Админка в Заказах, Пайментаз и т.п. сделать выбор выпадающих польщователей по именам не по ID 
-- Rich text editor
-- Отображать сложность звездочками
-- После удаления товара из корзины JS возвращет число без преобразования  number_to_currency
-
+- Кнопки следующий\предыдущий в карточке товара
 - добавить теги для Материалы проекта + Админка
 - добавить Breadcrumbs  в карточку проекта
 - Учитывать в счетчике проектов для категории только опубликованные 
@@ -22,13 +18,12 @@
 https://app-smtp.sendinblue.com/real-time
 
 > рассылки
->- Подписка на новинки
+>- Подписка на новинки + Рассылка новостей
 
 ### Backlog
 
-
 - Купоны + скидки ( )
-- Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки).   К нему привязаны ТОП по продажам
+- Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки). К нему привязаны ТОП по продажам
 - Fix mobile navbar
 - React and new design with //  https://mdbootstrap.com/plugins/react/e-commerce-components/
 
@@ -39,14 +34,6 @@ https://app-smtp.sendinblue.com/real-time
 
 > ### яндекс
 > - +Callback  ( `app/controllers/callbacks/yandex_money_controller.rb` )
-
-### Setup
-```yaml
-rails db:create
-rails db:migrate
-rails db:seed
-yarn install
-```
 
 
 

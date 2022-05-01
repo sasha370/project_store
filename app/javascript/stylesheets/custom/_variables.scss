@@ -6,7 +6,7 @@ $grey-350: #c3c3c3;
 $grey-600: #8c8c8c;
 $grey-700: #5c5c5c;
 $grey-900: #1e1e1c; // #212121, #181920
-$gold-500: #68A0C3; // #c69c6d
+$blue-500: #68A0C3; // #c69c6d
 
 $text-colors: (
               'white'    :  white,
@@ -14,7 +14,7 @@ $text-colors: (
               grey-350  :  #c3c3c3,
               grey-600  :  #8c8c8c,
               grey-900  :  #232322,
-              gold-500  :  #2C446C,
+              blue-500  :  #2C446C,
               red-500  :  #DC1E15
 );
 
@@ -89,7 +89,7 @@ $border-radius-base:      0px !default;
 //== Buttons
 
 $btn-primary-color:                   white !default;
-$btn-primary-bg:                      $gold-500 !default;
+$btn-primary-bg:                      $blue-500 !default;
 $btn-primary-border:                  transparent !default;
 
 $btn-default-color:                   white !default;
@@ -118,7 +118,7 @@ $navbar-default-link-hover-color:     $grey-900;
 // Navbar toggle
 $navbar-default-toggle-hover-bg:           transparent;
 $navbar-default-toggle-border-color:       transparent;
-$navbar-default-toggle-icon-bar-bg:        $gold-500;
+$navbar-default-toggle-icon-bar-bg:        $blue-500;
 
 // Navbar brand label
 
@@ -143,7 +143,7 @@ $jumbotron-padding:            50px;
 $thumbnail-bg:               $grey-200;
 $thumbnail-border:           transparent;
 $thumbnail-border-radius:    0;
-$thumbnail-hover-bg:         $gold-500;
+$thumbnail-hover-bg:         $blue-500;
 $thumbnail-hover-transition: opacity 0.5s ease-in-out;
 
 //=== Shared nav styles
@@ -157,13 +157,13 @@ $dropdown-link-hover-color: white;
 $dropdown-border:           transparent !default;
 $dropdown-fallback-border:  transparent !default;
 $dropdown-divider-bg:        $grey-200;
-$dropdown-link-hover-bg:     $gold-500;
+$dropdown-link-hover-bg:     $blue-500;
 
 //== Badges
 
-$badge-color:                 $gold-500 !default;
+$badge-color:                 $blue-500 !default;
 $badge-bg:                    transparent !default;
-$badge-active-color:          $gold-500 !default;
+$badge-active-color:          $blue-500 !default;
 $badge-font-weight:           300 !default;
 
 //== Tables
@@ -179,4 +179,4 @@ $input-height-base:           36px;
 
 //== Shop icon
 
-$shop-icon-bg:                $gold-500;
+$shop-icon-bg:                $blue-500;

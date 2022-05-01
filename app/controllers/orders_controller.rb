@@ -22,11 +22,15 @@ class OrdersController < ApplicationController
   end
 
   def remove_from_cart
+    @order_project = OrderProject.find(params[:id])
+    @order_project.destroy
+
+    # JS Turned OFF because it cannot works with number_to_currency
     respond_to do |format|
-      format.js do
-        @order_project = OrderProject.find(params[:id])
-        @order_project.destroy
-        flash.now[:notice] = t('orders.removed')
+      format.js { flash.now[:notice] = t('orders.removed') }
+      format.html do
+        flash[:notice] = t('orders.removed')
+        redirect_to cart_path
       end
     end
   end

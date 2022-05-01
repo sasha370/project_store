@@ -6,9 +6,9 @@
     %p.title
       = link_to order_project.project.title, project_path(order_project.project)
   %td
-    %span.font-16.in-gold-500= number_to_currency order_project.project.old_price
+    %span.font-16.in-blue-500= number_to_currency order_project.project.old_price
   %td
-    %span.font-16.in-gold-500= number_to_currency order_project.project.price
+    %span.font-16.in-blue-500= number_to_currency order_project.project.price
   %td
-    = link_to remove_from_cart_path(order_project.id), class: 'close general-cart-close', aria_label: "Close", id: "remove_order_project_#{order_project.id}", remote: true do
+    = link_to remove_from_cart_path(order_project.id), class: 'close general-cart-close', aria_label: "Close", id: "remove_order_project_#{order_project.id}" do
       %span{'aria-hidden': "true"} &times;

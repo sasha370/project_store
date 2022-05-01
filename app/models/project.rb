@@ -22,6 +22,7 @@ class Project < ApplicationRecord
 
   mount_uploaders :images, ImageUploader
   PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+  MAX_DIFFICULTY = 5
 
   def self.best_projects
     hits = where(hit: true).includes(:archive_attachment)
