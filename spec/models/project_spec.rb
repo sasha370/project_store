@@ -12,8 +12,6 @@ RSpec.describe Project, type: :model do
   it { is_expected.to have_many(:orders).through(:order_projects) }
   it { is_expected.to have_many(:order_projects) }
 
-  # TODO, test for main_image
-  #
   describe 'when price for on project in cart was changed' do
     let!(:cart) { create :order, :with_items }
 

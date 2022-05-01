@@ -3,16 +3,12 @@
 # README
 
 ### TODO
-- Снипет для сайта + ЫУЩ для яндекса  [](https://webmaster.yandex.ru/site/https:diy-plans.ru:443/serp-snippets/serp-snippets/?utm_source=webmaster.yandex.ru?utm_medium=quality_recommendation)
-- [](https://yandex.ru/support/webmaster/search-results/quick-links.html?utm_source=yandex.webmaster&utm_medium=landing&utm_campaign=site_in_search&utm_content=link_14)
-
 - Кнопки следующий\предыдущий в карточке товара
 - добавить теги для Материалы проекта + Админка
 - добавить Breadcrumbs  в карточку проекта
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Общий мониторинг на систем ( nginx, redis, passenger, rails)
 
-- Тесты для смены пароля в личном кабинете
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 - Настроить электронную коммерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
 - Вывести аватар\имя пользователя в навбаре

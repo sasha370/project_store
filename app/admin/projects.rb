@@ -122,7 +122,7 @@ ActiveAdmin.register Project do
           # row :vendor_code
           f.inputs do
             li do
-              link_to 'Preview', project_path(@resource), target: '_blank', class: 'action_item'
+              link_to 'Preview', project_path(@resource), target: '_blank', class: 'action_item' unless @resource.new_record?
             end
             f.input :title
             f.input :vendor_code
