@@ -7,7 +7,7 @@ module MetaTagsHelper
       title: 'DIY Plans | Все своими руками, чертежи и инструкции',
       reverse: true,
       separator: '|',
-      description: 'Своими руками чертежи, инструкции',
+      description: 'Готовы сделать будку для собаки или игровой домик для детей своими руками, тогда мы Вам поможем!',
       keywords: 'будка для собаки, детский домик, своими руками, чертежи, инструкции, схемы',
       canonical: request.original_url,
       noindex: !Rails.env.production?,
