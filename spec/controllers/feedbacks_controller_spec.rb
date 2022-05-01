@@ -56,6 +56,29 @@ RSpec.describe FeedbacksController, type: :controller do
     end
   end
 
+  describe '#create with failure' do
+    before do
+      login(user)
+    end
+
+    context 'when success' do
+      let(:params) { { feedback: { title: 'Some title', body: 'Some body', user_id: nil } } }
+
+      it 'render New' do
+        post :create, params: params
+        expect(response).to render_template :new
+      end
+
+      it 'creates feedback' do
+        expect { post :create, params: params }.not_to change(Feedback, :count)
+      end
+
+      it 'notify user' do
+        expect { post :create, params: params }.not_to change(ActionMailer::Base.deliveries, :count)
+      end
+    end
+  end
+
   describe 'not Authorized users' do
     it 'redirect to log in' do
       get :new
