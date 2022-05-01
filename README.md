@@ -3,9 +3,8 @@
 # README
 
 ### TODO
-- Снипет для сайта + ЫУЩ для яндекса  [](https://webmaster.yandex.ru/site/https:diy-plans.ru:443/serp-snippets/serp-snippets/?utm_source=webmaster.yandex.ru?utm_medium=quality_recommendation)
-- [](https://yandex.ru/support/webmaster/search-results/quick-links.html?utm_source=yandex.webmaster&utm_medium=landing&utm_campaign=site_in_search&utm_content=link_14)
-
+- check N+1
+- rails error to email 
 - Кнопки следующий\предыдущий в карточке товара
 - добавить теги для Материалы проекта + Админка
 - добавить Breadcrumbs  в карточку проекта
@@ -16,6 +15,7 @@
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 - Настроить электронную коммерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
 - Вывести аватар\имя пользователя в навбаре
+- Добавить сортровку картинок в карточке товара
 
 ### SMTP server
 https://app-smtp.sendinblue.com/real-time
