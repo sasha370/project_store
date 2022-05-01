@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://diy-plans.ru/sitemap.xml.gz
+Sitemap: https://diy-plans.ru/sitemap.xml.gz

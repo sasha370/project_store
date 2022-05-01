@@ -94,6 +94,7 @@ ActiveAdmin.register Project do
       row :title
       row :short_description
       row :description
+      row :short_description
       row :price do |project|
         number_to_currency project.price
       end
