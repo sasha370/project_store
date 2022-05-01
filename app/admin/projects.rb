@@ -3,7 +3,7 @@
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
-                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code
+                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description
 
   includes :category, :archive_attachment
   # scope_to :current_user, unless: proc { current_user.admin? }
@@ -128,6 +128,7 @@ ActiveAdmin.register Project do
             f.input :vendor_code
             f.input :short_description
             f.input :description, as: :quill_editor
+            f.input :set_description, as: :quill_editor
             f.input :price
             f.input :old_price
             f.input :dimensions

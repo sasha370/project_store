@@ -50,6 +50,16 @@
           %p.lead.small.pull-right
             = @project.dimensions
 
+      - unless @project.set_description.nil?
+        .general-info-wrap.divider-lg
+          .clearfix
+            %p.pull-left
+              %button.btn.btn-default{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-target" => "#collapseExample", "data-toggle" => "collapse", :type => "button"}
+                Состав документации
+            #collapseExample.collapse
+              .card.card-body
+                = simple_format(@project.set_description)
+
   <!-- #TODO передвинуть в отдельный паршл, когда будут Ревью -->
 
   -# = render 'reviews/new'
