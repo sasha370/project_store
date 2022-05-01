@@ -3,3 +3,4 @@
 import "../../../vendor/assets/stylesheets/active_admin.scss";
 
 import "@activeadmin/activeadmin";
+require('activeadmin_quill_editor')

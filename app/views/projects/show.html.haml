@@ -4,6 +4,8 @@
   = link_to  :back, class: 'general-back-link' do
     %i.fa.fa-long-arrow-left.mr-15
     = t('.back_to_result')
+    - if  current_user&.admin?
+      = link_to "Редактировать", edit_admin_project_path(@project), target: '_blank', class: 'btn btn-default pull-right general-position'
   .row
     .col-sm-6
       = react_component("Gallery", { images: @project.images_for_gallery })
@@ -28,22 +30,12 @@
 
         .col-xs-7.col-md-3.ml-auto
           = @project.cart_buttons
-              
+
       <!-- #Description  -->
       .general-info-wrap.divider-lg
         %p.lead.small.line-height-2
           %div
-            - if @project.description.length > 250
-              = truncate(@project.description, length: 250)
-              %br
-              = link_to t('projects.show.read_more'), '', class: "in-gold-500 ml-10 read-more"
-              :javascript
-                $('.read-more').on('click', function(e) {
-                  e.preventDefault()
-                  $(this).parent().html("#{j @project.description}")
-                })
-            - else
-              = @project.description
+            = simple_format(@project.description)
 
       <!-- #Additional params  -->
       .general-info-wrap.divider-lg
