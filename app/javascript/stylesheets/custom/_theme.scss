@@ -2,12 +2,23 @@
 
 @import "variables";
 
+.difficulty i {
+  color: $blue-500;
+  font-size: 13px;
+  display: inline-block
+}
+
+.difficulty i.disable {
+  color: #cbc9c9
+}
+
 .navbar-default {
   box-shadow: 0 5px 18px 2px rgba(1, 1, 1, 0.1);
 }
 
 .dropdown-menu {
   min-width: 210px;
+
   > li > a {
     display: inline-block;
     font-weight: 300;
@@ -27,25 +38,30 @@
   color: $grey-600;
   word-break: break-word;
 }
+
 .small {
   font-size: $font-size-base;
 }
+
 .btn {
   max-width: 100%;
   font-size: $font-size-small;
   // padding-left: 32px;
   // padding-right: 32px;
   white-space: unset;
+
   &:active,
   .active {
     box-shadow: none;
   }
+
   &.disabled,
   &[disabled] {
     color: white;
     background-color: $grey-600;
   }
 }
+
 .btn-primary,
 .btn-default {
   &:focus,
@@ -57,48 +73,59 @@
     opacity: 0.6;
   }
 }
+
 .carousel-indicators li {
   width: 6px;
   height: 6px;
   background-color: $grey-600;
   margin-right: 4px;
   margin-left: 4px;
+
   &.active {
     width: 6px;
     height: 6px;
     margin: 1px 4px;
   }
 }
+
 .carousel-item {
   padding: 15px 12px 0;
 }
+
 .jumbotron p {
   color: $grey-600;
 }
+
 .thumbnail {
   position: relative;
   margin-right: auto;
   margin-left: auto;
 }
+
 .thumbnail:hover,
 .thumbnail:focus,
 .thumbnail.active {
   border-color: transparent;
+
   .thumb-hover {
     opacity: 1;
   }
 }
+
 .thumbnail.disabled,
 .thumbnail[disabled] {
   opacity: 0.6;
+
   .thumb-hover {
     display: none;
   }
 }
+
 .navbar-inverse {
   padding-top: 30px;
   //padding-bottom: 10px;
 }
+
 .table {
   > thead,
   > tbody,
@@ -118,6 +145,7 @@
   margin: 10px 15px;
   position: relative;
 }
+
 .shop-icon {
   min-width: 22px;
   min-height: 27px;
@@ -127,6 +155,7 @@
   border: 2px solid currentColor;
   position: relative;
   padding: 2px 7px;
+
   &:before {
     content: '';
     width: 10px;
@@ -139,14 +168,17 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
   &:empty {
     background-color: transparent;
   }
 }
+
 .shop-quantity {
   font-size: $font-size-small;
   color: white;
 }
+
 .thumb-hover {
   background-color: $thumbnail-hover-bg;
   text-align: center;
@@ -158,6 +190,7 @@
   opacity: 0;
   transition: $thumbnail-hover-transition;
 }
+
 .thumb-hover-link {
   width: 40px;
   height: 40px;
@@ -167,22 +200,27 @@
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 20px;
+
   &:hover {
     background-color: $grey-200;
+
     .thumb-icon {
-      color: $gold-500;
+      color: $blue-500;
     }
   }
 }
+
 .thumb-icon {
   font-size: 16px;
   color: white;
   line-height: 36px;
 }
+
 .title {
   font-size: $font-size-large;
   word-break: break-word;
 }
+
 .divider-sm {
   width: 30px;
   height: 2px;
@@ -190,18 +228,22 @@
   background-color: $grey-900;
   margin-bottom: 10px;
 }
+
 .nav-link {
   font-size: $font-size-base;
   padding-right: 1.5rem !important;
   color: $grey-600;
+
   &:hover {
-    color: $gold-500;
+    color: $blue-500;
     text-decoration: none;
   }
+
   &:first-child {
     padding-left: 0;
   }
 }
+
 .filter-link {
   font-size: $font-size-base;
   color: $grey-600;
@@ -209,21 +251,25 @@
   position: relative;
   cursor: pointer;
   margin-bottom: 10px;
+
   &:hover {
     color: $grey-900;
     text-decoration: none;
   }
 }
+
 .input-link {
   font-size: $font-size-base;
   color: $grey-350;
   display: inline-block;
   float: left;
+
   &:hover,
   &:focus {
     color: $grey-350
   }
 }
+
 .quantity-input {
   max-width: 40px;
   text-align: center;
@@ -231,13 +277,16 @@
   margin-left: 12px;
   margin-right: 12px;
 }
+
 .logo-max {
   max-width: unset;
 }
+
 .logo-size {
   width: 55px;
   height: 55px;
 }
+
 .logo-empty {
   font-size: $font-size-large;
   color: white;
@@ -245,25 +294,31 @@
   background-color: $grey-350;
   line-height: 55px;
 }
+
 .collapse-link {
   font-size: $font-size-base;
   color: $grey-600;
   font-weight: 300;
   line-height: 2.2;
+
   &:hover {
-    color: $gold-500;
+    color: $blue-500;
     text-decoration: none;
   }
 }
+
 .rate-star {
   font-size: 17px;
-  color: $gold-500
+  color: $blue-500
 }
+
 .rate-empty {
   color: $grey-350;
 }
+
 .divider-lg {
   position: relative;
+
   &:before {
     content: '';
     height: 1px;
@@ -275,14 +330,17 @@
     margin-left: -15px;
     margin-right: -15px;
   }
+
   &:last-child:after {
     bottom: 0;
     top: unset;
     @extend .divider-lg:before;
   }
 }
+
 .divider-lg-bottom {
   position: relative;
+
   &:after {
     content: '';
     height: 1px;
@@ -295,23 +353,27 @@
     margin-right: -15px;
   }
 }
+
 .images {
   margin-left: -10px;
   margin-right: -10px;
 }
+
 .img-link {
-  width: calc( (100% - 60px) / 3);
+  width: calc((100% - 60px) / 3);
   float: left;
   cursor: pointer;
   margin-right: 10px;
   margin-left: 10px;
   margin-bottom: 10px;
 }
+
 .input-label {
   font-size: $font-size-base;
   color: $grey-900;
   font-weight: 300;
 }
+
 .step-number {
   width: 35px;
   height: 35px;
@@ -321,30 +383,36 @@
   line-height: 31px;
   text-align: center;
   display: inline-block;
-  border: 2px solid $gold-500;
+  border: 2px solid $blue-500;
   border-radius: 50%;
 }
+
 .step-text {
   font-size: $font-size-base;
   color: $grey-600;
   font-weight: 300;
   margin-left: 10px;
 }
+
 .steps .step {
   position: relative;
   margin: 0 10px 10px;
   padding-right: 0;
   padding-left: 0;
+
   &:last-child {
     margin-right: 0;
   }
+
   &:first-child {
     margin-left: 0;
   }
 }
+
 .steps .step-divider {
   position: relative;
   vertical-align: middle;
+
   &:after {
     content: '';
     position: absolute;
@@ -356,24 +424,29 @@
     background-color: $grey-200;
   }
 }
+
 .active,
 .done {
   .step-number {
     color: white;
-    background-color: $gold-500;
+    background-color: $blue-500;
   }
+
   .step-text {
     color: $grey-900;
   }
+
   .step-icon {
     font-size: 12px;
   }
 }
+
 .checkbox label {
   min-height: 24px;
   font-weight: 300;
   padding-left: 0;
 }
+
 .checkbox-icon {
   $size: 24px;
   width: $size;
@@ -386,16 +459,19 @@
   border: 1px solid $grey-350;
   margin-right: 15px;
 }
+
 .checkbox-input:checked + .checkbox-icon {
-  background-color: $gold-500;
+  background-color: $blue-500;
   border-color: transparent;
 }
+
 .radio label {
   min-height: 24px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 0;
 }
+
 .radio-icon {
   $size: 24px;
   width: $size;
@@ -407,6 +483,7 @@
   border-radius: 50%;
   margin-right: 10px;
   margin-bottom: 5px;
+
   &:after {
     content: '';
     display: inline-block;
@@ -421,26 +498,30 @@
     opacity: 0;
   }
 }
+
 .radio-input:checked + .radio-icon {
   background-color: transparent;
   border-color: $grey-900;
+
   &:after {
     opacity: 1;
   }
 }
+
 .tab-item {
   float: left;
   margin-bottom: 10px;
 }
+
 .tab-link {
   font-size: 14px;
   color: $grey-600;
+
   &:hover,
   &:focus {
     color: $grey-900;
   }
 }
-
 
 
 @media (min-width: $grid-float-breakpoint) {
@@ -455,18 +536,21 @@
   .table {
     table-layout: fixed;
     border-bottom-color: transparent;
+
     > thead,
     > tbody,
     > tfoot {
       > tr {
         > th:last-child,
-        > td:last-child  {
+        > td:last-child {
           text-align: right;
         }
+
         > th,
         > td {
           padding: 20px;
         }
+
         > td {
           border-bottom: 1px solid $grey-200;
         }
@@ -514,6 +598,7 @@
       margin-left: 10px;
       margin-right: 65px;
     }
+
     .step-divider:after {
       width: 80px;
     }

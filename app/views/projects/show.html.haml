@@ -24,9 +24,9 @@
               = "#{@project.old_price} <small>₽</small>".html_safe
               
         .col-xs-12.col-md-3
-          %p.h1.in-gold-500.mt-10 
+          %p.h1.in-blue-500.mt-10
             = @project.price
-            %small.in-gold-500= t('number.currency.symbol')
+            %small.in-blue-500= t('number.currency.symbol')
 
         .col-xs-7.col-md-3.ml-auto
           = @project.cart_buttons
@@ -41,8 +41,9 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.difficulty') 
-          %p.lead.small.pull-right
-            = @project.difficulty
+          %p.difficulty.pull-right
+            = @project.difficult_icons
+
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('.dimensions')

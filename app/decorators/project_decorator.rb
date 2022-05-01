@@ -41,13 +41,13 @@ class ProjectDecorator < Draper::Decorator
     )
   end
 
-  def download_button(for_catalog: true) # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength
+  def download_button(for_catalog: true)
     if archive.attached?
       link_to archive_link, class: style_for_link(for_catalog), id: "download_project_#{id}" do
         tag.i(for_catalog ? '' : t('cart_buttons.download'), class: 'fa fa-download', aria_hidden: true)
       end
     else
-      # TODO, отправлять на форму обратной связи
       link_to new_feedback_path, class: style_for_link(for_catalog), id: "file_not_found_#{id}" do
         tag.i(for_catalog ? '' : t('cart_buttons.not_found'),
               class: 'fa fa-download',
@@ -55,6 +55,18 @@ class ProjectDecorator < Draper::Decorator
               title: t('cart_buttons.not_found_description'))
       end
     end
+  end
+  # rubocop:enable Metrics/MethodLength
+
+  def difficult_icons
+    html = []
+    (Project::MAX_DIFFICULTY - difficulty).times do
+      html << tag.i(class: 'fas fa-hammer disable')
+    end
+    difficulty.times do
+      html << tag.i(class: 'fas fa-hammer')
+    end
+    safe_join(html)
   end
 
   private
