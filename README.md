@@ -11,7 +11,6 @@
 - Учитывать в счетчике проектов для категории только опубликованные 
 - Общий мониторинг на систем ( nginx, redis, passenger, rails)
 
-- Тесты для смены пароля в личном кабинете
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 - Настроить электронную коммерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
 - Вывести аватар\имя пользователя в навбаре
