@@ -102,6 +102,7 @@ ActiveAdmin.register Project do
         number_to_currency project.old_price
       end
       row :vendor_code
+      row :slug
       row :dimensions
       row :difficulty
       tag_row :status
