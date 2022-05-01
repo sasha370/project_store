@@ -64,9 +64,6 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "Project_store_production"
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -134,4 +131,12 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes }
+
+  # Send failures to admin email
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+                                          email: {
+                                            email_prefix: '[PREFIX] ',
+                                            sender_address: %{"Diy-plans.ru error!" <error@diy-plans.ru>},
+                                            exception_recipients: %w{budka52@bk.ru}
+                                          }
 end

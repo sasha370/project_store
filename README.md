@@ -3,6 +3,8 @@
 # README
 
 ### TODO
+- check N+1
+- rails error to email 
 - Кнопки следующий\предыдущий в карточке товара
 - добавить теги для Материалы проекта + Админка
 - добавить Breadcrumbs  в карточку проекта
@@ -12,6 +14,7 @@
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 - Настроить электронную коммерцию на связь с яндексом  https://yandex.ru/support/metrica/data/e-commerce.html
 - Вывести аватар\имя пользователя в навбаре
+- Добавить сортровку картинок в карточке товара
 
 ### SMTP server
 https://app-smtp.sendinblue.com/real-time
