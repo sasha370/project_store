@@ -3,6 +3,9 @@
 # README
 
 ### TODO
+- Снипет для сайта + ЫУЩ для яндекса  [](https://webmaster.yandex.ru/site/https:diy-plans.ru:443/serp-snippets/serp-snippets/?utm_source=webmaster.yandex.ru?utm_medium=quality_recommendation)
+- [](https://yandex.ru/support/webmaster/search-results/quick-links.html?utm_source=yandex.webmaster&utm_medium=landing&utm_campaign=site_in_search&utm_content=link_14)
+
 - Кнопки следующий\предыдущий в карточке товара
 - добавить теги для Материалы проекта + Админка
 - добавить Breadcrumbs  в карточку проекта
