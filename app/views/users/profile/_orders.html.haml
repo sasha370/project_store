@@ -10,12 +10,13 @@
         %span.in-grey-600= t('models.project.title')
       %th.col-download
         %span.in-grey-600= t('models.project.download')
-    - order.projects.each do |project|
-      %tr{ id: "paid_project_#{project.id}"}
-        %td
-          .general-img-wrap-table
-            = image_tag project.main_image.cart_image.url, class: 'cart-img-shadow pull-left', alt: project.title
-        %td
-          %p.title= link_to project.title, project_path(project)
-        %td
-          = link_to project.download_button(for_catalog: false), class: 'close general-cart-close'
+    - if  order.projects.any?
+      - order.projects.each do |project|
+        %tr{ id: "paid_project_#{project.id}"}
+          %td
+            .general-img-wrap-table
+              = image_tag project.main_image.cart_image.url, class: 'cart-img-shadow pull-left', alt: project.title
+          %td
+            %p.title= link_to project.title, project_path(project)
+          %td
+            = link_to project.download_button(for_catalog: false), class: 'close general-cart-close'

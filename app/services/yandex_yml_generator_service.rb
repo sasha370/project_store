@@ -2,7 +2,13 @@
 
 require 'nokogiri'
 
+# https://yandex.ru/support/webmaster/feed/about.html
+# https://yandex.ru/support/partnermarket/offers.html#offers
 class YandexYmlGeneratorService
+  def initialize
+    @report_path = Rails.root.join('public/yml_report.xml')
+  end
+
   # rubocop:disable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
   def generate_fid
     @categories = Category.all
@@ -14,7 +20,7 @@ class YandexYmlGeneratorService
           xml.name 'Diy-plans.ru'
           xml.company 'Diy-plans.ru'
           xml.url 'https://diy-plans.ru'
-          xml.url 'budka52@bk.ru'
+          xml.email 'budka52@bk.ru'
           xml.currencies do
             xml.currency(id: 'RUR', rate: '1')
           end
@@ -47,8 +53,7 @@ class YandexYmlGeneratorService
       end
     end
 
-    xml_string = builder.to_xml
-    File.write('./file.xml', xml_string)
+    File.write(@report_path, builder.to_xml)
   end
   # rubocop:enable Metrics/BlockLength, Metrics/MethodLength, Metrics/AbcSize
 end
