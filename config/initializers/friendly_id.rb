@@ -1,13 +1,3 @@
-# FriendlyId Global Configuration
-#
-# Use this to set up shared configuration options for your entire application.
-# Any of the configuration options shown here can also be applied to single
-# models by passing arguments to the `friendly_id` class method or defining
-# methods in your model.
-#
-# To learn more, check out the guide:
-#
-# http://norman.github.io/friendly_id/file.Guide.html
 
 FriendlyId.defaults do |config|
   # ## Reserved Words
@@ -87,21 +77,21 @@ FriendlyId.defaults do |config|
   # is included after the anonymous module defined in the initializer, so it
   # overrides the `should_generate_new_friendly_id?` method from the anonymous module.
   #
-  # config.use :slugged
-  # config.use Module.new {
-  #   def should_generate_new_friendly_id?
-  #     slug.blank? || <your_column_name_here>_changed?
-  #   end
-  # }
+  config.use :slugged
+  config.use Module.new {
+    def should_generate_new_friendly_id?
+      slug.blank? || title_changed?
+    end
+  }
   #
   # FriendlyId uses Rails's `parameterize` method to generate slugs, but for
   # languages that don't use the Roman alphabet, that's not usually sufficient.
   # Here we use the Babosa library to transliterate Russian Cyrillic slugs to
   # ASCII. If you use this, don't forget to add "babosa" to your Gemfile.
   #
-  # config.use Module.new {
-  #   def normalize_friendly_id(text)
-  #     text.to_slug.normalize! :transliterations => [:russian, :latin]
-  #   end
-  # }
+  config.use Module.new {
+    def normalize_friendly_id(text)
+      text.to_slug.transliterate(:russian).normalize.to_s
+    end
+  }
 end

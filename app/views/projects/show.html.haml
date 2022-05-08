@@ -1,4 +1,4 @@
-- set_meta_tags title: ['Своими руками чертежи, инструкции', @project.title], keywords: @project.category.title, index: true
+- set_meta_tags title: ['Инструкция | DIY Plans', @project.title], description: "Как сделать #{@project.short_description} своими руками. Цена: #{@project.price} руб. Размеры: #{@project.dimensions}. #{@project.vendor_code}", keywords: @project.category.title, index: true
 
 %main.container{ id: "project_card_#{@project.id}"}
   = link_to  :back, class: 'general-back-link' do

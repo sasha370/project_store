@@ -13,10 +13,20 @@ module MetaTagsHelper
       noindex: !Rails.env.production?,
       icon: [
         { href: image_pack_tag('favicons/favicon.ico'),
-          sizes: '16x16 32x32' },
+          sizes: '16x16' },
+        { href: image_pack_tag('favicons/favicon-16x16.png'),
+          sizes: '16x16', type: 'image/png' },
+        { href: image_pack_tag('favicons/favicon-32x32.png'),
+          sizes: '32x32', type: 'image/png' },
+        { href: image_pack_tag('favicons/favicon-120x120.png'),
+          sizes: '120x120', type: 'image/png' },
+
         { href: image_pack_tag('favicons/apple-touch-icon.png'),
           rel: 'apple-touch-icon',
           sizes: '180x180',
+          type: 'image/png' },
+        { href: image_pack_tag('favicons/android-chrome-192x192.png'),
+          sizes: '190x190',
           type: 'image/png' }
       ],
       og: {

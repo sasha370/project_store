@@ -2,7 +2,7 @@
 
 class Project < ApplicationRecord
   include Rails.application.routes.url_helpers
-  extend FriendlyId
+  include FriendlyId
   friendly_id :title, use: :slugged
 
   validates :title, :short_description, :description, :difficulty, :price, :status, presence: true
@@ -32,6 +32,10 @@ class Project < ApplicationRecord
   def main_image
     images&.first
   end
+
+  # def normalize_friendly_id(text)
+  #   text.to_slug.transliterate(:russian).normalize.to_s
+  # end
 
   private
 
