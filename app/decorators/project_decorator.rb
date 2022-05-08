@@ -17,8 +17,6 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def cart_buttons
-    return ask_register(for_catalog: false) unless current_user
-
     return go_to_cart_button(for_catalog: false) if already_in_cart
 
     return download_button(for_catalog: false) if already_bought
@@ -76,7 +74,7 @@ class ProjectDecorator < Draper::Decorator
   end
 
   def already_in_cart
-    current_user.orders.cart.map(&:project_ids).flatten.include?(id) if current_user
+    current_or_guest_user.cart.project_ids.include?(id)
   end
 
   def add_to_cart_button(for_catalog: true)
@@ -90,12 +88,12 @@ class ProjectDecorator < Draper::Decorator
       tag.i(add_text(t('cart_buttons.pay'), for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
-
-  def ask_register(for_catalog: true)
-    link_to new_user_session_path, class: style_for_link(for_catalog) do
-      tag.i(t('shared.navbar.log_in'), class: 'fas fas fa-sign-in-alt', aria_hidden: true)
-    end
-  end
+  #
+  # def ask_register(for_catalog: true)
+  #   link_to new_user_session_path, class: style_for_link(for_catalog) do
+  #     tag.i(t('shared.navbar.log_in'), class: 'fas fas fa-sign-in-alt', aria_hidden: true)
+  #   end
+  # end
 
   def style_for_link(for_catalog)
     for_catalog ? 'thumb-hover-link thumb-icon' : 'btn btn-default pull-right general-position'

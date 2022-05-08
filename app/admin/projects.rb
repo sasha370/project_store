@@ -6,7 +6,6 @@ ActiveAdmin.register Project do
                 :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description
 
   includes :category, :archive_attachment
-  # scope_to :current_user, unless: proc { current_user.admin? }
 
   controller do
     def scoped_collection

@@ -24,4 +24,18 @@ class ApplicationController < ActionController::Base
       u.permit(:first_name, :last_name, :phone, :email, :password, :password_confirmation, :login, :avatar)
     end
   end
+
+  private
+
+  def transfer_guest_to_user
+    # After this block runs, the guest_user will be destroyed!
+    # Cart from guest_user will be added to current user
+
+    if current_user.cart
+      guest_user.cart.order_projects.each { |order_project| order_project.update(order_id: current_user.cart.id) }
+      current_user.cart.update_amount
+    else
+      guest_user.cart.update!(user: current_user)
+    end
+  end
 end

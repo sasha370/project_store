@@ -16,4 +16,29 @@ RSpec.describe Users::ProfileController, type: :controller do
       expect(assigns(:orders)).to eq([order])
     end
   end
+
+  describe '#save_email' do
+    let(:email) { 'some_email@scom.com' }
+    let(:perform) { post :save_email, params: { email: email } }
+
+    context 'when email already exist' do
+      before { create :user, email: email }
+
+      it 'redirect to login page' do
+        expect(perform).to redirect_to new_user_session_path
+      end
+    end
+
+    context 'when email is new' do
+      it 'create new user' do
+        perform
+        expect(User.last.email).to eq(email)
+      end
+
+      it 'redirect to cart' do
+        perform
+        expect(perform).to redirect_to cart_path
+      end
+    end
+  end
 end
