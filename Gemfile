@@ -11,6 +11,7 @@ gem 'activeadmin_quill_editor'
 gem 'active_storage_variant'
 gem 'acts_as_list'
 gem 'aws-sdk-s3', require: false
+gem 'babosa' # helper for friendly_id for translation from russian
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'capistrano', '~> 3.11',  require: false
 gem 'capistrano-bundler', require: false

@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   before_action :set_categories, only: %i[index]
 
   def index
+    @category = Category.find_by(id: params[:category_id])
     @projects = Projects::SortingAndFilteringQuery.call(params[:category_id], params[:sorting]).decorate
   end
 

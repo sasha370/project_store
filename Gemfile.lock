@@ -115,6 +115,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    babosa (2.0.0)
     bcrypt (3.1.17)
     bindex (0.8.1)
     bootsnap (1.11.1)
@@ -575,6 +576,7 @@ DEPENDENCIES
   activeadmin_quill_editor
   acts_as_list
   aws-sdk-s3
+  babosa
   bootsnap (>= 1.4.4)
   bullet
   byebug
