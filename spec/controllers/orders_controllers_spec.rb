@@ -3,9 +3,10 @@
 RSpec.describe OrdersController, type: :controller do
   describe 'GET #add_to_cart' do
     let!(:project) { create(:project) }
-    let!(:user) { create(:user) }
 
     context 'when Auth user' do
+      let!(:user) { create(:user) }
+
       before do
         login(user)
         get :add_to_cart, params: { id: project.id }, format: :js
@@ -34,20 +35,16 @@ RSpec.describe OrdersController, type: :controller do
         get :add_to_cart, params: { id: project.id }, format: :js
       end
 
-      it 'returns 401 status' do
-        expect(response).to have_http_status(:unauthorized)
+      it 'returns 200 status' do
+        expect(response).to have_http_status(:ok)
       end
 
-      it 'assigns the user to @user' do
-        expect(assigns(:current_user)).to be_nil
+      it 'assigns the projects to @cart' do
+        expect(User.last.cart.projects).to eq([project])
       end
 
-      it 'assigns the purchase to @purchase' do
-        expect(user.orders.cart.size).to eq(0)
-      end
-
-      it 'redirect_to @project' do
-        expect(response).not_to render_template 'add_to_cart'
+      it 'render cart' do
+        expect(response).to render_template 'add_to_cart'
       end
     end
   end
@@ -87,8 +84,8 @@ RSpec.describe OrdersController, type: :controller do
         get :cart
       end
 
-      it 'redirect to sign_in' do
-        expect(response).to redirect_to('/users/sign_in')
+      it 'not redirect to sign_in' do
+        expect(response).to render_template 'orders/cart'
       end
     end
   end
@@ -122,13 +119,13 @@ RSpec.describe OrdersController, type: :controller do
     context 'when NOT Auth' do
       let(:perform) { get :remove_from_cart, params: { id: order_project_to_remove.id }, format: :js }
 
-      it 'returns 401 status' do
+      it 'returns 200 status' do
         perform
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:ok)
       end
 
-      it 'not change orders count' do
-        expect { perform }.not_to change(OrderProject, :count)
+      it 'change order_project count' do
+        expect { perform }.to change(OrderProject, :count).by(-1)
       end
     end
   end

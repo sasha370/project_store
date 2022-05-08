@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/cart', to: 'orders#cart', as: 'cart'
   get '/remove_from_cart/:id', to: 'orders#remove_from_cart', as: 'remove_from_cart'
   get '/my_orders', to: 'users/profile#my_orders', as: 'my_orders'
+  post '/save_email', to: 'users/profile#save_email', as: 'save_email'
 
   # Callbacks
   post '/callbacks/yandex_money', to: 'callbacks/yandex_money#perform'

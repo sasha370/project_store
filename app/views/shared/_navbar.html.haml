@@ -36,7 +36,6 @@
           %li= link_to t('shared.navbar.log_in'), new_user_session_path, class: 'nav-link'
           %li= link_to t('shared.navbar.register'), new_user_registration_path, class: 'nav-link'
     
-    - if current_user
-      = link_to cart_path, class: 'shop-link pull-right' do
-        %span.shop-icon
-          %span.shop-quantity#item_counter= current_user.qty_in_cart
+    = link_to cart_path, class: 'shop-link pull-right' do
+      %span.shop-icon
+        %span.shop-quantity#item_counter= current_or_guest_user.qty_in_cart

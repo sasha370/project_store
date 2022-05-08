@@ -93,6 +93,9 @@ en:
       activate: 'Activate'
     cart:
       title: 'Cart'
+    ask_email:
+      button: 'Save'
+      description: 'Please enter your email address so we can send you links to purchased items.'
     success: 'Project was successfully add to cart'
     removed: 'Project was removed from cart'
 
@@ -169,3 +172,10 @@ en:
   mailer:
     feedback:
       title: 'Question on the site diy-plans.ru'
+
+  controllers:
+    users:
+      profile:
+        save_email:
+          user_exists: 'This email has already been registered, please login to continue'
+          new_user: 'We saved your email and registered on the site! Please confirm it, Default password: 123456.'

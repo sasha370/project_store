@@ -13,7 +13,7 @@
           = f.label :body, t('models.feedback.body')
           = f.text_area :body, autofocus: true, size: "180x10", placeholder: t('models.feedback.body_placeholder'), class: 'form-control', :required => true
         .form-group
-          = f.hidden_field :user_id, :value => current_user.id
+          = f.hidden_field :user_id, :value => current_or_guest_user.id
         .form-group
           = f.submit t('pages.feedback.submit'), class: 'btn btn-primary'
       %br

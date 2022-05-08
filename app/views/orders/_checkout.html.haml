@@ -1,23 +1,43 @@
 %p
   <!-- # TODO -->
   %div
-    %span
-      = t('orders.checkout.continue_agree')
-      = link_to t('orders.checkout.continue_agree_link'), donate_policy_path
-      %br
-      = t('orders.checkout.after_checkout')
-      = link_to t('orders.checkout.after_checkout_link'), my_orders_path
-    %span
-      - if @cart.amount > 0
-        = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post, class: 'pull-right general-position', id: 'payment_button' do |f|
-          = f.hidden_field_tag :receiver, "410011633433937"
-          = f.hidden_field_tag 'quickpay-form', "donate"
-          = f.hidden_field_tag :targets, "#{t('models.order.model_name')} №#{@payment.order.id}"
-          = f.hidden_field_tag :paymentType, 'AC'
-          = f.hidden_field_tag :sum, @payment.amount.to_f, id: 'checkout_sum', data_type: "number"
-          = f.hidden_field_tag :formcomment, 'diy-plans.ru'
-          = f.hidden_field_tag :label, @payment.id #  label for callback
-          = f.hidden_field_tag :successURL, my_orders_url # redirect after success
-          = f.submit value: t('orders.checkout.pay_button'), class: 'btn btn-primary btn-sm'
+    .row
+      .col-sm-4
+        %span
+          = t('orders.checkout.continue_agree')
+          = link_to t('orders.checkout.continue_agree_link'), donate_policy_path
+          %br
+          = t('orders.checkout.after_checkout')
+          = link_to t('orders.checkout.after_checkout_link'), my_orders_path
+        = image_pack_tag('visa-master-icon.png')
 
-= image_pack_tag('visa-master-icon.png')
+      .col-sm-2
+      .col-sm-4
+        - if current_or_guest_user.email.start_with?('guest_')
+          .input-group.general-input-group
+
+            %p= t('orders.ask_email.description')
+
+            = form_with  url: save_email_path, method: :post, id: 'ask_user_email'  do |f|
+              .form-group
+                = f.label :email, t('models.user.email')
+                = f.text_field :email, autofocus: true, placeholder: t('models.user.email_placeholder'), class: 'form-control', id: 'ask_email', :required => true
+              .form-group
+                = f.submit t('orders.ask_email.button'), class: 'btn btn-primary mr-5 mb-15', id: 'ask_email_submit'
+        - else
+          %span
+            - if @cart.amount > 0
+
+              = form_with url: "https://yoomoney.ru/quickpay/confirm.xml", method: :post, class: 'pull-right general-position', id: 'payment_button' do |f|
+                = f.hidden_field_tag :receiver, "410011633433937"
+                = f.hidden_field_tag 'quickpay-form', "donate"
+                = f.hidden_field_tag :targets, "#{t('models.order.model_name')} №#{@payment.order.id}"
+                = f.hidden_field_tag :paymentType, 'AC'
+                = f.hidden_field_tag :sum, @payment.amount.to_f, id: 'checkout_sum', data_type: "number"
+                = f.hidden_field_tag :formcomment, 'diy-plans.ru'
+                = f.hidden_field_tag :label, @payment.id #  label for callback
+                = f.hidden_field_tag :successURL, my_orders_url # redirect after success
+                = f.submit value: t('orders.checkout.pay_button'), class: 'btn btn-primary btn-sm'
+
+
+
