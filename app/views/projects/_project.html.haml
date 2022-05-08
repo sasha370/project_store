@@ -9,8 +9,13 @@
           = project.cart_buttons_catalog
 
   .general-thumb-info
-    %p.title= project.short_title
-    %p.font-16.in-blue-500
-      = t('number.currency.symbol')
-      = project.price
+    .row
+      .col-6
+        %p.font-16.in-blue-500
+          = t('number.currency.symbol')
+          = project.price
+      .col-6
+        %p.font-16.in-blue-500.difficulty.pull-right
+          = project.difficult_icons
     %span.divider-sm
+    %p.title= project.title

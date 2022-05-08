@@ -4,11 +4,6 @@ class ProjectDecorator < Draper::Decorator
   include Draper::LazyHelpers
 
   delegate_all
-  MAX_TITLE_LENGTH = 27
-
-  def short_title
-    title.truncate(MAX_TITLE_LENGTH, separator: /\s/)
-  end
 
   def images_for_gallery
     images.map do |image|

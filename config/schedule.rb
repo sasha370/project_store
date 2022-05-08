@@ -21,5 +21,9 @@
 
 # Update sitemap and notify Google
 every 1.day, :at => '5:00 am' do
-  rake "-s sitemap:refresh"
+  rake '-s sitemap:refresh'
+  end
+
+every 7.day, :at => '5:00 am' do
+  rake 'generate_report'
 end
