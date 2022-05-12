@@ -25,8 +25,8 @@ set :deploy_to, "/home/deploy/project_store"
 append :linked_files, "config/database.yml", 'config/master.key', 'config/credentials/production.key'
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", \
-"vendor", "storage", '.bundle', 'public/uploads', 'node_modules'
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker",  \
+"vendor", "storage", '.bundle', 'public', 'node_modules'
 #
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

@@ -13,7 +13,6 @@ class Project < ApplicationRecord
   has_many :buyers, through: :orders, source: :user
   has_many_attached :images
   has_one_attached :archive
-
   scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
   enum status: { newest: 0, published: 10 }
@@ -32,10 +31,6 @@ class Project < ApplicationRecord
   def main_image
     images&.first
   end
-
-  # def normalize_friendly_id(text)
-  #   text.to_slug.transliterate(:russian).normalize.to_s
-  # end
 
   private
 
