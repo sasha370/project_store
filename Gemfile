@@ -47,6 +47,8 @@ gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'webpacker', '~> 5.0'
 gem 'whenever', require: false
+gem "image_processing", ">= 1.2"
+
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

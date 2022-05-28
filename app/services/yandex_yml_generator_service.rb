@@ -40,7 +40,7 @@ class YandexYmlGeneratorService
                 xml.count '100'
                 xml.categoryId project.category.id
                 xml.category project.category.title
-                xml.picture Rails.application.routes.url_helpers.url_for(project.main_image.url)
+                xml.picture Rails.application.routes.url_helpers.url_for(project.main_image)
                 xml.description do
                   xml.cdata project.description
                 end

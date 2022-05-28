@@ -15,7 +15,7 @@
         %tr{ id: "paid_project_#{project.id}"}
           %td
             .general-img-wrap-table
-              = image_tag project.main_image.cart_image.url, class: 'cart-img-shadow pull-left', alt: project.title
+              = image_tag project.main_image(:cart_image), class: 'cart-img-shadow pull-left', alt: project.title
           %td
             %p.title= link_to project.title, project_path(project)
           %td

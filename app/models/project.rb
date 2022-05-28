@@ -11,16 +11,22 @@ class Project < ApplicationRecord
   has_many :order_projects, dependent: :destroy
   has_many :orders, through: :order_projects
   has_many :buyers, through: :orders, source: :user
-  has_many_attached :images
-  has_one_attached :archive
-  # scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
-  enum status: { newest: 0, published: 10 }
+  has_many_attached :images do |attachable|
+    attachable.variant :default, resize: '1024x768'
+    attachable.variant :thumb, resize: '150x150'
+    attachable.variant :cart_image, resize: '80x60'
+    attachable.variant :catalog_image, resize: '330x248'
+  end
+
+  has_one_attached :archive
+
+  enum status: { unpublished: 0, published: 10 }
   after_create :set_vendor_code
   after_update :update_all_carts
 
-  mount_uploaders :images, ImageUploader
-  # PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+  # mount_uploaders :images, ImageUploader
+  PLACEHOLDER_IMAGE = '/placeholder_image.jpg'
   MAX_DIFFICULTY = 5
 
   def self.best_projects
@@ -28,8 +34,8 @@ class Project < ApplicationRecord
     hits.count > 2 ? hits : includes(:archive_attachment).take(3)
   end
 
-  def main_image
-    images&.first
+  def main_image(variant)
+    images.first ? images.first.variant(variant) : PLACEHOLDER_IMAGE
   end
 
   private

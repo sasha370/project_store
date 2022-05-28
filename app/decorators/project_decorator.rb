@@ -2,9 +2,13 @@
 
 class ProjectDecorator < ApplicationDecorator
   def images_for_gallery
-    images.map do |image|
-      { original: image.url, thumbnail: image.thumb.url }
+    gallery = images.map do |image|
+      path = Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
+      { original: path, thumbnail: path }
     end
+    return [{ original: Project::PLACEHOLDER_IMAGE, thumbnail: Project::PLACEHOLDER_IMAGE }] if gallery.empty?
+
+    gallery
   end
 
   def cart_buttons
@@ -45,6 +49,7 @@ class ProjectDecorator < ApplicationDecorator
       end
     end
   end
+
   # rubocop:enable Metrics/MethodLength
 
   def difficult_icons
@@ -79,6 +84,7 @@ class ProjectDecorator < ApplicationDecorator
       tag.i(add_text(t('cart_buttons.pay'), for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
+
   #
   # def ask_register(for_catalog: true)
   #   link_to new_user_session_path, class: style_for_link(for_catalog) do

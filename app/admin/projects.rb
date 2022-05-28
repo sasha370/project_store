@@ -15,7 +15,7 @@ ActiveAdmin.register Project do
 
   #Index sort buttons
   scope :all
-  scope :newest
+  scope :unpublished
   scope :published
 
   #Index filters
@@ -30,7 +30,7 @@ ActiveAdmin.register Project do
   controller do
     def update
       project = Project.friendly.find(params[:id])
-      params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
+      # params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
       project.update(permitted_params[:project])
       flash[:notice] = 'Project Updated!'
       redirect_to edit_admin_project_path(project)
@@ -73,7 +73,7 @@ ActiveAdmin.register Project do
         columns do
           project.images.each do |img|
             column do
-              image_tag img.url, size: '100x100'
+              image_tag img, size: '100x100'
             end
           end
         end
@@ -147,13 +147,14 @@ ActiveAdmin.register Project do
             if f.object.images.any?
               f.object.images.each.with_index do |img, index|
                 span do
-                  image_tag(img.thumb.url)
+                  image_tag img.variant(:thumb)
                 end
                 link_to 'Delete', destroy_image_admin_project_path(id: project.id, index: index), "data-method": :delete,
                         "data-confirm": 'Are you sure?'
               end
             end
           end
+          f.actions
         end
         panel 'Files' do
           span do
@@ -186,7 +187,7 @@ ActiveAdmin.register Project do
 
   member_action :unpublish, method: :put do
     project = Project.friendly.find(params[:id])
-    project.update(status: :newest)
+    project.update(status: :unpublished)
     redirect_to admin_project_path(project)
   end
 
@@ -198,17 +199,7 @@ ActiveAdmin.register Project do
   # Destroy one of project images
   member_action :destroy_image, method: :delete do
     project = Project.friendly.find(params[:id])
-    index = params[:index].to_i
-
-    remain_images = project.images.map(&:identifier)
-    if index.zero? && project.images.size == 1
-      project.remove_images!
-    else
-      deleted_image = remain_images.delete_at(index)
-      deleted_image.try(:remove!)
-      project.images = remain_images
-    end
-    project.save
+    project.images[params[:index].to_i].purge
     flash[:notice] = 'Image deleted!'
     redirect_to edit_admin_project_path(project)
   end

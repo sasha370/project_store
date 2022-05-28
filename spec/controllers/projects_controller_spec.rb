@@ -22,7 +22,7 @@ RSpec.describe ProjectsController, type: :controller do
 
       before do
         # Seed unpublished project to DB
-        create_list(:project, 3, category: category2, status: :newest)
+        create_list(:project, 3, category: category2, status: :unpublished)
       end
 
       it 'assigns the requested projects to ALL published @projects' do

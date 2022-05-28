@@ -604,6 +604,7 @@ DEPENDENCIES
   friendly_id (~> 5.4.0)
   haml-rails
   httparty
+  image_processing (>= 1.2)
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.3)

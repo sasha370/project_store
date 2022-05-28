@@ -16,7 +16,7 @@ categories_title.each do |title|
   3.times { FactoryBot.create(:project, category: category, status: :published) }
 
   # Unpublished
-  3.times { FactoryBot.create(:project, category: category, status: :newest) }
+  3.times { FactoryBot.create(:project, category: category, status: :unpublished) }
 end
 
 #Orders
