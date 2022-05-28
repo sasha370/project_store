@@ -15,6 +15,8 @@ class User < ApplicationRecord
   end
   has_many :feedbacks, dependent: :destroy
 
+  scope :guest, -> { where(guest: true) }
+
   enum role: { usual: 0, admin: 2 }
 
   def qty_in_cart

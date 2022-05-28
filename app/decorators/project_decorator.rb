@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-class ProjectDecorator < Draper::Decorator
-  include Draper::LazyHelpers
-
-  delegate_all
-
+class ProjectDecorator < ApplicationDecorator
   def images_for_gallery
     images.map do |image|
       { original: image.url, thumbnail: image.thumb.url }

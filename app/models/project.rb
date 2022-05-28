@@ -13,14 +13,14 @@ class Project < ApplicationRecord
   has_many :buyers, through: :orders, source: :user
   has_many_attached :images
   has_one_attached :archive
-  scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
+  # scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
 
   enum status: { newest: 0, published: 10 }
   after_create :set_vendor_code
   after_update :update_all_carts
 
   mount_uploaders :images, ImageUploader
-  PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+  # PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
   MAX_DIFFICULTY = 5
 
   def self.best_projects

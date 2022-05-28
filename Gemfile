@@ -41,6 +41,7 @@ gem 'rails', '~> 6.1.3'
 gem 'react-rails'
 gem 'redis', '~> 4.0'
 gem 'sass-rails', '>= 6'
+gem "sidekiq", "~> 6.4"
 gem 'sitemap_generator'
 gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'

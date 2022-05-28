@@ -9,6 +9,12 @@ ActiveAdmin.register User do
   filter :sign_in_count
   filter :created_at
 
+  #Index sort buttons
+  scope :all
+  scope :guest
+  scope :admin
+  scope :usual
+
   index do
     selectable_column
     id_column

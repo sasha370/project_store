@@ -15,7 +15,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
@@ -61,9 +61,8 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
-  # config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :sidekiq
   # config.active_job.queue_name_prefix = "Project_store_production"
-
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -86,9 +85,9 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger           = ActiveSupport::Logger.new($stdout)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
-    config.logger    = ActiveSupport::TaggedLogging.new(logger)
+    config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
 
   # Do not dump schema after migrations.
@@ -118,8 +117,8 @@ Rails.application.configure do
   # CUSTOM
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.asset_host = { host: '94.154.11.225' }
-  config.action_mailer.default_url_options = { host: '94.154.11.225' }
+  config.action_mailer.asset_host = {host: '94.154.11.225'}
+  config.action_mailer.default_url_options = {host: '94.154.11.225'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
@@ -130,7 +129,7 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
-  config.cache_store = :redis_cache_store, { url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes }
+  config.cache_store = :redis_cache_store, {url: 'redis://localhost:6379/0/cache', expires_in: 90.minutes}
 
   # Send failures to admin email
   Rails.application.config.middleware.use ExceptionNotification::Rack,
@@ -139,4 +138,7 @@ Rails.application.configure do
                                             sender_address: %{"Diy-plans.ru error!" <error@diy-plans.ru>},
                                             exception_recipients: %w{budka52@bk.ru}
                                           }
+
+  # Do not overwrite existing image when new add
+  config.active_storage.replace_on_assign_to_many = false
 end

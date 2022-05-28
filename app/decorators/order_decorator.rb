@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-class OrderDecorator < Draper::Decorator
-  include Draper::LazyHelpers
-  delegate_all
+class OrderDecorator < ApplicationDecorator
   decorates_association :projects
 end
