@@ -5,7 +5,7 @@ require "image_processing/mini_magick"
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
-                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description, :position
+                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description
 
   includes :category, :archive_attachment
 
@@ -126,68 +126,7 @@ ActiveAdmin.register Project do
   end
 
   #New and Edit form fields
-  form do |f|
-    columns do
-      column max_width: "50%" do
-        panel 'Project' do
-          # row :vendor_code
-          f.inputs do
-            li do
-              link_to 'Preview', project_path(@resource), target: '_blank', class: 'action_item' unless @resource.new_record?
-            end
-            f.input :title
-            f.input :vendor_code
-            f.input :short_description
-            f.input :description, as: :quill_editor
-            f.input :set_description, as: :quill_editor
-            f.input :price
-            f.input :old_price
-            f.input :dimensions
-            f.input :difficulty
-            f.input :status
-            f.input :category, as: :select, collection: Category.all.friendly.collect { |category| [category.title, category.id] }
-            f.input :hit
-          end
-        end
-      end
-      column max_width: "50%" do
-        panel 'Images' do
-          f.inputs do
-            f.input :images, as: :file, input_html: {multiple: true}
-            ul do
-              if f.object.images.any?
-                f.object.images.order(position: :asc).each.with_index do |img, index|
-                  li do
-                    span do
-                      image_tag img.variant(:thumb)
-                    end
-
-                    div "Размеры: #{img.metadata['width']}x#{img.metadata['height']}"
-                    div "Позиция: #{img.position}"
-                    link_to 'Up  ', move_up_admin_project_path(img_id: img.id)
-                    link_to 'Down  ', move_down_admin_project_path(img_id: img.id)
-                    link_to 'Delete', destroy_image_admin_project_path(img_id: img.id), "data-method": :delete,
-                            "data-confirm": 'Are you sure?', class: 'btn btn-primary'
-                    div '-' * 50
-                  end
-                end
-              end
-            end
-          end
-          f.actions
-        end
-        panel 'Files' do
-          span do
-            link_to f.object.archive.blob.filename, rails_blob_url(f.object.archive), target: "_blank" if object.archive.attached?
-          end
-          span do
-            f.input :archive, as: :file, input_html: {multiple: false}
-          end
-        end
-      end
-    end
-    f.actions
-  end
+  form partial: 'form'
 
   # Publish Project button
   action_item :publish, only: :show do
@@ -224,6 +163,7 @@ ActiveAdmin.register Project do
     redirect_to edit_admin_project_path(resource)
   end
 
+  # Images sorting
   member_action :move_up, method: :get do
     image = ActiveStorage::Attachment.find(params[:img_id])
     image.move_higher
@@ -233,6 +173,16 @@ ActiveAdmin.register Project do
   member_action :move_down, method: :get do
     image = ActiveStorage::Attachment.find(params[:img_id])
     image.move_lower
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  action_item :delete_all_images, only: [:edit, :new] do
+    link_to 'Remove all images', delete_all_images_admin_project_path(project), "data-confirm": 'Are you sure?' if project.images.any?
+  end
+
+  member_action :delete_all_images do
+    project = Project.friendly.find(params[:id])
+    project.images.each { |i| i.purge }
     redirect_to edit_admin_project_path(resource)
   end
 end
