@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require "image_processing/mini_magick"
+
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
-                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description
+                :status, :hit, :created_at, :updated_at, :category_id, :user_id, {images: []}, :archive, :vendor_code, :set_description, :position
 
   includes :category, :archive_attachment
 
@@ -30,8 +32,16 @@ ActiveAdmin.register Project do
   controller do
     def update
       project = Project.friendly.find(params[:id])
-      # params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
+
+      images = params[:project][:images]
+      if images
+        images.each do |image|
+          tempfile = ImageProcessing::MiniMagick.source(image.tempfile.path).resize_to_fill(nil, 768).call
+          image.tempfile = tempfile
+        end
+      end
       project.update(permitted_params[:project])
+
       flash[:notice] = 'Project Updated!'
       redirect_to edit_admin_project_path(project)
     end
@@ -144,13 +154,23 @@ ActiveAdmin.register Project do
         panel 'Images' do
           f.inputs do
             f.input :images, as: :file, input_html: {multiple: true}
-            if f.object.images.any?
-              f.object.images.each.with_index do |img, index|
-                span do
-                  image_tag img.variant(:thumb)
+            ul do
+              if f.object.images.any?
+                f.object.images.order(position: :asc).each.with_index do |img, index|
+                  li do
+                    span do
+                      image_tag img.variant(:thumb)
+                    end
+
+                    div "Размеры: #{img.metadata['width']}x#{img.metadata['height']}"
+                    div "Позиция: #{img.position}"
+                    link_to 'Up  ', move_up_admin_project_path(img_id: img.id)
+                    link_to 'Down  ', move_down_admin_project_path(img_id: img.id)
+                    link_to 'Delete', destroy_image_admin_project_path(img_id: img.id), "data-method": :delete,
+                            "data-confirm": 'Are you sure?', class: 'btn btn-primary'
+                    div '-' * 50
+                  end
                 end
-                link_to 'Delete', destroy_image_admin_project_path(id: project.id, index: index), "data-method": :delete,
-                        "data-confirm": 'Are you sure?'
               end
             end
           end
@@ -198,9 +218,21 @@ ActiveAdmin.register Project do
 
   # Destroy one of project images
   member_action :destroy_image, method: :delete do
-    project = Project.friendly.find(params[:id])
-    project.images[params[:index].to_i].purge
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.purge
     flash[:notice] = 'Image deleted!'
-    redirect_to edit_admin_project_path(project)
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  member_action :move_up, method: :get do
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.move_higher
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  member_action :move_down, method: :get do
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.move_lower
+    redirect_to edit_admin_project_path(resource)
   end
 end

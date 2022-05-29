@@ -30,3 +30,7 @@ $approved-color: #08A510;
   &.rejected { background: $rejected-color; }
   &.approved { background: $approved-color; }
 }
+
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+  min-height: 500px !important;
+}

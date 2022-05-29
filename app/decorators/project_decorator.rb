@@ -2,9 +2,10 @@
 
 class ProjectDecorator < ApplicationDecorator
   def images_for_gallery
-    gallery = images.map do |image|
-      path = Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
-      { original: path, thumbnail: path }
+    gallery = images.order(position: :asc).map do |image|
+      original = rails_blob_path(image, only_path: true)
+      thumbnail = rails_representation_url(image.variant(:thumb), only_path: true)
+      { original: original, thumbnail: thumbnail }
     end
     return [{ original: Project::PLACEHOLDER_IMAGE, thumbnail: Project::PLACEHOLDER_IMAGE }] if gallery.empty?
 
@@ -84,13 +85,6 @@ class ProjectDecorator < ApplicationDecorator
       tag.i(add_text(t('cart_buttons.pay'), for_catalog), class: 'fas fa-coins', aria_hidden: true)
     end
   end
-
-  #
-  # def ask_register(for_catalog: true)
-  #   link_to new_user_session_path, class: style_for_link(for_catalog) do
-  #     tag.i(t('shared.navbar.log_in'), class: 'fas fas fa-sign-in-alt', aria_hidden: true)
-  #   end
-  # end
 
   def style_for_link(for_catalog)
     for_catalog ? 'thumb-hover-link thumb-icon' : 'btn btn-default pull-right general-position'
