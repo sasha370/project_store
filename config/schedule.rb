@@ -29,5 +29,5 @@ every 1.day, at: '5:00 am' do
 end
 
 every 7.days, at: '5:00 am' do
-  GuestsCleanupJob.new.perform
+  runner 'GuestsCleanupJob.new.perform'
 end
