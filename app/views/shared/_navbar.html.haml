@@ -11,6 +11,8 @@
         - if current_user && current_user.admin?
           %li.nav-item
             = link_to t('shared.navbar.admin'), admin_root_path, class: 'nav-link'
+          %li.nav-item
+            = link_to t('shared.navbar.pghero'), pg_hero_path, class: 'nav-link'
         %li.nav-item
           = link_to t('.home'), root_path, class: 'nav-link'
         %li.nav-item.dropdown

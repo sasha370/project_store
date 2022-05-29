@@ -5,6 +5,9 @@ Rails.application.routes.draw do
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
 
   ActiveAdmin.routes(self)
+  authenticate :user, -> (user) { user.admin? } do
+    mount PgHero::Engine, at: "pghero"
+  end
   root to: 'pages#index'
 
   resources :projects, only: [:index, :show]

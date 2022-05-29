@@ -80,6 +80,7 @@ ru:
       log_out: 'Выйти'
       log_in: ' Войти'
       register: 'Зарегистрироваться'
+      pghero: "PgHero"
 
   orders:
     checkout:

@@ -16,8 +16,6 @@
 
 
 ### TODO
-- Сортировка картинок в карточке товара  https://gorails.com/episodes/sortable-drag-and-drop
-- https://github.com/brendon/acts_as_list
 - Сделать страницу "почему стоит покупать у нас"
 - Кеширование страниц товара + Redis
 - check N+1
