@@ -13,7 +13,7 @@ class Project < ApplicationRecord
   has_many :buyers, through: :orders, source: :user
 
   has_many_attached :images do |attachable|
-    attachable.variant :gallery, resize_to_fill: [1024, 768]
+    attachable.variant :default, resize_to_fill: [nil, 768]
     attachable.variant :thumb, resize_to_fill: [150, 150]
     attachable.variant :cart_image, resize_to_fill: [80, 60]
     attachable.variant :catalog_image, resize_to_fill: [330, 248]
