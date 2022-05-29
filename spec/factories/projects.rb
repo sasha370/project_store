@@ -11,10 +11,12 @@ FactoryBot.define do
     old_price { rand(1..1000) }
     dimensions { '1000x111x222' }
     difficulty { rand(0..5) }
-    images do
-      Array.new(7) do
-        file_path = Rails.root.join("spec/fixtures/files/images/default_cover#{rand(0 - 6)}.jpg")
-        Rack::Test::UploadedFile.new(file_path, 'image/jpeg')
+
+    after :build do |project|
+      7.times do |index|
+        file_name = "default_cover#{index}.jpg"
+        file_path = Rails.root.join("spec/fixtures/files/images/#{file_name}")
+        project.images.attach(io: File.open(file_path), filename: file_name, content_type: 'image/png')
       end
     end
 

@@ -20,10 +20,14 @@
 # Learn more: http://github.com/javan/whenever
 
 # Update sitemap and notify Google
-every 1.day, :at => '5:00 am' do
+every 1.day, at: '5:00 am' do
   rake '-s sitemap:refresh'
-  end
+end
 
-every 7.day, :at => '5:00 am' do
+every 1.day, at: '5:00 am' do
   rake 'generate_report'
+end
+
+every 7.days, at: '5:00 am' do
+  GuestsCleanupJob.new.perform
 end

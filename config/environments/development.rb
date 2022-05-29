@@ -107,4 +107,6 @@ Rails.application.configure do
   #   enable_starttls_auto: true
   # }
 
+  # Do not overwrite existing image when new add
+  config.active_storage.replace_on_assign_to_many = false
 end

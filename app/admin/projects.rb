@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "image_processing/mini_magick"
+
 ActiveAdmin.register Project do
   include Rails.application.routes.url_helpers
   permit_params :authenticity_token, :id, :commit, :project, :title, :short_description, :description, :price, :old_price, :dimensions, :difficulty,
@@ -15,7 +17,7 @@ ActiveAdmin.register Project do
 
   #Index sort buttons
   scope :all
-  scope :newest
+  scope :unpublished
   scope :published
 
   #Index filters
@@ -30,8 +32,16 @@ ActiveAdmin.register Project do
   controller do
     def update
       project = Project.friendly.find(params[:id])
-      params[:project][:images].concat(project.images.map(&:identifier)).uniq if params[:project][:images]
+
+      images = params[:project][:images]
+      if images
+        images.each do |image|
+          tempfile = ImageProcessing::MiniMagick.source(image.tempfile.path).resize_to_fill(nil, 768).call
+          image.tempfile = tempfile
+        end
+      end
       project.update(permitted_params[:project])
+
       flash[:notice] = 'Project Updated!'
       redirect_to edit_admin_project_path(project)
     end
@@ -73,7 +83,7 @@ ActiveAdmin.register Project do
         columns do
           project.images.each do |img|
             column do
-              image_tag img.url, size: '100x100'
+              image_tag img, size: '100x100'
             end
           end
         end
@@ -116,57 +126,7 @@ ActiveAdmin.register Project do
   end
 
   #New and Edit form fields
-  form do |f|
-    columns do
-      column max_width: "50%" do
-        panel 'Project' do
-          # row :vendor_code
-          f.inputs do
-            li do
-              link_to 'Preview', project_path(@resource), target: '_blank', class: 'action_item' unless @resource.new_record?
-            end
-            f.input :title
-            f.input :vendor_code
-            f.input :short_description
-            f.input :description, as: :quill_editor
-            f.input :set_description, as: :quill_editor
-            f.input :price
-            f.input :old_price
-            f.input :dimensions
-            f.input :difficulty
-            f.input :status
-            f.input :category, as: :select, collection: Category.all.friendly.collect { |category| [category.title, category.id] }
-            f.input :hit
-          end
-        end
-      end
-      column max_width: "50%" do
-        panel 'Images' do
-          f.inputs do
-            f.input :images, as: :file, input_html: {multiple: true}
-            if f.object.images.any?
-              f.object.images.each.with_index do |img, index|
-                span do
-                  image_tag(img.thumb.url)
-                end
-                link_to 'Delete', destroy_image_admin_project_path(id: project.id, index: index), "data-method": :delete,
-                        "data-confirm": 'Are you sure?'
-              end
-            end
-          end
-        end
-        panel 'Files' do
-          span do
-            link_to f.object.archive.blob.filename, rails_blob_url(f.object.archive), target: "_blank" if object.archive.attached?
-          end
-          span do
-            f.input :archive, as: :file, input_html: {multiple: false}
-          end
-        end
-      end
-    end
-    f.actions
-  end
+  form partial: 'form'
 
   # Publish Project button
   action_item :publish, only: :show do
@@ -186,7 +146,7 @@ ActiveAdmin.register Project do
 
   member_action :unpublish, method: :put do
     project = Project.friendly.find(params[:id])
-    project.update(status: :newest)
+    project.update(status: :unpublished)
     redirect_to admin_project_path(project)
   end
 
@@ -197,19 +157,32 @@ ActiveAdmin.register Project do
 
   # Destroy one of project images
   member_action :destroy_image, method: :delete do
-    project = Project.friendly.find(params[:id])
-    index = params[:index].to_i
-
-    remain_images = project.images.map(&:identifier)
-    if index.zero? && project.images.size == 1
-      project.remove_images!
-    else
-      deleted_image = remain_images.delete_at(index)
-      deleted_image.try(:remove!)
-      project.images = remain_images
-    end
-    project.save
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.purge
     flash[:notice] = 'Image deleted!'
-    redirect_to edit_admin_project_path(project)
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  # Images sorting
+  member_action :move_up, method: :get do
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.move_higher
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  member_action :move_down, method: :get do
+    image = ActiveStorage::Attachment.find(params[:img_id])
+    image.move_lower
+    redirect_to edit_admin_project_path(resource)
+  end
+
+  action_item :delete_all_images, only: [:edit, :new] do
+    link_to 'Remove all images', delete_all_images_admin_project_path(project), "data-confirm": 'Are you sure?' if project.images.any?
+  end
+
+  member_action :delete_all_images do
+    project = Project.friendly.find(params[:id])
+    project.images.each { |i| i.purge }
+    redirect_to edit_admin_project_path(resource)
   end
 end

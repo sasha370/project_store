@@ -1,6 +1,6 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
 User-agent: *
 Disallow:
-Clean-param: sorting
+Clean-param: sorting&category_id
 
 Sitemap: https://diy-plans.ru/sitemap.xml.gz

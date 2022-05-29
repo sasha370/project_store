@@ -11,31 +11,32 @@ class Project < ApplicationRecord
   has_many :order_projects, dependent: :destroy
   has_many :orders, through: :order_projects
   has_many :buyers, through: :orders, source: :user
-  has_many_attached :images
+
+  has_many_attached :images do |attachable|
+    attachable.variant :default, resize_to_fill: [nil, 768]
+    attachable.variant :thumb, resize_to_fill: [150, 150]
+    attachable.variant :cart_image, resize_to_fill: [80, 60]
+    attachable.variant :catalog_image, resize_to_fill: [330, 248]
+  end
+
   has_one_attached :archive
 
-  scope :by_category, ->(category_id = nil) { category_id ? where(category_id: category_id) : all }
-
-  enum status: { newest: 0, published: 10 }
+  enum status: { unpublished: 0, published: 10 }
   after_create :set_vendor_code
   after_update :update_all_carts
 
-  mount_uploaders :images, ImageUploader
-  PLACEHOLDER_IMAGE = 'placeholder_image.jpg'
+  PLACEHOLDER_IMAGE = '/placeholder_image.jpg'
   MAX_DIFFICULTY = 5
+  DEFAULT_BESTSELLERS_NUM = 3
 
   def self.best_projects
     hits = where(hit: true).includes(:archive_attachment)
-    hits.count > 2 ? hits : includes(:archive_attachment).take(3)
+    hits.count > (DEFAULT_BESTSELLERS_NUM - 1) ? hits : includes(:archive_attachment).take(DEFAULT_BESTSELLERS_NUM)
   end
 
-  def main_image
-    images&.first
+  def main_image(variant)
+    images.first ? images.first.variant(variant) : PLACEHOLDER_IMAGE
   end
-
-  # def normalize_friendly_id(text)
-  #   text.to_slug.transliterate(:russian).normalize.to_s
-  # end
 
   private
 
