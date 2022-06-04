@@ -81,6 +81,7 @@ ru:
       log_in: ' Войти'
       register: 'Зарегистрироваться'
       pghero: "PgHero"
+      sidekiq: "Sidekiq"
 
   orders:
     checkout:

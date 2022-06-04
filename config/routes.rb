@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users,
              controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   authenticate :user, -> (user) { user.admin? } do
     mount PgHero::Engine, at: "pghero"
+    mount Sidekiq::Web => '/sidekiq'
   end
   root to: 'pages#index'
 

@@ -1,0 +1,9 @@
+:verbose: false
+:concurrency: 10
+:pidfile: tmp/pids/sidekiq.pid
+:queues:
+  - default
+  - low
+
+production:
+  :concurrency: 25
