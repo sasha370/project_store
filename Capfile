@@ -6,8 +6,8 @@ require 'capistrano/sitemap_generator'
 # Include default deployment tasks
 require 'capistrano/deploy'
 require 'whenever/capistrano'
-require 'capistrano/sidekiq'
-install_plugin Capistrano::Sidekiq
+# require 'capistrano/sidekiq'
+# install_plugin Capistrano::Sidekiq
 # install_plugin Capistrano::Sidekiq::Systemd
 # install_plugin Capistrano::Sidekiq::Monit
 # set :sidekiq_monit_use_sudo, false

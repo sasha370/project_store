@@ -1,14 +1,13 @@
 %nav.navbar.navbar-expand-lg.navbar-light.navbar-default
   .container
-    = link_to t('.title'), root_path, class: 'navbar-brand ml-1' 
+    = link_to t('.title'), root_path, class: 'navbar-brand ml-1'
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Переключатель навигации", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
       %span.navbar-toggler-icon
-    
-    #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.mr-auto
 
-        <!-- TODO  replace  current_user -->
-        - if current_user && current_user.admin?
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto.ml-5
+
+        - if current_user&.admin?
           %li.nav-item
             = link_to t('shared.navbar.admin'), admin_root_path, class: 'nav-link'
           %li.nav-item
@@ -17,6 +16,7 @@
             = link_to t('shared.navbar.sidekiq'), sidekiq_web_path, class: 'nav-link'
           %li.nav-item
             = link_to 'Monit', 'https://diy-plans.ru/monit', class: 'nav-link'
+
         %li.nav-item
           = link_to t('.home'), root_path, class: 'nav-link'
         %li.nav-item.dropdown
@@ -25,10 +25,10 @@
           %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             %li= link_to t('.all'), projects_path, class: 'dropdown-item'
             %li.dropdown-divider
-            - Category.all.each do |category|
-              %li= link_to category.title, projects_path(category_id: category.id), class: 'dropdown-item'
+            - Category.pluck(:title,:id).each do |category|
+              %li= link_to category[0], projects_path(category_id: category[1]), class: 'dropdown-item'
 
-        - if current_user 
+        - if current_user
           %li.nav-item.dropdown
             %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
               = t('shared.navbar.profile')
@@ -41,7 +41,7 @@
         - else
           %li= link_to t('shared.navbar.log_in'), new_user_session_path, class: 'nav-link'
           %li= link_to t('shared.navbar.register'), new_user_registration_path, class: 'nav-link'
-    
+
     = link_to cart_path, class: 'shop-link pull-right' do
       %span.shop-icon
         %span.shop-quantity#item_counter= current_or_guest_user.qty_in_cart
