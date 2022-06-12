@@ -18,20 +18,11 @@ img {
 .col-price {
   width: 17.5%;
 }
-.col-quantity {
-  width: 17.5%;
-}
 .col-total {
   width: 14%;
 }
 .col-close {
   width: 10%;
-}
-.col-method {
-  width: 40%;
-}
-.col-half {
-  width: 50%;
 }
 .general-main-wrap {
   margin-bottom: 60px;
@@ -55,19 +46,15 @@ img {
 .general-thumbnail {
   padding: 38% 0;
 }
+.general-thumbnail:hover {
+  transform:scale(1.1);
+}
 .general-thumbnail .general-thumbnail-img {
   max-width: 95%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-.general-thumb-link-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  white-space: nowrap;
 }
 .general-nav-mail {
   font-size: $font-size-small;
@@ -111,10 +98,6 @@ img {
   margin: 0 auto 25px;
 }
 
-.general-cart-item {
-  padding-top: 30px;
-  padding-bottom: 5px;
-}
 .general-cart-close {
   font-size: 28px;
   transform: translateY(-50%);
@@ -125,49 +108,15 @@ img {
   text-align: left;
   margin: 0 auto 50px;
 }
-.general-text-align {
-  text-align: center;
-}
 .general-order-wrap {
   padding-top: 15px;
 }
 .general-input-group {
   margin-bottom: 35px;
 }
-.general-subtitle {
-  color: $blue-500;
-  font-weight: 400;
-}
 .general-info-text {
   font-size: $font-size-base;
   color: $grey-600;
-  font-weight: 300;
-}
-.general-form-help {
-  font-size: 18px;
-  color: $grey-600;
-  position: absolute;
-  top: 35px;
-  right: 8px;
-  cursor: pointer;
-}
-.general-address {
-  font-size: 16px;
-  color: $grey-900;
-  font-weight: 300;
-  line-height: 2;
-}
-.general-edit {
-  font-size: 13px;
-  color: $grey-600;
-}
-.general-order-number {
-  font-size: 18px;
-  color: $blue-500;
-  font-weight: 600;
-}
-.general-sign-text {
-  color: $grey-700;
   font-weight: 300;
 }
 .general-login-title {
@@ -177,35 +126,10 @@ img {
   margin-top: 0;
   margin-bottom: 40px;
 }
-.general-login-icon {
-  font-size: 24px;
-  color: $grey-900;
-  display: inline-block;
-  margin-bottom: 20px;
-  cursor: pointer;
-}
 .general-login-text {
   color: $grey-600;
   font-weight: 300;
   margin-bottom: 25px;
-}
-.general-form{
-  max-width: 370px;
-  margin: 0 auto 20px;
-}
-.general-password-text {
-  font-size: 16px;
-  color: $grey-600;
-  font-weight: 300;
-  margin: 0 20px 25px;
-}
-.general-settings-btn {
-  text-align: center;
-}
-.general-order-number {
-  font-size: 16px;
-  color: $blue-500;
-  font-weight: 300;
 }
 .general-message-wrap {
   padding: 30px 0 25px;
@@ -284,9 +208,6 @@ img {
   }
   .general-input-group {
     margin-bottom: 10px;
-  }
-  .general-text-align {
-    text-align: left;
   }
   .general-text-right {
     text-align: right;

@@ -12,7 +12,7 @@ module Projects
     DEFAULT_SORTING = 'newest'
 
     def initialize(category_id, sorting, projects: nil)
-      @projects = projects || Project.published.preload(:archive_attachment, :images_attachments)
+      @projects = projects || Project.published.includes(images_attachments: :blob)
       @category_id = category_id
       @sorting = sorting || DEFAULT_SORTING
     end

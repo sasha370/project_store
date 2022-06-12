@@ -16,15 +16,11 @@
 
 
 ### TODO
-- Webpack bundle analizer (проанализировать JS)
 - Сделать улучшения согласно LightHouse
-- поправить мобильный Навбар
 - Сделать CI проверку для метрик lighthuse 
 - Только один Деплой воркфло за раз 
 - Сделать страницу "почему стоит покупать у нас"
 - Кеширование страниц товара + Redis
-- check N+1
-- добавить Breadcrumbs  в карточку проекта
 - Учитывать в счетчике проектов для категории только опубликованные 
 
 ### SMTP server
@@ -40,10 +36,14 @@ https://app-smtp.sendinblue.com/real-time
 - Аналогичные товары
 - Купоны + скидки ( )
 - Бейдж ХИТ в карточке товара и в каталоге (настраиваится из админки). К нему привязаны ТОП по продажам
-- Fix mobile navbar
 - React and new design with //  https://mdbootstrap.com/plugins/react/e-commerce-components/
 - Rspec тесты в параллель для GHA https://shime.sh/til/running-parallel-rails-tests-on-github-actions
 
 
 ### CI & CD
  - Добавить стопер на 95% для покрытия тестами в CI
+
+
+###  Webpack analyzer
+bin/webpack --profile --json > tmp/webpack-stats.json
+npx webpack-bundle-analyzer tmp/webpack-stats.json public/packs

@@ -38,6 +38,7 @@ gem 'pg', '~> 1.3'
 gem 'pghero'
 gem 'pg_query', '>= 0.9.0'
 gem 'puma', '~> 5.0'
+gem 'rack-mini-profiler'
 gem 'rails', '~> 6.1.3'
 gem 'react-rails'
 gem 'redis', '~> 4.0'
@@ -48,7 +49,6 @@ gem 'turbolinks', '~> 5'
 gem 'twitter-bootstrap-rails'
 gem 'webpacker', '~> 5.0'
 gem 'whenever', require: false
-gem 'rack-mini-profiler'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

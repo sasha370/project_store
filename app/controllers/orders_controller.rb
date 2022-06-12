@@ -6,13 +6,10 @@ class OrdersController < ApplicationController
   include ActionView::Helpers::NumberHelper
 
   def add_to_cart
-    respond_to do |format|
-      format.js do
-        @project = Project.friendly.find(params[:id])
-        @cart.order_projects.find_or_create_by(project_id: @project.id)
-        flash.now[:notice] = t('orders.success')
-      end
-    end
+    @project = Project.friendly.find(params[:id])
+    @cart.order_projects.find_or_create_by(project_id: @project.id)
+    flash[:notice] = t('orders.success')
+    redirect_to project_path(@project)
   end
 
   def cart

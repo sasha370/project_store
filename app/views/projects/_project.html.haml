@@ -1,12 +1,8 @@
 .col-xs-12.col-sm-4
   .general-thumb-wrap{ id: "project_card_#{project.id}"}
     .thumbnail.general-thumbnail
-      = image_tag project.main_image(:catalog_image), class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
-      .thumb-hover
-        .general-thumb-link-wrap
-          = link_to project_path(project), class: 'thumb-hover-link' do
-            %i.fa.fa-eye.thumb-icon{'aria-hidden': "true"}
-          = project.cart_buttons_catalog
+      = link_to project_path(project), class: 'thumb-hover-link' do
+        = image_tag project.main_image(:catalog_image), class: 'img-shadow general-thumbnail-img', alt: "#{project.title}"
 
   .general-thumb-info
     .row

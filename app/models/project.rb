@@ -30,8 +30,8 @@ class Project < ApplicationRecord
   DEFAULT_BESTSELLERS_NUM = 3
 
   def self.best_projects
-    hits = where(hit: true).includes(:archive_attachment)
-    hits.count > (DEFAULT_BESTSELLERS_NUM - 1) ? hits : includes(:archive_attachment).take(DEFAULT_BESTSELLERS_NUM)
+    hits = where(hit: true)
+    hits.count > (DEFAULT_BESTSELLERS_NUM - 1) ? hits : take(DEFAULT_BESTSELLERS_NUM)
   end
 
   def main_image(variant)

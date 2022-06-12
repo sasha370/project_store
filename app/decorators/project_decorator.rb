@@ -75,7 +75,7 @@ class ProjectDecorator < ApplicationDecorator
   end
 
   def add_to_cart_button(for_catalog: true)
-    link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}", remote: true do
+    link_to add_to_cart_path(self), class: style_for_link(for_catalog), id: "add_to_cart_#{id}" do
       tag.i(t('cart_buttons.in_cart'), class: 'fa fa-shopping-cart', aria_hidden: true)
     end
   end

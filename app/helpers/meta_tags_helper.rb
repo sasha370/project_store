@@ -4,7 +4,7 @@ module MetaTagsHelper
   def default_meta_tags # rubocop:disable Metrics/MethodLength:
     {
       site: 'diy-plans.ru',
-      title: 'DIY Plans | Все своими руками, чертежи и инструкции',
+      title: 'Все своими руками, чертежи и инструкции',
       reverse: true,
       separator: '|',
       description: 'Готовы сделать будку для собаки, беседку, вольер, курятник или детский домик своими руками?',

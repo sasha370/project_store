@@ -1,9 +1,0 @@
-// Turned OFF
-
-document.querySelector('.flash_wrapper').insertAdjacentHTML('beforeend', "<%=  j render 'shared/message' %>");
-document.getElementById("order_project_<%=@order_project.id%>").remove();
-document.querySelector('#item_counter').textContent = <%= current_or_guest_user.qty_in_cart%>;
-document.querySelector('#total_amount').textContent = <%= current_or_guest_user.cart.total_amount%>;
-document.querySelector('#total_discount').textContent = <%= current_or_guest_user.cart.discount%>;
-document.querySelector('#amount_with_discount').textContent  = <%= current_or_guest_user.cart.amount_with_discount%>;
-document.querySelector('#checkout_sum').value = <%= current_or_guest_user.cart.amount_with_discount%>;
