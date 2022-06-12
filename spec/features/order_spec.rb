@@ -7,17 +7,17 @@ RSpec.describe 'Order', type: :feature do
       let!(:order) { create(:order, :with_items, user: user) }
       let(:project) { order.projects.first }
 
-      it 'he can see link Go_to_cart' do
+      it 'he cannot see link Go_to_cart' do
         sign_in user
         visit(projects_path)
         within(id: "project_card_#{project.id}") do
-          expect(page).to have_link(href: '/cart', visible: :all)
+          expect(page).not_to have_link(href: '/cart', visible: :all)
         end
       end
     end
 
     context 'with Project page' do
-      context 'when press Add_to_cart', js: true do
+      context 'when press Add_to_cart' do
         let!(:project) { create(:project) }
         let!(:user) { create(:user) }
 

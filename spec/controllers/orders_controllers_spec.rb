@@ -9,11 +9,11 @@ RSpec.describe OrdersController, type: :controller do
 
       before do
         login(user)
-        get :add_to_cart, params: { id: project.id }, format: :js
+        get :add_to_cart, params: { id: project.id }
       end
 
-      it 'returns 200 status' do
-        expect(response).to have_http_status(:ok)
+      it 'redirect to self' do
+        expect(response).to redirect_to project_path(project)
       end
 
       it 'assigns the user to @user' do
@@ -24,27 +24,19 @@ RSpec.describe OrdersController, type: :controller do
         expect(user.orders.cart.size).to eq(1)
         expect(user.orders.last.order_projects.first.project).to eq(project)
       end
-
-      it 'render notification' do
-        expect(response).to render_template 'add_to_cart'
-      end
     end
 
     context 'when NOT Auth user' do
       before do
-        get :add_to_cart, params: { id: project.id }, format: :js
-      end
-
-      it 'returns 200 status' do
-        expect(response).to have_http_status(:ok)
+        get :add_to_cart, params: { id: project.id }
       end
 
       it 'assigns the projects to @cart' do
         expect(User.last.cart.projects).to eq([project])
       end
 
-      it 'render cart' do
-        expect(response).to render_template 'add_to_cart'
+      it 'redirect to self' do
+        expect(response).to redirect_to project_path(project)
       end
     end
   end
@@ -94,16 +86,16 @@ RSpec.describe OrdersController, type: :controller do
     let(:user) { create(:user) }
     let!(:order) { create(:order, :with_items, user: user) }
     let(:order_project_to_remove) { order.order_projects.first }
-    let(:perform) { get :remove_from_cart, params: { id: order_project_to_remove.id }, format: :js }
+    let(:perform) { get :remove_from_cart, params: { id: order_project_to_remove.id } }
 
     context 'when remove from cart' do
       before do
         login(user)
       end
 
-      it 'returns 200 status' do
+      it 'redirect to /cart' do
         perform
-        expect(response).to have_http_status(:ok)
+        expect(response).to redirect_to cart_path
       end
 
       it 'assigns the order_project to @order_project' do
@@ -117,11 +109,11 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     context 'when NOT Auth' do
-      let(:perform) { get :remove_from_cart, params: { id: order_project_to_remove.id }, format: :js }
+      let(:perform) { get :remove_from_cart, params: { id: order_project_to_remove.id } }
 
-      it 'returns 200 status' do
+      it 'redirect to /cart' do
         perform
-        expect(response).to have_http_status(:ok)
+        expect(response).to redirect_to cart_path
       end
 
       it 'change order_project count' do

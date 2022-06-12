@@ -6,6 +6,7 @@
     = t('.back_to_result')
     - if  current_user&.admin?
       = link_to "Редактировать", edit_admin_project_path(@project), target: '_blank', class: 'btn btn-default pull-right general-position'
+
   .row
     .col-sm-6
       = react_component("Gallery", { images: @project.images_for_gallery })
@@ -19,10 +20,10 @@
         = @project.vendor_code
       .row
         - if @project.old_price
-          .col-xs-12.col-md-3.mt-2    
+          .col-xs-12.col-md-3.mt-2
             %p.h2.in-grey-600.strikethrough.mt-10
               = "#{@project.old_price} <small>₽</small>".html_safe
-              
+
         .col-xs-12.col-md-3
           %p.h1.in-blue-500.mt-10
             = @project.price
@@ -40,7 +41,7 @@
       <!-- #Additional params  -->
       .general-info-wrap.divider-lg
         .clearfix
-          %p.pull-left= t('.difficulty') 
+          %p.pull-left= t('.difficulty')
           %p.difficulty.pull-right
             = @project.difficult_icons
 
