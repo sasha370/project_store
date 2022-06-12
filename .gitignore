@@ -47,3 +47,4 @@ yarn-debug.log*
 
 
 public/yml_report.xml
+sitespeed-result/**/*

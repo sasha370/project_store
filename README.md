@@ -47,3 +47,8 @@ https://app-smtp.sendinblue.com/real-time
 
 ### CI & CD
  - Добавить стопер на 95% для покрытия тестами в CI
+
+
+###  Webpack analyzer
+bin/webpack --profile --json > tmp/webpack-stats.json
+npx webpack-bundle-analyzer tmp/webpack-stats.json public/packs
